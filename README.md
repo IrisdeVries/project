@@ -2,7 +2,7 @@
 
 In mijn eindproject wil ik de Amsterdamse huizenmarkt vanuit een andere hoek belichten. De visualisatie die ik wil maken gaat in de basis bestaan uit een map van Amsterdam. 
 
-![Alt text](https://raw.github.com/IrisdeVries/project/doc/schetsProject.jpg)
+![Alt text](https://github.com/IrisdeVries/project/blob/master/doc/schetsProject.jpg)
 
 what features will be exposed to the end user, what problem will be solved for the user
 a preliminary sketch of what the application will look like
