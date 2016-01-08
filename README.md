@@ -24,3 +24,7 @@ De datasets zijn allemaal verschillend. Sommige sets zijn al in een goed format,
 Ik ga de visualisatie maken in D3. Ik weet nog niet zo goed hoe ik verschillende venster ga maken en of het mogelijk is om schuifbalken en knoppen te maken in D3. Gelukkig krijgen we genoeg begeleiding en bestaat google.
 
 Ik ben op het idee gekomen om iets over Amsterdam te maken omdat ik dit voorbeeld tegen kwam: https://www.ois.amsterdam.nl/visualisatie/veiligheidsindex.html?index=Belevingindex&postcode=1031AA&indeling=buurt&meting=2015-08 In deze visualisatie is de veiligheidsscore te zien van verschillende plekken in Amsterdam. Gebieden zijn ingekleurd aan de hand van deze score. Ik vind de stijl heel mooi en rustig. Dat wil ik ook graag in mijn eigen visualisatie. De aparte schermen op de kaart vind ik ook mooi en dat wil ik zelf ook.  
+
+
+
+** data staat nog niet in goede format

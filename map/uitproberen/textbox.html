@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var svg = d3.select("body").append("svg")
+    .attr("width", 960)
+    .attr("height", 500);
+
+var text = svg.append("text")
+    .attr("x", 480)
+    .attr("y", 250)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    .style("font", "300 128px Helvetica Neue")
+    .text("Hello, getBBox!");
+
+var bbox = text.node().getBBox();
+
+var rect = svg.append("rect")
+    .attr("x", bbox.x)
+    .attr("y", bbox.y)
+    .attr("width", bbox.width)
+    .attr("height", bbox.height)
+    .style("fill", "#ccc")
+    .style("fill-opacity", ".3")
+    .style("stroke", "#666")
+    .style("stroke-width", "1.5px");
+
+</script>
