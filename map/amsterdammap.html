@@ -1,0 +1,81 @@
+<code html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
+		<style type = "text/css">
+			html {height: 100%}
+			body {height: 100%; margin: 0; padding: 0}
+			#map_canvas {height: 100%}
+		</style>
+		<title> Amsterdam </title>
+		<script type = "text/javascript" src = "http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type = "text/javascript" src = "GM_basistopo.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
+		<script type="text/javascript">
+			var kaartOpties = {
+				center: BASIS_CENTRUM_LATLNG,
+				zoom: BASIS_INZOOM,
+				mapTypeControlOptions: {
+					maptypeIds: ['BASISTOPO']
+					}
+			};
+
+			function geefKaart() {
+				var map = new google.maps.Map(document.getElementById('map_canvas'), kaartOpties);
+				console.log('dfdfsfds')
+				map.mapTypes.set('BASISTOPO, basisTopoMapType')
+				map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
+			}
+		</script>
+	</head>
+	<body onLoad = "geefKaart()">
+		<div id = "map_canvas" style = "width: 100%; height: 100%; position: absolute; z-index: 1;"></div>
+<!-- 		<div id = "myCanvas" style = "width:50; height: 10; position: absolute; z-index: 2;"></div> -->
+		<div id="chart"></div>
+
+		<script>
+		    var canvas  = d3.select("#chart").append("canvas")
+			.attr("id", "canvas")
+			.attr("width", 400)
+			.attr("height", 400);
+			
+		    var context = canvas.node().getContext("2d");
+		</script>
+		
+ 		<canvas id="myCanvas1" width="400" height="500" style="position: absolute; z-index: 2;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+		<canvas id="myCanvas2" width="400" height="1000" style="position: absolute; z-index: 2;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+		<canvas id="myCanvas3" width="400" height="500" style="position: absolute; z-index: 2;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+		<script>
+			var c=document.getElementById("myCanvas1");
+				var ctx=c.getContext("2d");
+				ctx.rect(30,50,400,500);
+				ctx.fillStyle="#c2d6d6";
+				ctx.fill();
+				ctx.font="20px Verdana";
+				ctx.fillStyle="white";
+				ctx.fillText("Wonen in Amsterdan",40,90);
+				ctx.font="12px Verdana";
+				ctx.fillStyle="white";
+				ctx.fillText("Op deze pagina kunt u informatie vinden over buurten",40,120);
+				ctx.fillText("in Amsterdam. De kaart is ingedeeld in de 22 gebieden waarui Amsterdam bestaat",40,135);
+
+			var c=document.getElementById("myCanvas2");
+				var ctx=c.getContext("2d");
+				ctx.rect(30, 520, 400,100);
+				ctx.fillStyle="#c2d6d6";
+				ctx.fill();
+
+			var c=document.getElementById("myCanvas3");
+				var ctx=c.getContext("2d");
+				ctx.rect(30,700,400,500);
+				ctx.fillStyle="#c2d6d6";
+				ctx.fill();
+		</script>
+
+	</body>
+</html>
+</code>
