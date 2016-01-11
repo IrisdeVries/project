@@ -1,7 +1,7 @@
 import csv
 import json
 
-f = open('OudNoord.csv', 'r')
+f = open('BOLO.csv', 'r')
 reader = csv.reader(f, delimiter=',',skipinitialspace=True)
 
 # make empty list
