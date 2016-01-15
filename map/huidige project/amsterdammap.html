@@ -8,26 +8,38 @@
 			body {height: 100%; margin: 0; padding: 0}
 			#map_canvas {height: 100%}
 		</style>
+
+		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
 		<title> Wonen in Amsterdam </title>
+		<p id="p1">Hello Amsterdam!</p>
 		<script type = "text/javascript" src = "http://maps.google.com/maps/api/js?sensor=false"></script>
 		<script type = "text/javascript" src = "GM_basistopo.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script type = "text/javascript" src= "http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 		<script type = "text/javascript" src = "kaartOpties.js"></script>
+		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
+		<div id="chart"></div>
 	</head>
 
+<!-- 		niet geefKaart? -->
 	<body onLoad = "geefKaart()">
 <!-- 		canvas google maps -->
-		<div id = "map_canvas" style = "width: 100%; height: 100%; position: absolute; z-index: 1;"></div>
+		<div id = "map_canvas" style = "width: 60%; height: 60%; margin-top: 50px; margin-left: 350px; position: absolute; z-index: 1;"></div>
 <!-- 		canvas informatie -->
-		<canvas id = "myCanvas1" width = "350" height = "300" style = "position: absolute; z-index: 2;"></canvas>		
-<!-- 		knop -->
-		<button onclick = "myFunction()" style = "position: absolute; z-index: 2; transition: .5s ease; top: 200; left: 40;">Copy Text</button>
-<!-- 		script voor knop -->
-		<script>
-			function myFunction() {
-				
-			}
-		</script>
+		<canvas id = "myCanvas1" width = "350" height = "500" style = "position: absolute; z-index: 2;"></canvas>
+		<canvas id = "myCanvas2" width = "350" height = "100" style = "position: absolute; z-index: 2;"></canvas>	
+		<canvas id = "myCanvas3" width = "350" height = "100" style = "position: absolute; z-index: 2; margin-top: 50px; margin-left: 20px;"></canvas>
+
+<!-- 		knoppen -->
+		<button id = "knop" onclick = "woningWaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 30; color:"white"; font-family:Verdana;">Woningwaarde</button>
+		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 340; left: 30;">Huishoudenstypen</button>
+		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 380; left: 30;">Bevolkingsdichtheid</button>
+		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 420; left: 30;">Leeftijdsgroepen</button>
+
+<!-- 		postcodebalk -->
+		<input type="text" name="firstname" style = "position: absolute; z-index: 2; top: 220; left: 30; font-family:Verdana;">
+		<button id = "knop" onclick = "PostcodeFunction()" style = "position: absolute; z-index: 2; top: 215; left: 190; font-family:Verdana;">Ga</button>
 
 <!-- 		script voor informatiecanvas -->
 		<script>
@@ -55,23 +67,21 @@
 	        // hoe moet de opmaak?
 			var c = document.getElementById("myCanvas1");
 				var ctx = c.getContext("2d");
-				var maxWidth = 400;
+				var maxWidth = 250;
 			    var lineHeight = 25;
 			    var x = (myCanvas1.width - maxWidth) / 2;
-			    var y = 60;
+			    var y = 115;
 			    // variablen van maken
-				ctx.rect(30,50,300,350);
+				ctx.rect(30,90,300,350);
 				ctx.fillStyle = "white";
 				ctx.fill();
-				ctx.font = "20px Verdana";
-				ctx.fillStyle = "black";
-				ctx.fillText("Wonen in Amsterdam",80,80);
-				ctx.font = "12px Verdana";
-				ctx.fillStyle = "black";
-				// voorbeeld tekst om te wrappen
-				var text = "blablablalsgsdguofdsgofgifugpfdugugihjjkklhsdaigfigfeiefifeief;ihfhiigfidsisa;;sblablablalsgsdguofdsgofgifugpfdugugihjjkklhsdaigfigfeiefifeief;ihfhiigfidsisa;;sblablablalsgsdguofdsgofgifugpfdugugihjjkklhsdaigfigfeiefifeief;ihfhiigfidsisa;;sblablablalsgsdguofdsgofgifugpfdugugihjjkklhsdaigfigfeiefifeief;ihfhiigfidsisa;;sblablablalsgsdguofdsgofgifugpfdugugihjjkklhsdaigfigfeiefifeief;ihfhiigfidsisa;;s";
 
-				// wrapText(ctx, text, x, y, maxWidth, lineHeight);
+				// voorbeeld tekst om te wrappen
+				var text = 'Amsterdam is op te delen in 22 gebieden. Op deze pagina kunt u informatie vinden over elk van deze gebieden.';
+				
+			    ctx.font = '12pt Calibri';
+			    ctx.fillStyle = '#333';
+				wrapText(ctx, text, x, y, maxWidth, lineHeight);
 
 				// bron: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-size/
 				var imageObj = new Image();
@@ -79,6 +89,95 @@
 	       	 		ctx.drawImage(imageObj, 30, 50, 45, 45);
 	      		};
 	      		imageObj.src = 'http://www.brianrose.com/amsterdam/images/LogoAmsterdam.gif';
+
+	      	var c = document.getElementById("myCanvas2");
+				var ctx = c.getContext("2d");
+				var maxWidth = 400;
+			    var lineHeight = 25;
+			    var x = (myCanvas1.width - maxWidth) / 2;
+			    var y = 60;
+			    // variablen van maken
+				ctx.rect(30,50,300, 45);
+				ctx.fillStyle = "red";
+				ctx.fill();
+				ctx.font = "20px Verdana";
+				ctx.fillStyle = "white";
+				ctx.fillText("Wonen in Amsterdam",80,80);
+				ctx.font = "12px Verdana";
+				ctx.fillStyle = "black";
+
+
+			//d3 bar chart
+			// var margin = {top: 40, right: 20, bottom: 30, left: 40},
+			//     width = 500 - margin.left - margin.right,
+			//     height = 300 - margin.top - margin.bottom;
+
+			// var formatPercent = d3.format(".0%");
+
+			// var x = d3.scale.ordinal()
+			//     .rangeRoundBands([0, width], .1);
+
+			// var y = d3.scale.linear()
+			//     .range([height, 0]);
+
+			// var xAxis = d3.svg.axis()
+			//     .scale(x)
+			//     .orient("bottom");
+
+			// var yAxis = d3.svg.axis()
+			//     .scale(y)
+			//     .orient("left")
+
+			// var tip = d3.tip()
+			//   .attr('class', 'd3-tip')
+			//   .offset([-10, 0])
+			//   .html(function(d) {
+			//     return "<strong>Woningwaarde:</strong> <span style='color:red'>" + d.frequency + "</span>";
+			//   })
+
+			// var svg = d3.select("#chart").append("svg")
+			//     .attr("width", width + margin.left + margin.right)
+			//     .attr("height", height + margin.top + margin.bottom)
+			//   .append("g")
+			//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			// svg.call(tip);
+
+			// d3.tsv("data.tsv", type, function(error, data) {
+			//   x.domain(data.map(function(d) { return d.letter; }));
+			//   y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+			//   svg.append("g")
+			//       .attr("class", "x axis")
+			//       .attr("transform", "translate(0," + height + ")")
+			//       .call(xAxis);
+
+			//   svg.append("g")
+			//       .attr("class", "y axis")
+			//       .call(yAxis)
+			//     .append("text")
+			//       .attr("transform", "rotate(-90)")
+			//       .attr("y", 6)
+			//       .attr("dy", ".71em")
+			//       .style("text-anchor", "end")
+			//       .text("Woningwaarde per m2");
+
+			//   svg.selectAll(".bar")
+			//       .data(data)
+			//     .enter().append("rect")
+			//       .attr("class", "bar")
+			//       .attr("x", function(d) { return x(d.letter); })
+			//       .attr("width", x.rangeBand())
+			//       .attr("y", function(d) { return y(d.frequency); })
+			//       .attr("height", function(d) { return height - y(d.frequency); })
+			//       .on('mouseover', tip.show)
+			//       .on('mouseout', tip.hide)
+			// });
+
+			// function type(d) {
+			//   d.frequency = +d.frequency;
+			//   return d;
+			// }
 		</script>
 	</body>
 </html>

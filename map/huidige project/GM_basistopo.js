@@ -2,7 +2,7 @@ var BASIS_TEGEL_URL_PRE = "HTTP://TILES";
 var BASIS_TEGEL_URL_POST = ".opdekaart.amsterdam.nl/tegels/";
 
 var BASIS_MINZOOM = 11;
-var BASIS_MAXZOOM = 19;
+var BASIS_MAXZOOM = 13;
 var BASIS_INZOOM = 12;
 
 var BASIS_CENTRUM_LATLNG = new google.maps.LatLng(52.3518055, 4.89514305);
