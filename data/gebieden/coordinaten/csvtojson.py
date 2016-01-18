@@ -1,20 +1,23 @@
 import csv
 import json
 
-f = open('Westerpark.csv', 'r')
-reader = csv.reader(f, delimiter=',',skipinitialspace=True)
+f = open('fuckedup2.csv', 'r')
+reader = csv.reader(f, delimiter=')',skipinitialspace=True)
 
 # make empty list
 aList = []
 
 # modify data
 for row in reader:
-	lat = row[0]
-	lng = row[1]
+	print row[0]
 
-	print"{lat:"
-	print lat
-	print ","
-	print"lng:"
-	print lng
-	print "},"
+
+	# lat = row[0]
+	# lng = row[1]
+
+	# print"{lat:"
+	# print lat
+	# print ","
+	# print"lng:"
+	# print lng
+	# print "},"

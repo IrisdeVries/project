@@ -32,14 +32,14 @@
 		<canvas id = "myCanvas3" width = "350" height = "100" style = "position: absolute; z-index: 2; margin-top: 50px; margin-left: 20px;"></canvas>
 
 <!-- 		knoppen -->
-		<button id = "knop" onclick = "woningWaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 30; color:"white"; font-family:Verdana;">Woningwaarde</button>
-		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 340; left: 30;">Huishoudenstypen</button>
-		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 380; left: 30;">Bevolkingsdichtheid</button>
-		<button id = "knop" onclick = "blaFunction()" style = "position: absolute; z-index: 2; top: 420; left: 30;">Leeftijdsgroepen</button>
+		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 30; color:"white"; font-family:Verdana;">Woningwaarde</button>
+		<button id = "knop" onclick = "huishoudenstypenKnop()" style = "position: absolute; z-index: 2; top: 340; left: 30;">Huishoudenstypen</button>
+		<button id = "knop" onclick = "bevolkingsdichtheidKnop()" style = "position: absolute; z-index: 2; top: 380; left: 30;">Bevolkingsdichtheid</button>
+		<button id = "knop" onclick = "leeftijdsgroepenKnop()" style = "position: absolute; z-index: 2; top: 420; left: 30;">Leeftijdsgroepen</button>
 
 <!-- 		postcodebalk -->
-		<input type="text" name="firstname" style = "position: absolute; z-index: 2; top: 220; left: 30; font-family:Verdana;">
-		<button id = "knop" onclick = "PostcodeFunction()" style = "position: absolute; z-index: 2; top: 215; left: 190; font-family:Verdana;">Ga</button>
+		<input id = "inputPostcode" type="text" name="postcode" style = "position: absolute; z-index: 2; top: 220; left: 30; font-family:Verdana;">
+		<button id = "knop" onclick = "postcodeFunction()" style = "position: absolute; z-index: 2; top: 215; left: 190; font-family:Verdana;">Ga</button>
 
 <!-- 		script voor informatiecanvas -->
 		<script>
