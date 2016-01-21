@@ -29,5 +29,5 @@ var basisTopoMapTypeOptions = {
 	minZoom: BASIS_MINZOOM,
 	name: BASIS_TOPONAME	
 };
-console.log(basisTopoMapTypeOptions)
+
 var basisTopoMapType = new google.maps.ImageMapType(basisTopoMapTypeOptions);

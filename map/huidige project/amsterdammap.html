@@ -19,17 +19,17 @@
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 		<script type = "text/javascript" src = "kaartOpties.js"></script>
 		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
-		<div id="chart"></div>
+		<div id="chart" style = "position: absolute; z-index: 2; top: 1500; left: 30;"></div>
 	</head>
 
 <!-- 		niet geefKaart? -->
 	<body onLoad = "geefKaart()">
 <!-- 		canvas google maps -->
-		<div id = "map_canvas" style = "width: 60%; height: 60%; margin-top: 50px; margin-left: 350px; position: absolute; z-index: 1;"></div>
+		<div id = "map_canvas" style = "width: 75%; height: 75%; margin-top: 80px; margin-left: 300px; position: absolute; z-index: 0; border:1px solid black;"></div>
 <!-- 		canvas informatie -->
-		<canvas id = "myCanvas1" width = "350" height = "500" style = "position: absolute; z-index: 2;"></canvas>
-		<canvas id = "myCanvas2" width = "350" height = "100" style = "position: absolute; z-index: 2;"></canvas>	
-		<canvas id = "myCanvas3" width = "350" height = "100" style = "position: absolute; z-index: 2; margin-top: 50px; margin-left: 20px;"></canvas>
+		<canvas id = "myCanvas1" width = "300" height = "400" style = "position: absolute; z-index: 2;"></canvas>
+		<canvas id = "myCanvas2" width = "500" height = "60" style = "position: absolute; z-index: 2;"></canvas>	
+		<canvas id = "myCanvas3" width = "300" height = "100" style = "position: absolute; z-index: 2; margin-top: 50px; margin-left: 20px;"></canvas>
 
 <!-- 		knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 30; color:"white"; font-family:Verdana;">Woningwaarde</button>
@@ -43,7 +43,26 @@
 
 <!-- 		script voor informatiecanvas -->
 		<script>
-			// functie om tekst te wrappen, werkt nog niet
+			var woningwaarde = []
+			var woningwaardem2 = []
+			var gebied = []
+			var gebiedNaam = []
+			var bevolkingsdichtheidkm2 = []
+			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
+				for (j = 0; j < 23; j++){
+					data[j].WOZ = +data[j].WOZ
+					data[j].WOZm2 = +data[j].WOZm2
+					data[j].bevolkingsdichtheidkm2 = +data[j].bevolkingsdichtheidkm2
+					woningwaarde.push(data[j].WOZ)
+					woningwaardem2.push(data[j].WOZm2)
+					gebied.push(data[j].gebied)
+					gebiedNaam.push(data[j].gebiedNaam)
+					bevolkingsdichtheidkm2.push(data[j].bevolkingsdichtheidkm2)
+				}
+				console.log(bevolkingsdichtheidkm2)
+			});
+
+			// functie om tekst te wrappen
 			function wrapText(context, text, x, y, maxWidth, lineHeight) {
 		        var words = text.split(' ');
 		        var line = '';
@@ -72,7 +91,7 @@
 			    var x = (myCanvas1.width - maxWidth) / 2;
 			    var y = 115;
 			    // variablen van maken
-				ctx.rect(30,90,300,350);
+				ctx.rect(30,50,300,350);
 				ctx.fillStyle = "white";
 				ctx.fill();
 
@@ -86,7 +105,7 @@
 				// bron: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-size/
 				var imageObj = new Image();
 	      		imageObj.onload = function() {
-	       	 		ctx.drawImage(imageObj, 30, 50, 45, 45);
+	       	 		ctx.drawImage(imageObj, 10, 10, 45, 45);
 	      		};
 	      		imageObj.src = 'http://www.brianrose.com/amsterdam/images/LogoAmsterdam.gif';
 
@@ -97,87 +116,91 @@
 			    var x = (myCanvas1.width - maxWidth) / 2;
 			    var y = 60;
 			    // variablen van maken
-				ctx.rect(30,50,300, 45);
+				ctx.rect(10,10,500,45);
 				ctx.fillStyle = "red";
 				ctx.fill();
 				ctx.font = "20px Verdana";
 				ctx.fillStyle = "white";
-				ctx.fillText("Wonen in Amsterdam",80,80);
+				ctx.fillText("Wonen in Amsterdam",70,40);
 				ctx.font = "12px Verdana";
 				ctx.fillStyle = "black";
 
 
-			//d3 bar chart
-			// var margin = {top: 40, right: 20, bottom: 30, left: 40},
-			//     width = 500 - margin.left - margin.right,
-			//     height = 300 - margin.top - margin.bottom;
+			// d3 bar chart
+			function d3Bar() {
+			var margin = {top: 40, right: 20, bottom: 30, left: 40},
+			    width = 400 - margin.left - margin.right,
+			    height = 300 - margin.top - margin.bottom;
 
-			// var formatPercent = d3.format(".0%");
+			var formatPercent = d3.format(".0%");
 
-			// var x = d3.scale.ordinal()
-			//     .rangeRoundBands([0, width], .1);
+			var x = d3.scale.ordinal()
+			    .rangeRoundBands([0, width], .1);
 
-			// var y = d3.scale.linear()
-			//     .range([height, 0]);
+			var y = d3.scale.linear()
+			    .range([height, 0]);
 
-			// var xAxis = d3.svg.axis()
-			//     .scale(x)
-			//     .orient("bottom");
+			var xAxis = d3.svg.axis()
+			    .scale(x)
+			    .orient("bottom");
 
-			// var yAxis = d3.svg.axis()
-			//     .scale(y)
-			//     .orient("left")
+			var yAxis = d3.svg.axis()
+			    .scale(y)
+			    .orient("left")
 
-			// var tip = d3.tip()
-			//   .attr('class', 'd3-tip')
-			//   .offset([-10, 0])
-			//   .html(function(d) {
-			//     return "<strong>Woningwaarde:</strong> <span style='color:red'>" + d.frequency + "</span>";
-			//   })
+			var tip = d3.tip()
+			  .attr('class', 'd3-tip')
+			  .offset([-10, 0])
+			  .html(function(d) {
+			    return "<strong>Woningwaarde:</strong> <span style='color:red'>" + d.frequency + "</span>";
+			  })
 
-			// var svg = d3.select("#chart").append("svg")
-			//     .attr("width", width + margin.left + margin.right)
-			//     .attr("height", height + margin.top + margin.bottom)
-			//   .append("g")
-			//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			var svg = d3.select("#chart").append("svg")
+			    .attr("width", width + margin.left + margin.right)
+			    .attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			// svg.call(tip);
+			svg.call(tip);
 
-			// d3.tsv("data.tsv", type, function(error, data) {
-			//   x.domain(data.map(function(d) { return d.letter; }));
-			//   y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+			d3.tsv("data.tsv", drawBar)
+			
+			function drawBar(data){
+			  x.domain(data.map(function(d) { return d.letter; }));
+			  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
-			//   svg.append("g")
-			//       .attr("class", "x axis")
-			//       .attr("transform", "translate(0," + height + ")")
-			//       .call(xAxis);
+			  svg.append("g")
+			      .attr("class", "x axis")
+			      .attr("transform", "translate(0," + height + ")")
+			      .call(xAxis);
 
-			//   svg.append("g")
-			//       .attr("class", "y axis")
-			//       .call(yAxis)
-			//     .append("text")
-			//       .attr("transform", "rotate(-90)")
-			//       .attr("y", 6)
-			//       .attr("dy", ".71em")
-			//       .style("text-anchor", "end")
-			//       .text("Woningwaarde per m2");
+			  svg.append("g")
+			      .attr("class", "y axis")
+			      .call(yAxis)
+			    .append("text")
+			      .attr("transform", "rotate(-90)")
+			      .attr("y", 6)
+			      .attr("dy", ".71em")
+			      .style("text-anchor", "end")
+			      .text("Woningwaarde per m2");
 
-			//   svg.selectAll(".bar")
-			//       .data(data)
-			//     .enter().append("rect")
-			//       .attr("class", "bar")
-			//       .attr("x", function(d) { return x(d.letter); })
-			//       .attr("width", x.rangeBand())
-			//       .attr("y", function(d) { return y(d.frequency); })
-			//       .attr("height", function(d) { return height - y(d.frequency); })
-			//       .on('mouseover', tip.show)
-			//       .on('mouseout', tip.hide)
-			// });
+			  svg.selectAll(".bar")
+			      .data(data)
+			    .enter().append("rect")
+			      .attr("class", "bar")
+			      .attr("x", function(d) { return x(d.letter); })
+			      .attr("width", x.rangeBand())
+			      .attr("y", function(d) { return y(d.frequency); })
+			      .attr("height", function(d) { return height - y(d.frequency); })
+			      .on('mouseover', tip.show)
+			      .on('mouseout', tip.hide)
+			};
 
-			// function type(d) {
-			//   d.frequency = +d.frequency;
-			//   return d;
-			// }
+			function type(d) {
+			  d.frequency = +d.frequency;
+			  return d;
+			}
+		}
 		</script>
 	</body>
 </html>

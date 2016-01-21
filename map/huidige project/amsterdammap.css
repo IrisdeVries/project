@@ -30,8 +30,16 @@
     font-size: 20px;
 }
 
+#p2 {
+    position: absolute;
+    left: 650px;
+    top:1000px;
+    font-family: "Verdana";
+    font-size: 20px;
+}
+
 #chart {
-  font: 10px sans-serif;
+  font: 10px Verdana;
 }
 
 .axis path,
@@ -42,11 +50,11 @@
 }
 
 .bar {
-  fill: orange;
+  fill: grey;
 }
 
 .bar:hover {
-  fill: orangered ;
+  fill: darkgrey ;
 }
 
 .x.axis path {
