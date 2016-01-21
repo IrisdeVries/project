@@ -50,10 +50,13 @@ BIJNA KLAAR MET COORDINATEN!!!!!
 
 #week 3
 #day 15
+Alle gebieden getekend
 
 #day 16
+tabel gemaakt, data van leeftijdsgroepen omgezet in percentages en in tabel gezet. 
 
 #day 17
+heel veel bezig met posities van grafieken etc. Probleem met hoe ik dingen moet visualiseren.
 
 #day 18
 
