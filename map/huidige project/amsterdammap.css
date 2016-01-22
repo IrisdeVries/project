@@ -38,6 +38,13 @@
     font-family: "Verdana";
     font-size: 20px;
 }
+#p3 {
+    position: absolute;
+    left: 30px;
+    top: 1050px;
+    font-family: "Verdana";
+    font-size: 15px;
+}
 
 #chart {
   font: 10px Verdana;
@@ -51,11 +58,11 @@
 }
 
 .bar {
-  fill: grey;
+  fill: #ff9999;
 }
 
 .bar:hover {
-  fill: darkgrey ;
+  fill:  #ff5050 ;
 }
 
 .x.axis path {

@@ -5,6 +5,8 @@
 		<title> Wonen in Amsterdam </title>
 		<p id="p1">Hello Amsterdam!</p>
 		<p id="p2"></p>
+		<p id="p3"></p>
+		<img src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/OudNoordmap.jpg" alt="W3Schools.com" style="width:142px;height:104px; position: absolute; z-index: 2; top: 1000; left: 500;">
 
 		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
 		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
@@ -13,6 +15,7 @@
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script type = "text/javascript" src= "http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script src="https://rawgit.com/gka/d3-jetpack/master/d3-jetpack.js"></script>
 		<script type = "text/javascript" src = "kaartOpties.js"></script>
 		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -23,6 +26,14 @@
     		});
 		});
 		</script>
+
+		<style type="text/css">
+		    #table { font-family: 'Helvetica Neue', Helvetica; font-weight: 300; padding: 20px;}
+		    th { text-align: left; }
+		    th, td { padding: 0 1em 0.5ex 0;}
+		    th.center, td.center { text-align: center; }
+		    th.num, td.num { text-align: right; }
+   		</style>
 	</head>
 
 	<!-- geefKaart -->
@@ -44,6 +55,8 @@
 
 		<!-- barchart -->
 		<div id="chart" style = "position: absolute; z-index: 2; top: 1500; left: 30;"></div>
+		<!-- Table -->
+		<div id="table" style = "position: absolute; z-index: 2; top: 1500; left: 30;"></div>
 
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
@@ -75,6 +88,7 @@
 			var woningwaardem2 = []
 			var gebied = []
 			var gebiedNaam = []
+			var gebiedExtra = []
 			var bevolkingsdichtheidkm2 = []
 			var leeftijdEen = []
 			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
@@ -85,7 +99,7 @@
 					data[j].leeftijdEen = +data[j].leeftijdEen
 					woningwaarde.push(data[j].WOZ)
 					woningwaardem2.push(data[j].WOZm2)
-					gebied.push(data[j].gebied)
+					gebiedExtra.push(data[j].gebied)
 					gebiedNaam.push(data[j].gebiedNaam)
 					bevolkingsdichtheidkm2.push(data[j].bevolkingsdichtheidkm2)
 					leeftijdEen.push(data[j].leeftijdEen)
@@ -187,75 +201,74 @@
 			    width = 400 - margin.left - margin.right,
 			    height = 300 - margin.top - margin.bottom;
 
-			var formatPercent = d3.format(".0%");
+				var formatPercent = d3.format(".0%");
 
-			var x = d3.scale.ordinal()
-			    .rangeRoundBands([0, width], .1);
+				var x = d3.scale.ordinal()
+				    .rangeRoundBands([0, width], .1);
 
-			var y = d3.scale.linear()
-			    .range([height, 0]);
+				var y = d3.scale.linear()
+				    .range([height, 0]);
 
-			var xAxis = d3.svg.axis()
-			    .scale(x)
-			    .orient("bottom");
+				var xAxis = d3.svg.axis()
+				    .scale(x)
+				    .orient("bottom");
 
-			var yAxis = d3.svg.axis()
-			    .scale(y)
-			    .orient("left")
+				var yAxis = d3.svg.axis()
+				    .scale(y)
+				    .orient("left")
 
-			var tip = d3.tip()
-			  .attr('class', 'd3-tip')
-			  .offset([-10, 0])
-			  .html(function(d) {
-			    return "<strong>gebied:</strong> <span style='color:red'>" + d.letter + "</span>";
-			  })
+				var tip = d3.tip()
+				  .attr('class', 'd3-tip')
+				  .offset([-10, 0])
+				  .html(function(d) {
+				    return "<strong>gebied:</strong> <span style='color:red'>" + d.letter + "</span>";
+				  })
 
-			var svg = d3.select("#chart").append("svg")
-			    .attr("width", width + margin.left + margin.right)
-			    .attr("height", height + margin.top + margin.bottom)
-			  .append("g")
-			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+				var svg = d3.select("#chart").append("svg")
+				    .attr("width", width + margin.left + margin.right)
+				    .attr("height", height + margin.top + margin.bottom)
+				  .append("g")
+				    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			svg.call(tip);
+				svg.call(tip);
 
-			d3.tsv("data.tsv", drawBar)
-			
-			function drawBar(data){
-			  x.domain(data.map(function(d) { return d.letter; }));
-			  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+				d3.tsv("data.tsv", drawBar)
+				
+				function drawBar(data){
+				  x.domain(data.map(function(d) { return d.letter; }));
+				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
-			  svg.append("g")
-			      .attr("class", "x axis")
-			      .attr("transform", "translate(0," + height + ")")
-			      .call(xAxis);
+				  svg.append("g")
+				      .attr("class", "x axis")
+				      .attr("transform", "translate(0," + height + ")")
+				      // .call(xAxis);
 
-			  svg.append("g")
-			      .attr("class", "y axis")
-			      .call(yAxis)
-			    .append("text")
-			      .attr("transform", "rotate(-90)")
-			      .attr("y", 6)
-			      .attr("dy", ".71em")
-			      .style("text-anchor", "end")
-			      .text("Woningwaarde per m2");
+				  svg.append("g")
+				      .attr("class", "y axis")
+				      .call(yAxis)
+				    .append("text")
+				      .attr("transform", "rotate(-90)")
+				      .attr("y", 6)
+				      .attr("dy", ".71em")
+				      .style("text-anchor", "end")
+				      .text("Woningwaarde per m2");
 
-			  svg.selectAll(".bar")
-			      .data(data)
-			    .enter().append("rect")
-			      .attr("class", "bar")
-			      .attr("x", function(d) { return x(d.letter); })
-			      .attr("width", x.rangeBand())
-			      .attr("y", function(d) { return y(d.frequency); })
-			      .attr("height", function(d) { return height - y(d.frequency); })
-			      .on('mouseover', tip.show)
-			      .on('mouseout', tip.hide)
-			};
+				  svg.selectAll(".bar")
+				      .data(data)
+				    .enter().append("rect")
+				      .attr("class", "bar")
+				      .attr("x", function(d) { return x(d.letter); })
+				      .attr("width", x.rangeBand())
+				      .attr("y", function(d) { return y(d.frequency); })
+				      .attr("height", function(d) { return height - y(d.frequency); })
+				      .on('mouseover', tip.show)
+				      .on('mouseout', tip.hide)
+				};
 
-			function type(d) {
-			  d.frequency = +d.frequency;
-			  return d;
-			}
-			
+				function type(d) {
+				  d.frequency = +d.frequency;
+				  return d;
+				}
 			}
 		</script>
 	</body>
