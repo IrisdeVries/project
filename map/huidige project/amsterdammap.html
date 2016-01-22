@@ -4,6 +4,7 @@
 	<head>
 		<title> Wonen in Amsterdam </title>
 		<p id="p1">Hello Amsterdam!</p>
+		<p id="p2"></p>
 
 		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
 		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
@@ -26,6 +27,7 @@
 
 	<!-- geefKaart -->
 	<body onLoad = "geefKaart()">
+
 		<!-- canvas google maps -->
 		<div id = "map_canvas" style = "width: 75%; height: 75%; margin-top: 130px; margin-left: 300px; position: absolute; z-index: 0; border:1px solid black;"></div>
 
@@ -48,7 +50,7 @@
 		<button id = "knop" onclick = "bevolkingsdichtheidKnop()" style = "position: absolute; z-index: 2; top: 350; left: 10;">Bevolkingsdichtheid</button>
 
 		<!-- leeftijdsgroep slider -->
-		<div id="flip" style = "position: absolute; z-index: 3; top: 400; left: 10;">Leeftijdsgroepen</div>
+		<div id="flip" onclick = "leeftijdsgroepenSlider()" style = "position: absolute; z-index: 3; top: 400; left: 10;">Leeftijdsgroepen</div>
 		<div id="panel" style = "position: absolute; z-index: 3; top: 430; left: 10;">
 			<form action="demo_form.asp" method="get">
 				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Bike"> 0-3<br>
@@ -155,6 +157,7 @@
 				ctx.fillStyle = "black";
 
 
+			// draw legend functie
 			function drawLegend(kleurenLegenda, dataLegenda) {
 			var c = document.getElementById("myCanvas3");
 				var ctx = c.getContext("2d");
@@ -180,7 +183,7 @@
 
 			// d3 bar chart
 			function d3Bar() {
-			var margin = {top: 40, right: 20, bottom: 30, left: 40},
+				var margin = {top: 40, right: 20, bottom: 30, left: 40},
 			    width = 400 - margin.left - margin.right,
 			    height = 300 - margin.top - margin.bottom;
 
@@ -204,7 +207,7 @@
 			  .attr('class', 'd3-tip')
 			  .offset([-10, 0])
 			  .html(function(d) {
-			    return "<strong>Woningwaarde:</strong> <span style='color:red'>" + d.frequency + "</span>";
+			    return "<strong>gebied:</strong> <span style='color:red'>" + d.letter + "</span>";
 			  })
 
 			var svg = d3.select("#chart").append("svg")
@@ -252,7 +255,8 @@
 			  d.frequency = +d.frequency;
 			  return d;
 			}
-		}
+			
+			}
 		</script>
 	</body>
 </html>

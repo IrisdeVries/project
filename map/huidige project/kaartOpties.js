@@ -3635,6 +3635,8 @@ function geefKaart(gebiedData) {
 
 		google.maps.event.addListener(bermudaTriangle,"click",function(e){
 			d3Bar()
+			document.getElementById("p2").innerHTML = polyLabel;
+			window.scroll(0,1000)
 		}); 
 
 		google.maps.event.addListener(bermudaTriangle,"mouseout",function(e){
@@ -3792,13 +3794,16 @@ function geefKaart(gebiedData) {
 huishoudenstypenData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
 bevolkingsdichtheidData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
 postcode = []
-kleuren = ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027"]
-dataLegenda = ["1500 - 1800", "1800 - 2100", "2100 - 2500", "2500 - 3000", "3000 - 3500", "3500 - 4000"]
+kleurenWoningwaarde = ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027"]
+kleurenBevolkingsdichtheid = ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26", "#a50f15"]
+dataLegendaWoningwaarde = ["1500 - 1800", "1800 - 2100", "2100 - 2500", "2500 - 3000", "3000 - 3500", "3500 - 4000"]
+dataLegendaBevolkingsdichtheid = ["1000-1500", "1500-3000", "3000-10000", " 10000-15000", "15000-20000", "20000-30000"]
+
 
 function woningwaardeKnop() {
 	geefKaart(woningwaardem2)
-	document.getElementById("p1").innerHTML = "Woningwaarde per m2";
-	drawLegend(kleuren, dataLegenda)
+	document.getElementById("p1").innerHTML = "Woningwaarde per m\&sup2";
+	drawLegend(kleurenWoningwaarde, dataLegendaWoningwaarde)
 }
 
 function huishoudenstypenKnop() {
@@ -3808,10 +3813,11 @@ function huishoudenstypenKnop() {
 
 function bevolkingsdichtheidKnop() {
 	geefKaart(bevolkingsdichtheidkm2)
-	document.getElementById("p1").innerHTML = "Bevolkingsdichtheid";
+	document.getElementById("p1").innerHTML = "Bevolkingsdichtheid per km\&sup2";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
-function leeftijdsgroepenKnop() {
+function leeftijdsgroepenSlider() {
 	geefKaart(leeftijdEen)
 	document.getElementById("p1").innerHTML = "Leeftijdsgroepen";
 
