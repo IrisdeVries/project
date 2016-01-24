@@ -6,7 +6,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://rawgit.com/gka/d3-jetpack/master/d3-jetpack.js"></script>
     <style type="text/css">
-    body { font-family: 'Helvetica Neue', Helvetica; font-weight: 300; padding: 20px;}
+    body { font-family: 'Helvetica Neue', Helvetica; font-size: 12px;font-weight: 300; padding: 20px;}
     th { text-align: left; }
     th, td { padding: 0 1em 0.5ex 0;}
     th.center, td.center { text-align: center; }
@@ -16,272 +16,507 @@
 <body>
     <script>
     // the table rows, typically loaded from data file using d3.csv
-    var gebiedLeeftijd = [
+     var gebiedLeeftijd = 
+
+     [
   {
     "gebied":"Centrum-West",
     "leeftijdEen":3.24,
     "leeftijdTwee":4.97,
     "leeftijdDrie":2.35,
-    "leeftijdVier":5.86,
-    "leeftijdVijf":4.22,
-    "leeftijdZes":46.16,
-    "leeftijdZeven":20.13,
-    "leeftijdAcht":13.06
+    "leeftijdVier":10.08,
+    "leeftijdVijf":46.16,
+    "leeftijdZes":20.13,
+    "leeftijdZeven":13.06
   },
   {
     "gebied":"Centrum-Oost",
     "leeftijdEen":3.35,
     "leeftijdTwee":5.77,
     "leeftijdDrie":2.76,
-    "leeftijdVier":6.72,
-    "leeftijdVijf":4.47,
-    "leeftijdZes":42.85,
-    "leeftijdZeven":21.04,
-    "leeftijdAcht":13.04
+    "leeftijdVier":11.19,
+    "leeftijdVijf":42.85,
+    "leeftijdZes":21.04,
+    "leeftijdZeven":13.04
   },
   {
     "gebied":"Westerpark",
     "leeftijdEen":4.43,
     "leeftijdTwee":6.51,
     "leeftijdDrie":3.32,
-    "leeftijdVier":5.74,
-    "leeftijdVijf":3.39,
-    "leeftijdZes":48.8,
-    "leeftijdZeven":18.54,
-    "leeftijdAcht":9.27
+    "leeftijdVier":9.13,
+    "leeftijdVijf":48.8,
+    "leeftijdZes":18.54,
+    "leeftijdZeven":9.27
   },
   {
     "gebied":"Bos en Lommer",
     "leeftijdEen":5.66,
     "leeftijdTwee":9.06,
     "leeftijdDrie":4.22,
-    "leeftijdVier":7.23,
-    "leeftijdVijf":4.89,
-    "leeftijdZes":48.86,
-    "leeftijdZeven":12.5,
-    "leeftijdAcht":7.58
+    "leeftijdVier":12.12,
+    "leeftijdVijf":48.86,
+    "leeftijdZes":12.5,
+    "leeftijdZeven":7.58
   },
   {
     "gebied":"Oud-West/De Baarsjes",
     "leeftijdEen":5.03,
     "leeftijdTwee":6.49,
     "leeftijdDrie":2.77,
-    "leeftijdVier":5.68,
-    "leeftijdVijf":4.16,
-    "leeftijdZes":51.95,
-    "leeftijdZeven":15.12,
-    "leeftijdAcht":8.81
+    "leeftijdVier":9.84,
+    "leeftijdVijf":51.95,
+    "leeftijdZes":15.12,
+    "leeftijdZeven":8.81
   },
   {
     "gebied":"Geuzenveld/Slotermeer",
     "leeftijdEen":6.06,
     "leeftijdTwee":11.67,
     "leeftijdDrie":5.77,
-    "leeftijdVier":7.04,
-    "leeftijdVijf":3.79,
-    "leeftijdZes":38.69,
-    "leeftijdZeven":15.92,
-    "leeftijdAcht":11.05
+    "leeftijdVier":10.83,
+    "leeftijdVijf":38.69,
+    "leeftijdZes":15.92,
+    "leeftijdZeven":11.05
   },
   {
     "gebied":"Osdorp",
     "leeftijdEen":6.1,
     "leeftijdTwee":10.44,
     "leeftijdDrie":4.96,
-    "leeftijdVier":6.91,
-    "leeftijdVijf":3.58,
-    "leeftijdZes":37.2,
-    "leeftijdZeven":15.05,
-    "leeftijdAcht":15.75
+    "leeftijdVier":10.49,
+    "leeftijdVijf":37.2,
+    "leeftijdZes":15.05,
+    "leeftijdZeven":15.75
   },
   {
     "gebied":"De Aker/Nieuw Sloten",
     "leeftijdEen":3.96,
     "leeftijdTwee":9.94,
     "leeftijdDrie":7.29,
-    "leeftijdVier":7.51,
-    "leeftijdVijf":2.78,
-    "leeftijdZes":32.17,
-    "leeftijdZeven":24.46,
-    "leeftijdAcht":11.9
+    "leeftijdVier":10.29,
+    "leeftijdVijf":32.17,
+    "leeftijdZes":24.46,
+    "leeftijdZeven":11.9
   },
   {
     "gebied":"Slotervaart",
     "leeftijdEen":5.26,
     "leeftijdTwee":10.11,
     "leeftijdDrie":5.3,
-    "leeftijdVier":9.37,
-    "leeftijdVijf":4.33,
-    "leeftijdZes":39.63,
-    "leeftijdZeven":14,
-    "leeftijdAcht":12
+    "leeftijdVier":13.7,
+    "leeftijdVijf":39.63,
+    "leeftijdZes":14,
+    "leeftijdZeven":12
   },
   {
     "gebied":"Oud-Zuid",
     "leeftijdEen":5.06,
     "leeftijdTwee":8.75,
     "leeftijdDrie":3.77,
-    "leeftijdVier":4.74,
-    "leeftijdVijf":3.1,
-    "leeftijdZes":43.9,
-    "leeftijdZeven":16.95,
-    "leeftijdAcht":13.72
+    "leeftijdVier":7.84,
+    "leeftijdVijf":43.9,
+    "leeftijdZes":16.95,
+    "leeftijdZeven":13.72
   },
   {
     "gebied":"Buitenveldert/Zuidas",
     "leeftijdEen":3.97,
     "leeftijdTwee":6.39,
     "leeftijdDrie":3.29,
-    "leeftijdVier":4.72,
-    "leeftijdVijf":2.96,
-    "leeftijdZes":36.99,
-    "leeftijdZeven":15.4,
-    "leeftijdAcht":26.27
+    "leeftijdVier":7.68,
+    "leeftijdVijf":36.99,
+    "leeftijdZes":15.4,
+    "leeftijdZeven":26.27
   },
   {
     "gebied":"De Pijp/Rivierenbuurt",
     "leeftijdEen":4.6,
     "leeftijdTwee":5.77,
     "leeftijdDrie":2.66,
-    "leeftijdVier":6.54,
-    "leeftijdVijf":4.51,
-    "leeftijdZes":48.47,
-    "leeftijdZeven":16.05,
-    "leeftijdAcht":11.41
+    "leeftijdVier":11.05,
+    "leeftijdVijf":48.47,
+    "leeftijdZes":16.05,
+    "leeftijdZeven":11.41
   },
   {
     "gebied":"Oud-Oost",
     "leeftijdEen":4.4,
     "leeftijdTwee":7.15,
     "leeftijdDrie":3.86,
-    "leeftijdVier":6.78,
-    "leeftijdVijf":4.27,
-    "leeftijdZes":45.37,
-    "leeftijdZeven":18.5,
-    "leeftijdAcht":9.68
+    "leeftijdVier":11.05,
+    "leeftijdVijf":45.37,
+    "leeftijdZes":18.5,
+    "leeftijdZeven":9.68
   },
   {
     "gebied":"Indische Buurt/Oostelijk Havengebied",
     "leeftijdEen":4.88,
     "leeftijdTwee":9.65,
     "leeftijdDrie":4.87,
-    "leeftijdVier":5.6,
-    "leeftijdVijf":2.88,
-    "leeftijdZes":44.72,
-    "leeftijdZeven":19.2,
-    "leeftijdAcht":8.19
+    "leeftijdVier":8.48,
+    "leeftijdVijf":44.72,
+    "leeftijdZes":19.2,
+    "leeftijdZeven":8.19
   },
   {
     "gebied":"Watergraafsmeer",
     "leeftijdEen":4.62,
     "leeftijdTwee":8.27,
     "leeftijdDrie":3.72,
-    "leeftijdVier":11.67,
-    "leeftijdVijf":4.77,
-    "leeftijdZes":37.48,
-    "leeftijdZeven":16.78,
-    "leeftijdAcht":12.68
+    "leeftijdVier":16.44,
+    "leeftijdVijf":37.48,
+    "leeftijdZes":16.78,
+    "leeftijdZeven":12.68
   },
   {
     "gebied":"IJburg/Zeeburgereiland",
     "leeftijdEen":7.19,
     "leeftijdTwee":20.16,
     "leeftijdDrie":6.27,
-    "leeftijdVier":5.34,
-    "leeftijdVijf":2.37,
-    "leeftijdZes":44.67,
-    "leeftijdZeven":10.51,
-    "leeftijdAcht":3.5
+    "leeftijdVier":7.71,
+    "leeftijdVijf":44.67,
+    "leeftijdZes":10.51,
+    "leeftijdZeven":3.5
   },
   {
     "gebied":"Noord-West",
     "leeftijdEen":4.75,
     "leeftijdTwee":11.35,
     "leeftijdDrie":5.85,
-    "leeftijdVier":5.85,
-    "leeftijdVijf":2.42,
-    "leeftijdZes":33.3,
-    "leeftijdZeven":20.33,
-    "leeftijdAcht":16.14
+    "leeftijdVier":8.27,
+    "leeftijdVijf":33.3,
+    "leeftijdZes":20.33,
+    "leeftijdZeven":16.14
   },
   {
     "gebied":"Oud-Noord",
     "leeftijdEen":4.78,
     "leeftijdTwee":9.4,
     "leeftijdDrie":4.7,
-    "leeftijdVier":6.15,
-    "leeftijdVijf":3.35,
-    "leeftijdZes":38.34,
-    "leeftijdZeven":19.8,
-    "leeftijdAcht":13.48
+    "leeftijdVier":9.5,
+    "leeftijdVijf":38.34,
+    "leeftijdZes":19.8,
+    "leeftijdZeven":13.48
   },
   {
     "gebied":"Noord-Oost",
     "leeftijdEen":5.7,
     "leeftijdTwee":11.4,
     "leeftijdDrie":6.37,
-    "leeftijdVier":6.72,
-    "leeftijdVijf":2.77,
-    "leeftijdZes":34.2,
-    "leeftijdZeven":16.24,
-    "leeftijdAcht":16.61
+    "leeftijdVier":9.49,
+    "leeftijdVijf":34.2,
+    "leeftijdZes":16.24,
+    "leeftijdZeven":16.61
   },
   {
     "gebied":"Bijlmer-Centrum",
     "leeftijdEen":5.42,
     "leeftijdTwee":10.83,
     "leeftijdDrie":5.77,
-    "leeftijdVier":10.24,
-    "leeftijdVijf":4.52,
-    "leeftijdZes":39.14,
-    "leeftijdZeven":17.91,
-    "leeftijdAcht":6.19
+    "leeftijdVier":14.76,
+    "leeftijdVijf":39.14,
+    "leeftijdZes":17.91,
+    "leeftijdZeven":6.19
   },
   {
     "gebied":"Bijlmer-Oost",
     "leeftijdEen":5.13,
     "leeftijdTwee":10.84,
     "leeftijdDrie":6.17,
-    "leeftijdVier":7.69,
-    "leeftijdVijf":3.11,
-    "leeftijdZes":35.83,
-    "leeftijdZeven":20.38,
-    "leeftijdAcht":10.85
+    "leeftijdVier":10.08,
+    "leeftijdVijf":35.83,
+    "leeftijdZes":20.38,
+    "leeftijdZeven":10.85
   },
   {
     "gebied":"Gaasperdam/Driemond",
     "leeftijdEen":4.39,
     "leeftijdTwee":10.63,
     "leeftijdDrie":5.86,
-    "leeftijdVier":6.46,
-    "leeftijdVijf":2.83,
-    "leeftijdZes":32.96,
-    "leeftijdZeven":23.52,
-    "leeftijdAcht":13.35
+    "leeftijdVier":9.29,
+    "leeftijdVijf":32.96,
+    "leeftijdZes":23.52,
+    "leeftijdZeven":13.35
   },
   {
     "gebied":"Westpoort",
     "leeftijdEen":1.49,
     "leeftijdTwee":4.46,
     "leeftijdDrie":0.99,
-    "leeftijdVier":5.94,
-    "leeftijdVijf":2.97,
-    "leeftijdZes":46.04,
-    "leeftijdZeven":28.71,
-    "leeftijdAcht":9.41
-  },
-  {
-    "gebied":"Totaal Amsterdam",
-    "leeftijdEen":4.86,
-    "leeftijdTwee":8.84,
-    "leeftijdDrie":4.36,
-    "leeftijdVier":6.70,
-    "leeftijdVijf":3.70,
-    "leeftijdZes":42.12,
-    "leeftijdZeven":17.56,
-    "leeftijdAcht":11.86
+    "leeftijdVier":8.91,
+    "leeftijdVijf":46.04,
+    "leeftijdZes":28.71,
+    "leeftijdZeven":9.41
   }
 ]
+
+     //[
+//   {
+//     "gebied":"Centrum-West",
+//     "leeftijdEen":3.24,
+//     "leeftijdTwee":4.97,
+//     "leeftijdDrie":2.35,
+//     "leeftijdVier":5.86,
+//     "leeftijdVijf":4.22,
+//     "leeftijdZes":46.16,
+//     "leeftijdZeven":20.13,
+//     "leeftijdAcht":13.06
+//   },
+//   {
+//     "gebied":"Centrum-Oost",
+//     "leeftijdEen":3.35,
+//     "leeftijdTwee":5.77,
+//     "leeftijdDrie":2.76,
+//     "leeftijdVier":6.72,
+//     "leeftijdVijf":4.47,
+//     "leeftijdZes":42.85,
+//     "leeftijdZeven":21.04,
+//     "leeftijdAcht":13.04
+//   },
+//   {
+//     "gebied":"Westerpark",
+//     "leeftijdEen":4.43,
+//     "leeftijdTwee":6.51,
+//     "leeftijdDrie":3.32,
+//     "leeftijdVier":5.74,
+//     "leeftijdVijf":3.39,
+//     "leeftijdZes":48.8,
+//     "leeftijdZeven":18.54,
+//     "leeftijdAcht":9.27
+//   },
+//   {
+//     "gebied":"Bos en Lommer",
+//     "leeftijdEen":5.66,
+//     "leeftijdTwee":9.06,
+//     "leeftijdDrie":4.22,
+//     "leeftijdVier":7.23,
+//     "leeftijdVijf":4.89,
+//     "leeftijdZes":48.86,
+//     "leeftijdZeven":12.5,
+//     "leeftijdAcht":7.58
+//   },
+//   {
+//     "gebied":"Oud-West/De Baarsjes",
+//     "leeftijdEen":5.03,
+//     "leeftijdTwee":6.49,
+//     "leeftijdDrie":2.77,
+//     "leeftijdVier":5.68,
+//     "leeftijdVijf":4.16,
+//     "leeftijdZes":51.95,
+//     "leeftijdZeven":15.12,
+//     "leeftijdAcht":8.81
+//   },
+//   {
+//     "gebied":"Geuzenveld/Slotermeer",
+//     "leeftijdEen":6.06,
+//     "leeftijdTwee":11.67,
+//     "leeftijdDrie":5.77,
+//     "leeftijdVier":7.04,
+//     "leeftijdVijf":3.79,
+//     "leeftijdZes":38.69,
+//     "leeftijdZeven":15.92,
+//     "leeftijdAcht":11.05
+//   },
+//   {
+//     "gebied":"Osdorp",
+//     "leeftijdEen":6.1,
+//     "leeftijdTwee":10.44,
+//     "leeftijdDrie":4.96,
+//     "leeftijdVier":6.91,
+//     "leeftijdVijf":3.58,
+//     "leeftijdZes":37.2,
+//     "leeftijdZeven":15.05,
+//     "leeftijdAcht":15.75
+//   },
+//   {
+//     "gebied":"De Aker/Nieuw Sloten",
+//     "leeftijdEen":3.96,
+//     "leeftijdTwee":9.94,
+//     "leeftijdDrie":7.29,
+//     "leeftijdVier":7.51,
+//     "leeftijdVijf":2.78,
+//     "leeftijdZes":32.17,
+//     "leeftijdZeven":24.46,
+//     "leeftijdAcht":11.9
+//   },
+//   {
+//     "gebied":"Slotervaart",
+//     "leeftijdEen":5.26,
+//     "leeftijdTwee":10.11,
+//     "leeftijdDrie":5.3,
+//     "leeftijdVier":9.37,
+//     "leeftijdVijf":4.33,
+//     "leeftijdZes":39.63,
+//     "leeftijdZeven":14,
+//     "leeftijdAcht":12
+//   },
+//   {
+//     "gebied":"Oud-Zuid",
+//     "leeftijdEen":5.06,
+//     "leeftijdTwee":8.75,
+//     "leeftijdDrie":3.77,
+//     "leeftijdVier":4.74,
+//     "leeftijdVijf":3.1,
+//     "leeftijdZes":43.9,
+//     "leeftijdZeven":16.95,
+//     "leeftijdAcht":13.72
+//   },
+//   {
+//     "gebied":"Buitenveldert/Zuidas",
+//     "leeftijdEen":3.97,
+//     "leeftijdTwee":6.39,
+//     "leeftijdDrie":3.29,
+//     "leeftijdVier":4.72,
+//     "leeftijdVijf":2.96,
+//     "leeftijdZes":36.99,
+//     "leeftijdZeven":15.4,
+//     "leeftijdAcht":26.27
+//   },
+//   {
+//     "gebied":"De Pijp/Rivierenbuurt",
+//     "leeftijdEen":4.6,
+//     "leeftijdTwee":5.77,
+//     "leeftijdDrie":2.66,
+//     "leeftijdVier":6.54,
+//     "leeftijdVijf":4.51,
+//     "leeftijdZes":48.47,
+//     "leeftijdZeven":16.05,
+//     "leeftijdAcht":11.41
+//   },
+//   {
+//     "gebied":"Oud-Oost",
+//     "leeftijdEen":4.4,
+//     "leeftijdTwee":7.15,
+//     "leeftijdDrie":3.86,
+//     "leeftijdVier":6.78,
+//     "leeftijdVijf":4.27,
+//     "leeftijdZes":45.37,
+//     "leeftijdZeven":18.5,
+//     "leeftijdAcht":9.68
+//   },
+//   {
+//     "gebied":"Indische Buurt/Oostelijk Havengebied",
+//     "leeftijdEen":4.88,
+//     "leeftijdTwee":9.65,
+//     "leeftijdDrie":4.87,
+//     "leeftijdVier":5.6,
+//     "leeftijdVijf":2.88,
+//     "leeftijdZes":44.72,
+//     "leeftijdZeven":19.2,
+//     "leeftijdAcht":8.19
+//   },
+//   {
+//     "gebied":"Watergraafsmeer",
+//     "leeftijdEen":4.62,
+//     "leeftijdTwee":8.27,
+//     "leeftijdDrie":3.72,
+//     "leeftijdVier":11.67,
+//     "leeftijdVijf":4.77,
+//     "leeftijdZes":37.48,
+//     "leeftijdZeven":16.78,
+//     "leeftijdAcht":12.68
+//   },
+//   {
+//     "gebied":"IJburg/Zeeburgereiland",
+//     "leeftijdEen":7.19,
+//     "leeftijdTwee":20.16,
+//     "leeftijdDrie":6.27,
+//     "leeftijdVier":5.34,
+//     "leeftijdVijf":2.37,
+//     "leeftijdZes":44.67,
+//     "leeftijdZeven":10.51,
+//     "leeftijdAcht":3.5
+//   },
+//   {
+//     "gebied":"Noord-West",
+//     "leeftijdEen":4.75,
+//     "leeftijdTwee":11.35,
+//     "leeftijdDrie":5.85,
+//     "leeftijdVier":5.85,
+//     "leeftijdVijf":2.42,
+//     "leeftijdZes":33.3,
+//     "leeftijdZeven":20.33,
+//     "leeftijdAcht":16.14
+//   },
+//   {
+//     "gebied":"Oud-Noord",
+//     "leeftijdEen":4.78,
+//     "leeftijdTwee":9.4,
+//     "leeftijdDrie":4.7,
+//     "leeftijdVier":6.15,
+//     "leeftijdVijf":3.35,
+//     "leeftijdZes":38.34,
+//     "leeftijdZeven":19.8,
+//     "leeftijdAcht":13.48
+//   },
+//   {
+//     "gebied":"Noord-Oost",
+//     "leeftijdEen":5.7,
+//     "leeftijdTwee":11.4,
+//     "leeftijdDrie":6.37,
+//     "leeftijdVier":6.72,
+//     "leeftijdVijf":2.77,
+//     "leeftijdZes":34.2,
+//     "leeftijdZeven":16.24,
+//     "leeftijdAcht":16.61
+//   },
+//   {
+//     "gebied":"Bijlmer-Centrum",
+//     "leeftijdEen":5.42,
+//     "leeftijdTwee":10.83,
+//     "leeftijdDrie":5.77,
+//     "leeftijdVier":10.24,
+//     "leeftijdVijf":4.52,
+//     "leeftijdZes":39.14,
+//     "leeftijdZeven":17.91,
+//     "leeftijdAcht":6.19
+//   },
+//   {
+//     "gebied":"Bijlmer-Oost",
+//     "leeftijdEen":5.13,
+//     "leeftijdTwee":10.84,
+//     "leeftijdDrie":6.17,
+//     "leeftijdVier":7.69,
+//     "leeftijdVijf":3.11,
+//     "leeftijdZes":35.83,
+//     "leeftijdZeven":20.38,
+//     "leeftijdAcht":10.85
+//   },
+//   {
+//     "gebied":"Gaasperdam/Driemond",
+//     "leeftijdEen":4.39,
+//     "leeftijdTwee":10.63,
+//     "leeftijdDrie":5.86,
+//     "leeftijdVier":6.46,
+//     "leeftijdVijf":2.83,
+//     "leeftijdZes":32.96,
+//     "leeftijdZeven":23.52,
+//     "leeftijdAcht":13.35
+//   },
+//   {
+//     "gebied":"Westpoort",
+//     "leeftijdEen":1.49,
+//     "leeftijdTwee":4.46,
+//     "leeftijdDrie":0.99,
+//     "leeftijdVier":5.94,
+//     "leeftijdVijf":2.97,
+//     "leeftijdZes":46.04,
+//     "leeftijdZeven":28.71,
+//     "leeftijdAcht":9.41
+//   },
+//   {
+//     "gebied":"Totaal Amsterdam",
+//     "leeftijdEen":4.86,
+//     "leeftijdTwee":8.84,
+//     "leeftijdDrie":4.36,
+//     "leeftijdVier":6.70,
+//     "leeftijdVijf":3.70,
+//     "leeftijdZes":42.12,
+//     "leeftijdZeven":17.56,
+//     "leeftijdAcht":11.86
+//   }
+// ]
 
     // column definitions
     var columns = [
@@ -289,11 +524,10 @@
         { head: '0-3', cl: 'center', html: ƒ('leeftijdEen') },
         { head: '4-12', cl: 'center', html: ƒ('leeftijdTwee') },
         { head: '13-17', cl: 'num', html: ƒ('leeftijdDrie') },
-        { head: '18-22', cl: 'num', html: ƒ('leeftijdVier') },
-        { head: '23-24', cl: 'num', html: ƒ('leeftijdVijf') },
-        { head: '25-49', cl: 'num', html: ƒ('leeftijdZes') },
-        { head: '50-64', cl: 'num', html: ƒ('leeftijdZeven') },
-        { head: '65+', cl: 'num', html: ƒ('leeftijdAcht') }
+        { head: '18-24', cl: 'num', html: ƒ('leeftijdVier') },
+        { head: '25-49', cl: 'num', html: ƒ('leeftijdVijf') },
+        { head: '50-64', cl: 'num', html: ƒ('leeftijdZes') },
+        { head: '65+', cl: 'num', html: ƒ('leeftijdZeven') }
     ];
     // create table
     var table = d3.select('body')
@@ -322,6 +556,7 @@
             });
         }).enter()
         .append('td')
+        .on("mousemove", function(d) { alert("hello"); })
         .html(ƒ('html'))
         .attr('class', ƒ('cl'));
     function length() {

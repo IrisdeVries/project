@@ -1,24 +1,24 @@
-gebied	gebiedNaam	WOZ	WOZm2	bevolkingsdichtheidkm2	leeftijdEen	leeftijdTwee	leeftijdDrie	leeftijdVier	leeftijdVijf	leeftijdZes	leeftijdZeven	leeftijdAcht
-CentrumWest	Centrum-West	321204	4194	15938	3.24	4.97	2.35	5.86	4.22	46.16	20.13	13.06
-CentrumOost	Centrum-Oost	326857	3897	12064	3.35	5.77	2.76	6.72	4.47	42.85	21.04	13.04
-Westerpark	Westerpark	220027	3617	12134	4.43	6.51	3.32	5.74	3.39	48.80	18.54	9.27
-BOLO	Bos en Lommer	176752	2881	10423	5.66	9.06	4.22	7.23	4.89	48.86	12.50	7.58
-OudWestDeBaarsjes	Oud-West/De Baarsjes	234858	3570	23316	5.03	6.49	2.77	5.68	4.16	51.95	15.12	8.81
-GeuzenveldSlotermeer	Geuzenveld/Slotermeer	155444	2179	3135	6.06	11.67	5.77	7.04	3.79	38.69	15.92	11.05
-Osdorp	Osdorp	174206	2127	4433	6.10	10.44	4.96	6.91	3.58	37.20	15.05	15.75
-DeAkerNieuwSloten	De Aker/Nieuw Sloten	257123	2391	4598	3.96	9.94	7.29	7.51	2.78	32.17	24.46	11.90
-Slotervaart	Slotervaart	182836	2246	7036	5.26	10.11	5.30	9.37	4.33	39.63	14.00	12.00
-OudZuid	Oud-Zuid	417031	4027	11011	5.06	8.75	3.77	4.74	3.10	43.90	16.95	13.72
-BuitenveldertZuidas	Buitenveldert/Zuidas	267096	2852	3343	3.97	6.39	3.29	4.72	2.96	36.99	15.40	26.27
-DePijpRivierenbuurt	De Pijp/Rivierenbuurt	253387	3813	17439	4.60	5.77	2.66	6.54	4.51	48.47	16.05	11.41
-OudOost	Oud-Oost	222476	3272	16511	4.40	7.15	3.86	6.78	4.27	45.37	18.50	9.68
-IndischeBuurtOostelijkHavengebied	Indische Buurt/Oostelijk Havengebied	247278	3098	14235	4.88	9.65	4.87	5.60	2.88	44.72	19.20	8.19
-Watergraafsmeer	Watergraafsmeer	236051	3293	3823	4.62	8.27	3.72	11.67	4.77	37.48	16.78	12.68
-IJburgZeeburgereiland	IJburg/Zeeburgereiland	299146	2755	4955	7.19	20.16	6.27	5.34	2.37	44.67	10.51	3.50
-NoordWest	Noord-West	182709	2220	5172	4.75	11.35	5.85	5.85	2.42	33.30	20.33	16.14
-OudNoord	Oud-Noord	179861	2562	4084	4.78	9.40	4.70	6.15	3.35	38.34	19.80	13.48
-NoordOost	Noord-Oost	185331	2119	1006	5.70	11.40	6.37	6.72	2.77	34.20	16.24	16.61
-BijlmerCentrum	Bijlmer-Centrum	123437	1718	2965	5.42	10.83	5.77	10.24	4.52	39.14	17.91	6.19
-BijlmerOost	Bijlmer-Oost	143943	1656	7197	5.13	10.84	6.17	7.69	3.11	35.83	20.38	10.85
-GaasperdamDriemond	Gaasperdam/Driemond	152091	1848	4097	4.39	10.63	5.86	6.46	2.83	32.96	23.52	13.35
-Westpoort	Westpoort	189402	1854	10	1.49	4.46	0.99	5.94	2.97	46.04	28.71	9.41
+gebied	gebiedNaam	WOZ	WOZm2	bevolkingsdichtheidkm2	leeftijdEen	leeftijdTwee	leeftijdDrie	leeftijdVier	leeftijdVijf	leeftijdZes	leeftijdZeven
+CentrumWest	Centrum-West	321204	4194	15938	3.24	4.97	2.35	10.08	46.16	20.13	13.06
+CentrumOost	Centrum-Oost	326857	3897	12064	3.35	5.77	2.76	11.19	42.85	21.04	13.04
+Westerpark	Westerpark	220027	3617	12134	4.43	6.51	3.32	9.13	48.80	18.54	9.27
+BOLO	Bos en Lommer	176752	2881	10423	5.66	9.06	4.22	12.12	48.86	12.50	7.58
+OudWestDeBaarsjes	Oud-West/De Baarsjes	234858	3570	23316	5.03	6.49	2.77	9.84	51.95	15.12	8.81
+GeuzenveldSlotermeer	Geuzenveld/Slotermeer	155444	2179	3135	6.06	11.67	5.77	10.83	38.69	15.92	11.05
+Osdorp	Osdorp	174206	2127	4433	6.10	10.44	4.96	10.49	37.20	15.05	15.75
+DeAkerNieuwSloten	De Aker/Nieuw Sloten	257123	2391	4598	3.96	9.94	7.29	10.29	32.17	24.46	11.90
+Slotervaart	Slotervaart	182836	2246	7036	5.26	10.11	5.30	13.7	39.63	14.00	12.00
+OudZuid	Oud-Zuid	417031	4027	11011	5.06	8.75	3.77	7.84	43.90	16.95	13.72
+BuitenveldertZuidas	Buitenveldert/Zuidas	267096	2852	3343	3.97	6.39	3.29	7.68	36.99	15.40	26.27
+DePijpRivierenbuurt	De Pijp/Rivierenbuurt	253387	3813	17439	4.60	5.77	2.66	11.05	48.47	16.05	11.41
+OudOost	Oud-Oost	222476	3272	16511	4.40	7.15	3.86	11.05	45.37	18.50	9.68
+IndischeBuurtOostelijkHavengebied	Indische Buurt/Oostelijk Havengebied	247278	3098	14235	4.88	9.65	4.87	8.48	44.72	19.20	8.19
+Watergraafsmeer	Watergraafsmeer	236051	3293	3823	4.62	8.27	3.72	16.44	37.48	16.78	12.68
+IJburgZeeburgereiland	IJburg/Zeeburgereiland	299146	2755	4955	7.19	20.16	6.27	7.71	44.67	10.51	3.50
+NoordWest	Noord-West	182709	2220	5172	4.75	11.35	5.85	8.27	33.30	20.33	16.14
+OudNoord	Oud-Noord	179861	2562	4084	4.78	9.40	4.70	9.5	38.34	19.80	13.48
+NoordOost	Noord-Oost	185331	2119	1006	5.70	11.40	6.37	9.49	34.20	16.24	16.61
+BijlmerCentrum	Bijlmer-Centrum	123437	1718	2965	5.42	10.83	5.77	14.76	39.14	17.91	6.19
+BijlmerOost	Bijlmer-Oost	143943	1656	7197	5.13	10.84	6.17	10.08	35.83	20.38	10.85
+GaasperdamDriemond	Gaasperdam/Driemond	152091	1848	4097	4.39	10.63	5.86	9.29	32.96	23.52	13.35
+Westpoort	Westpoort	189402	1854	10	1.49	4.46	0.99	8.91	46.04	28.71	9.41

@@ -6,7 +6,7 @@
 		<p id="p1">Hello Amsterdam!</p>
 		<p id="p2"></p>
 		<p id="p3"></p>
-		<img src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/OudNoordmap.jpg" alt="W3Schools.com" style="width:142px;height:104px; position: absolute; z-index: 2; top: 1000; left: 500;">
+		<img id = "OudNoordMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/OudNoordmap.jpg" alt="W3Schools.com" style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
 
 		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
 		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
@@ -61,19 +61,19 @@
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
 		<button id = "knop" onclick = "bevolkingsdichtheidKnop()" style = "position: absolute; z-index: 2; top: 350; left: 10;">Bevolkingsdichtheid</button>
+		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 1000; left: 10;">Top</button>
 
 		<!-- leeftijdsgroep slider -->
-		<div id="flip" onclick = "leeftijdsgroepenSlider()" style = "position: absolute; z-index: 3; top: 400; left: 10;">Leeftijdsgroepen</div>
+		<div id="flip" style = "position: absolute; z-index: 3; top: 400; left: 10;">Leeftijdsgroepen</div>
 		<div id="panel" style = "position: absolute; z-index: 3; top: 430; left: 10;">
 			<form action="demo_form.asp" method="get">
-				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Bike"> 0-3<br>
-			    <input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Car"> 4-12<br>
-		     	<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Bike"> 13-17<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Car"> 18-22<br>
-			    <input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Bike"> 23-24<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Car"> 25-49<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Car"> 50-64<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnop()" name="vehicle" value="Car"> 65+<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopEen()" name="vehicle" value="Bike"> 0-3<br>
+			    <input type="radio" onclick = "leeftijdsgroepenKnopTwee()" name="vehicle" value="Car"> 4-12<br>
+		     	<input type="radio" onclick = "leeftijdsgroepenKnopDrie()" name="vehicle" value="Bike"> 13-17<br>
+			    <input type="radio" onclick = "leeftijdsgroepenKnopVier()" name="vehicle" value="Bike"> 18-24<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopVijf()" name="vehicle" value="Car"> 25-49<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopZes()" name="vehicle" value="Car"> 50-64<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopZeven()" name="vehicle" value="Car"> 65+<br>
 			</form>
 		</div>
 
@@ -91,6 +91,12 @@
 			var gebiedExtra = []
 			var bevolkingsdichtheidkm2 = []
 			var leeftijdEen = []
+			var leeftijdTwee = []
+			var leeftijdDrie = []
+			var leeftijdVier = []
+			var leeftijdVijf = []
+			var leeftijdZes = []
+			var leeftijdZeven = []
 			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
 				for (j = 0; j < 23; j++){
 					data[j].WOZ = +data[j].WOZ
@@ -103,8 +109,14 @@
 					gebiedNaam.push(data[j].gebiedNaam)
 					bevolkingsdichtheidkm2.push(data[j].bevolkingsdichtheidkm2)
 					leeftijdEen.push(data[j].leeftijdEen)
+					leeftijdTwee.push(data[j].leeftijdTwee)
+					leeftijdDrie.push(data[j].leeftijdDrie)
+					leeftijdVier.push(data[j].leeftijdVier)
+					leeftijdVijf.push(data[j].leeftijdVijf)
+					leeftijdZes.push(data[j].leeftijdZes)
+					leeftijdZeven.push(data[j].leeftijdZeven)
 				}
-				console.log(leeftijdEen)
+				console.log(leeftijdZeven)
 			});
 
 			// functie om tekst te wrappen
