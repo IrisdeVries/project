@@ -4069,20 +4069,57 @@ function geefKaart(gebiedData) {
 			}
 		}
 	}
-	else if (gebiedData == postcode){
-		opacityFirst = 0.2;
-		opacitySecond = 0.1;
+	else if (gebiedData == veiligheid){
 		for (i = 0; i < 23; i++){
-			kleur = "green"
 			gebied_i = gebied[i]
+			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			if (gebiedData[i] > 55 && gebiedData[i] < 70) {
+				kleur = "#fee5d9"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else if (gebiedData[i] > 70 && gebiedData[i] < 80) {
+				kleur = "#fcbba1"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else if (gebiedData[i] > 80 && gebiedData[i] < 90) {
+				kleur = "#fc9272"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else if (gebiedData[i] > 90 && gebiedData[i] < 100) {
+				kleur = "#fb6a4a"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else if (gebiedData[i] > 100 && gebiedData[i] < 110) {
+				kleur = "#de2d26"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else if (gebiedData[i] > 110) {
+				kleur = "#a50f15"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
+			else {
+				opacityFirst = 0.2;
+				opacitySecond = 0.1;
+				kleur = "green"
+				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+			}
 		}
-		kleur = "red"
-		gebied_i = OudNoord // if postcode == xxxx xxxx xxxx, dan gebied_i = x
-		polyLabel = "Oud-Noord" // same
-		constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 	}
+	// else if (gebiedData == postcode){
+	// 	opacityFirst = 0.2;
+	// 	opacitySecond = 0.1;
+	// 	for (i = 0; i < 23; i++){
+	// 		kleur = "green"
+	// 		gebied_i = gebied[i]
+	// 		gebiedExtra_i = gebiedExtra[i]
+	// 		constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+	// 	}
+	// 	kleur = "red"
+	// 	gebied_i = OudNoord // if postcode == xxxx xxxx xxxx, dan gebied_i = x
+	// 	polyLabel = "Oud-Noord" // same
+	// 	constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
+	// }
 	else {
 		opacityFirst = 0.2;
 		opacitySecond = 0.1;
@@ -4097,8 +4134,8 @@ function geefKaart(gebiedData) {
 }
 
 // woningwaarde = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
-huishoudenstypenData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
-bevolkingsdichtheidData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
+// huishoudenstypenData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
+// bevolkingsdichtheidData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
 postcode = []
 kleurenWoningwaarde = ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027"]
 kleurenBevolkingsdichtheid = ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26", "#a50f15"]
@@ -4111,9 +4148,10 @@ function woningwaardeKnop() {
 	drawLegend(kleurenWoningwaarde, dataLegendaWoningwaarde)
 }
 
-function huishoudenstypenKnop() {
-	geefKaart(huishoudenstypenData)
-	document.getElementById("p1").innerHTML = "Huishoudenstypen";
+function veiligheidKnop() {
+	geefKaart(veiligheid)
+	document.getElementById("p1").innerHTML = "Veiligheid";
+	drawLegend(kleurenWoningwaarde, dataLegendaWoningwaarde)
 }
 
 function bevolkingsdichtheidKnop() {
@@ -4156,13 +4194,13 @@ function leeftijdsgroepenKnopZeven() {
 	document.getElementById("p1").innerHTML = "Leeftijdsgroepen 65+";
 }
 
-function postcodeFunction() {
-	if (document.getElementById("inputPostcode").value == "1031"){
-		postcode.push(1031)
-		geefKaart(postcode)
-		d3Bar()
-	}
-}
+// function postcodeFunction() {
+// 	if (document.getElementById("inputPostcode").value == "1031"){
+// 		postcode.push(1031)
+// 		geefKaart(postcode)
+// 		d3Bar()
+// 	}
+// }
 
 function backTop() {
 	window.scroll(0,0)
@@ -4172,45 +4210,56 @@ var voorkeurWoningwaardeArray = []
 var voorkeurBevolkingsdichtheidArray = []
 var voorkeurVeiligheidArray = []
 
-function voorkeur(voorkeurWoningwaarde, voorkeurBevolkingsdichtheid, voorkeurVeiligheid){
-	if (voorkeurWoningwaarde == "laag"){
-		for (var i = 0; i <23; i++){
-			voorkeurWoningwaardeArray.push(gebied[i])
+var woningwaardeVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
+
+function voorkeur(voorkeurWoningwaarde){
+		for (var i = 0; i <22; i++){
+			if (woningwaardeVoorkeur[i] == 1 ){
+				voorkeurWoningwaardeArray.push(gebiedNaam[i])
+			}
 		}
-	}
-	else if (voorkeurWoningwaarde == "midden"){
+	console.log(voorkeurWoningwaardeArray)
+	// else if (voorkeurWoningwaarde == "midden"){
+	// 	for (var i = 0; i <23; i++){
+	// 		if (woningwaardeVoorkeur[i] == 2 ){
+	// 			voorkeurWoningwaardeArray.push(gebied[i])
+	// 		}
+	// 	}
+	// }
+	// else if (voorkeurWoningwaarde == "hoog"){
+	// 	for (var i = 0; i <23; i++){
+	// 		if (woningwaardeVoorkeur[i] == 3 ){
+	// 			voorkeurWoningwaardeArray.push(gebied[i])
+	// 		}
+	// 	}
+	// }
+	// else {
+	// 	//selecteer alles
+	// }
 
-	}
-	else if (voorkeurWoningwaarde == "hoog"){
+	// if (voorkeurBevolkingsdichtheid == "laag"){
 
-	}
-	else if (voorkeurWoningwaarde == "geen"){
-		//selecteer alles
-	}
+	// }
+	// else if (voorkeurBevolkingsdichtheid == "midden"){
+		
+	// }
+	// else if (voorkeurBevolkingsdichtheid == "hoog"){
+		
+	// }
+	// else if (voorkeurBevolkingsdichtheid == "geen"){
+		
+	// }
 
-	if (voorkeurBevolkingsdichtheid == "laag"){
+	// if (voorkeurVeiligheid == "laag"){
 
-	}
-	else if (voorkeurBevolkingsdichtheid == "midden"){
+	// }
+	// else if (voorkeurVeiligheid == "midden"){
 		
-	}
-	else if (voorkeurBevolkingsdichtheid == "hoog"){
+	// }
+	// else if (voorkeurVeiligheid == "hoog"){
 		
-	}
-	else if (voorkeurBevolkingsdichtheid == "geen"){
+	// }
+	// else if (voorkeurVeiligheid == "geen"){
 		
-	}
-
-	if (voorkeurVeiligheid == "laag"){
-
-	}
-	else if (voorkeurVeiligheid == "midden"){
-		
-	}
-	else if (voorkeurVeiligheid == "hoog"){
-		
-	}
-	else if (voorkeurVeiligheid == "geen"){
-		
-	}
+	// }
 }

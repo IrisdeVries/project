@@ -44,7 +44,7 @@
 
 		<!-- canvas informatie -->
 		<div id = "divcanvas1" style = "position: absolute; z-index: 2; top: 30; left: 0;">
-			<canvas id = "myCanvas1" width = "300" height = "400" style = "position: absolute; z-index: 2;"></canvas>
+			<canvas id = "myCanvas1" width = "300" height = "800" style = "position: absolute; z-index: 2;"></canvas>
 		</div>
 		<div id = "divcanvas2" style = "position: absolute; z-index: 2; top: 5;">
 			<canvas id = "myCanvas2" width = "500" height = "60" style = "position: absolute; z-index: 2;"></canvas>	
@@ -61,6 +61,7 @@
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
 		<button id = "knop" onclick = "bevolkingsdichtheidKnop()" style = "position: absolute; z-index: 2; top: 350; left: 10;">Bevolkingsdichtheid</button>
+		<button id = "knop" onclick = "veiligheidKnop()" style = "position: absolute; z-index: 2; top: 250; left: 10;">Veiligheid</button>
 		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 1000; left: 10;">Top</button>
 
 		<!-- leeftijdsgroep slider -->
@@ -77,9 +78,13 @@
 			</form>
 		</div>
 
+		<div id = "divradio" style = "position: absolute; z-index: 2; top: 700; left: 10;">
+			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeur()" name="vehicle" value="Bike"> Laag<br>
+		</div>
+
 		<!-- postcodebalk -->
-		<input id = "inputPostcode" type="text" name="postcode" style = "position: absolute; z-index: 2; top: 250; left: 10; font-family:Verdana;">
-		<button id = "knop" onclick = "postcodeFunction()" style = "position: absolute; z-index: 2; top: 245; left: 190; font-family:Verdana;">Ga</button>
+		<!-- <input id = "inputPostcode" type="text" name="postcode" style = "position: absolute; z-index: 2; top: 250; left: 10; font-family:Verdana;">
+		<button id = "knop" onclick = "postcodeFunction()" style = "position: absolute; z-index: 2; top: 245; left: 190; font-family:Verdana;">Ga</button> -->
 
 		<!-- script voor informatiecanvas -->
 		<script>
@@ -97,6 +102,7 @@
 			var leeftijdVijf = []
 			var leeftijdZes = []
 			var leeftijdZeven = []
+			var veiligheid = []
 			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
 				for (j = 0; j < 23; j++){
 					data[j].WOZ = +data[j].WOZ
@@ -115,8 +121,9 @@
 					leeftijdVijf.push(data[j].leeftijdVijf)
 					leeftijdZes.push(data[j].leeftijdZes)
 					leeftijdZeven.push(data[j].leeftijdZeven)
+					veiligheid.push(data[j].veiligheid)
 				}
-				console.log(leeftijdZeven)
+				console.log(veiligheid)
 			});
 
 			// functie om tekst te wrappen
@@ -148,16 +155,22 @@
 			    var x = (myCanvas1.width - maxWidth) / 2;
 			    var y = 115;
 			    // variablen van maken
-				ctx.rect(30,50,300,350);
+				ctx.rect(30,50,300,800);
 				ctx.fillStyle = "white";
 				ctx.fill();
 
 				// voorbeeld tekst om te wrappen
 				var text = 'Amsterdam is op te delen in 22 gebieden. Op deze pagina kunt u informatie vinden over elk van deze gebieden.';
+				var textTwee = 'Als ik in Amsterdam woon, wil ik dat de de waarde van mijn woning ... is';
+				var textDrie = 'Als ik in Amsterdam woon, wil ik dat de bevolkingsdichtheid in mijn woonomgeving ... is';
+				var textVier = 'Als ik in Amsterdam woon, wil ik dat de veiligheid in mijn woonomgeving relatief ... is';
 				
 			    ctx.font = '12pt Calibri';
 			    ctx.fillStyle = '#333';
 				wrapText(ctx, text, x, y, maxWidth, lineHeight);
+				wrapText(ctx, textTwee, x, 450, maxWidth, lineHeight);
+				wrapText(ctx, textDrie, x, 520, maxWidth, lineHeight);
+				wrapText(ctx, textVier, x, 610, maxWidth, lineHeight);
 
 				// bron: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-size/
 				var imageObj = new Image();
