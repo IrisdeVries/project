@@ -3604,6 +3604,11 @@ function geefKaart(gebiedData) {
         document.getElementById(IdImage).style.visibility="visible";
     }	
 
+    function hideImage(IdImage){
+    	document.getElementById(IdImage).style.visibility="hidden";
+    }
+
+console.log(leeftijdEen)
 	// construct the polygon with labels
 	function constructPolygon(x, y, polyLabel, opacityFirst, opacitySecond, gebiedExtra) {
 		var marker = new MarkerWithLabel({
@@ -3629,95 +3634,40 @@ function geefKaart(gebiedData) {
 		  });
 	  	bermudaTriangle.setMap(map);
 
+	  	// event listener -> mouseover
 	  	google.maps.event.addListener(bermudaTriangle,"mouseover",function(e){
 			this.setOptions({fillColor: y, fillOpacity: opacityFirst});
 			marker.setPosition(e.latLng);
         	marker.setVisible(true);
 		}); 
 
-		google.maps.event.addListener(bermudaTriangle,"click",function(e){
-			d3Bar()
-			document.getElementById("p2").innerHTML = polyLabel;
-			if (gebiedExtra == "CentrumWest"){
-				document.getElementById("p3").innerHTML = "Centrum West omvat het oudste deel van Amsterdam: de beide Burgwallen (Oude Zijde en Nieuwe Zijde). Daarnaast vallen de westelijke Grachtengordel, De Jordaan en de Haarlemmerbuurt (incl. Westerdokseiland) onder dit gebied. Het centrum bestaat uit een middeleeuwse kern, ontstaan aan weerszijden van de Amstel, die op organische wijze schilsgewijs is uitgebreid tot aan het einde van de zestiende eeuw. Daaromheen ligt de planmatig aangelegde zeventiende-eeuwse grachtengordel waarin gesloten bouwblokken met grote, groene binnenhoven langs monumentaal geprofileerde grachten staan. Het centrum van Amsterdam is een beschermd stadsgezicht, de grachtengordel heeft de status van Werelderfgoed. Centrum West is een zeer druk gebied, met name op de Burgwallen, waar winkels, bedrijvigheid, toerisme én bewoners de beperkte ruimte delen. De drukte maakt het gebied aantrekkelijk, maar er zijn ook zorgen dat het af en toe te druk wordt en dat dit ten koste gaat van de leefbaarheid in de buurt. "
-			}
-			else if (gebiedExtra == "CentrumOost"){
-				document.getElementById("p3").innerHTML = "Centrum Oost omvat het zuidelijk deel van de Grachtengordel, de Weteringschans, de Nieuwmarktbuurt en Lastage, de Plantagebuurt, De Kadijken en de Oostelijke eilanden. Het centrum bestaat uit een middeleeuwse kern, ontstaan aan weerszijden van de Amstel, die op organische wijze schilsgewijs is uitgebreid tot aan het einde van de zestiende eeuw. Daaromheen ligt de planmatig aangelegde zeventiende-eeuwse grachtengordel waarin gesloten bouwblokken met grote, groene binnenhoven langs monumentaal geprofileerde grachten staan. Het centrum van Amsterdam is een beschermd stadsgezicht, de Grachtengordel heeft de status van Werelderfgoed."
-			}
-			else if (gebiedExtra == "Westerpark"){
-				document.getElementById("p3").innerHTML = "Westerpark is een stadswijk van eind 19e en begin 20e eeuw. Delen van het gebied zijn gesloopt en vervangen door nieuwbouw tijdens de stadsvernieuwing in de jaren ’80. Daarna zijn er bloksgewijze renovaties geweest. Deze renovaties zijn nog niet afgerond. De buurtcombinatie Centrale Markt bestaat uit de Marcantibuurt, een voormalig kermisterrein, het GWL-terrein (de voormalig gemeentelijke waterleidingen) en de bedrijventerreinen Foodcenter en Westerkwartier. De Marcantibuurt en het GWL-terrein zijn omgezet naar woongebied in de jaren ’80 en ’90. Ook wordt hier het Foodcenter ontwikkeld tot woon-werkgebied."
-			}
-			else if (gebiedExtra == "BOLO"){
-				document.getElementById("p3").innerHTML = "Bos en Lommer bestaat uit gemengde stadsbuurten. Hier wonen zowel gezinnen als alleenwonenden, jongeren als ouderen en huishoudens met uiteenlopende sociaal- economische posities. Bos en Lommer bestaat uit de oude kern Sloterdijk en delen gebouwd net voor de oorlog (Landlust en Erasmusparkbuurt), en net na de oorlog (De Kolenkitbuurt). Het vooroorlogse deel is meer door particulieren gebouwd en wordt nog steeds door particulieren verhuurd. Het naoorlogse deel is meer door woningcorporaties gebouwd."
-			}
-			else if (gebiedExtra == "OudWestDeBaarsjes"){
-				document.getElementById("p3").innerHTML = "Oud-West/De Baarsjes is een van de dichtstbevolkte gebieden van de stad. Oud-West stamt van begin 20e eeuw, De Baarsjes is van later datum en maakt deel uit van de Gordel ’20-’40. De Admiralenbuurt rond het Mercatorplein is opgezet volgens de stedenbouwkundige principes van Berlage waarin de architectuur wordt gebruikt om stedelijke ruimtes vorm te geven. Kenmerkend voor de Baarsjes is de aanwezigheid van een groot aantal pleinen. De Admiralenbuurt is een potentieel beschermd stadsgezicht. Zowel Oud-West als De Baarsjes hebben een sterke ontwikkeling doorgemaakt in de afgelopen 20 jaar. Het gebied kampte met grote achterstanden, zowel in achterstallig onderhoud van de woningen als in sociaal- economische zin. In de afgelopen 20 jaar zijn er veel huurwoningen, zowel van corporaties als particulieren, verkocht, waarmee het gebied toegankelijk werd voor andere groepen. "
-			}
-			else if (gebiedExtra == "GeuzenveldSlotermeer"){
-				document.getElementById("p3").innerHTML = "Geuzenveld en Slotermeer zijn beide gebouwd in de jaren ‘50 en ‘60 en zijn onderdeel van de Westelijke Tuinsteden. Slotermeer is als eerste van de Westelijke Tuinsteden ontwikkeld volgens de principes van het Algemeen Uitbreidingsplan in een open stedenbouwkundige verkaveling waarbij elke woning zoveel mogelijk zon en natuurlijk daglicht ontvangt. Een deel van Slotermeer is gemeentelijk beschermd stadsgezicht. Het groen is alom tegenwoordig. Het gebied kent groengebieden zoals Landschapspark De Bretten, Gerbrandypark, Eendrachtspark, Tuinen van West en het Sloterpark."
-			}
-			else if (gebiedExtra == "Osdorp"){
-				document.getElementById("p3").innerHTML = "Osdorp is onderdeel van de Westelijke Tuinsteden en merendeels gebouwd in de jaren ‘50 en ‘60. Met de stedelijke vernieuwing is hier vanaf eind jaren ‘90 veel sloop-nieuwbouw gepleegd, waarmee meer differentiatie in de woningvoorraad is gekomen. Naast de buurtcombinaties Osdorp-Oost, Osdorp-Midden en de Punt kent het gebied ook een buitengebied, Lutkemeer/Ookmeer met centraal daarin gelegen Sportpark Ookmeer, met veel sportaccommodaties en de ALO (Hogeschool van Amsterdam)."
-			}
-			else if (gebiedExtra == "DeAkerNieuwSloten"){
-				document.getElementById("p3").innerHTML = "Het gebied De Aker/Nieuw Sloten bestaat grotendeels uit twee uitbreidingswijken van eind jaren ‘80 en ’90 met voornamelijk eengezinswoningen. Daarnaast is er het dorp Sloten, een oud dorp dat omsloten is door de uitbreidingswijken. In het zuiden van Nieuw Sloten liggen het bedrijvengebied Rieker Business Park, Sportpark Sloten, recreatieplas het Nieuwe Meer, landschapspark De Noordelijke Oeverlanden en volkstuinenpark Ons Buiten."
-			}
-			else if (gebiedExtra == "Slotervaart"){
-				document.getElementById("p3").innerHTML = "Slotervaart maakt deel uit van de Westelijke Tuinsteden en bestaat uit drie buurtcombinaties: Overtoomse Veld gelegen tussen de ring en het spoor ten noorden van de Cornelis Lelylaan, de Westlandgracht ten zuiden van de Lelylaan en ten westen van het spoor de buurtcombinatie Slotervaart waar het gebied naar vernoemd is. Op verschillende plekken in het gebied is stedelijke vernieuwing aan de gang. In de Staalmanpleinbuurt, het zuidelijkste deel van Slotervaart, en in Overtoomse Veld is de vernieuwing al gevorderd."
-			}
-			// else if (gebiedExtra == "OudZuid"){
-			// 	document.getElementById("p3").innerHTML = ""
-			// }
-			else if (gebiedExtra == "BuitenveldertZuidas"){
-				document.getElementById("p3").innerHTML = "Het gebied Buitenveldert/Zuidas bestaat uit de twee buurtcombinaties van Buitenveldert (West en Oost), dat buiten de ring A10 ligt en grenst aan Amstelveen, en uit de buurtcombinatie Zuid/WTC en omgeving, dat binnen de ring ligt. Tussen deze gebieden, over de ring A10, wordt de Zuidas ontwikkeld. Een deel van de Zuidas, namelijk de omgeving van het Rai-complex, ligt in de Rivierenbuurt, en valt buiten de grenzen van deze gebiedsanalyse. De buurtcombinatie Zuid/WTC en omgeving bestaat uit De Prinses Irenebuurt en een deel van de Zuidas. De Prinses Irenebuurt is een duurdere en vergrijsde woonbuurt. De buurt is begin jaren ’50 gebouwd en bestaat voornamelijk uit vrijstaande, grote koopwoningen. De Zuidas wordt ontwikkeld tot een internationaal woon- leef- en werkgebied. Het is nu nog vooral een werkgebied met een beperkt aantal bewoners(ruim 1.000). "
-			}
-			else if (gebiedExtra == "DePijpRivierenbuurt"){
-				document.getElementById("p3").innerHTML = "De Pijp en de Rivierenbuurt zijn beide geliefde stadswijken met veel vraag naar de woningen. Maar beide buurtcombinaties hebben ook een deel waar meer problemen spelen. De Pijp bestaat uit de Oude Pijp, de Nieuwe Pijp en de Diamantbuurt. De Oude Pijp grenst aan het stadscentrum en is een druk gebied met plekken als de Albert Cuypmarkt en het Marie Heinekenplein. De Nieuwe Pijp is wat rustiger, maar is even dicht bebouwd. De Pijp is een typische negentiende eeuwse wijk opgebouwd uit gesloten bouwblokken in een patroon van smalle straten waarin de agrarische verkaveling van voor de verstedelijking nog herkenbaar is. De Pijp is aangewezen als potentieel beschermd stadsgezicht. Er wonen in Oude en Nieuwe Pijp veel mensen die elders zijn opgegroeid en voor studie of werk naar Amsterdam zijn gekomen, meer dan de helft van de bewoners is een dergelijke nieuwe stedeling. De Rivierenbuurt bestaat uit de Schelde-, IJsel- en Rijnbuurt. De Rivierenbuurt maakt deel uit van het door Berlage ontworpen Plan Zuid en bestaat uit een combinatie van monumentaal vormgegeven verkeersassen en kleinschaliger vormgegeven, bochtige buurtstraten. De architectuur van de woonbebouwing is gebruikt om stedelijke ruimtes vorm te geven. Ook Plan Zuid is een potentieel beschermd stadsgezicht. "
-			}
-			else if (gebiedExtra == "OudOost"){
-				document.getElementById("p3").innerHTML = "Oud-Oost is grotendeels gebouwd aan het begin van de 20e eeuw, waarna er in de jaren ‘80 veel stadsvernieuwing is geweest. Dit geldt het sterkst voor de Dapperbuurt, maar ook in de Oosterparkbuurt en de Weesperzijde is dit het geval. De Transvaalbuurt is iets nieuwer, maar ook vooroorlogs. Hier is in de stadsvernieuwing vooral gerenoveerd. De Oosterpark-, Transvaal- en Dapperbuurt liggen in het verlengde van de Indische Buurt en vertonen daar ook overeenkomsten mee. Er is veel armoede en de huur van de (veelal) corporatiewoningen ligt relatief laag. Het zijn gemengde buurten waar, naast gezinnen met een lager inkomen, ook veel studenten en jongeren huisvesting vinden. Oud-Oost is een gewild gebied voor starters op de (koop)woningmarkt."
-			}
-			else if (gebiedExtra == "IndischeBuurtOostelijkHavengebied"){
-				document.getElementById("p3").innerHTML = "Het gebied Oostelijk Havengebied/Indische Buurt bestaat uit twee wijken die sterk van elkaar verschillen. De Indische Buurt is gebouwd aan het begin van de 20e eeuw, waarbij delen met de stadsvernieuwing in de jaren ’80 en delen met de stedelijke vernieuwing rond de eeuwwisseling zijn vervangen. Het is een gemengde stadsbuurt die de afgelopen jaren een positieve ontwikkeling heeft doorgemaakt. Toch is met name het zuidelijk deel van de Indische Buurt daarin wat achtergebleven. De buurt kent vooral daar veel armoede en veel grote gezinnen in te kleine woningen. Waar het Oostelijk Havengebied in de tijd dat het nog een haven was een duidelijke connectie had met de Indische Buurt (als werkgebied voor de bewoners van de Indische Buurt), is deze verbinding nu veel minder duidelijk. Het Oostelijk Havengebied bestaat uit een aantal schiereilanden die in de jaren ’90 zijn omgevormd van haven naar woongebied. Het Oostelijk Havengebied trekt (architectuur)toeristen en heeft een aantal bovenlokale voorzieningen, zoals de Passenger Terminal Amsterdam met jaarlijks zo’n 300.000 passagiers en het Muziekgebouw aan het IJ."
-			}
-			else if (gebiedExtra == "Watergraafsmeer"){
-				document.getElementById("p3").innerHTML = "Het gebied Watergraafsmeer bestaat uit vier buurtcombinaties: Middenmeer, Betondorp, Frankendael en de Omval. De Watergraafsmeer bestaat grotendeels uit polder en behoort tot de laagst gelegen delen van Amsterdam. Het gebied is groen door de aanwezigheid van volkstuinen, park Frankendael en de begraafplaats de Nieuwe Ooster. Ook zijn er veel sportvoorzieningen zoals sportpark Drieburg, sportpark Middenmeer en de daar gelegen Jaap Edenbaan."
-			}
-			else if (gebiedExtra == "IJburgZeeburgereiland"){
-				document.getElementById("p3").innerHTML = "IJburg is een nieuwe uitbreidingswijk gelegen naast het Diemerpark en bestaat uit een aantal kunstmatige eilanden in het IJmeer: Steigereiland Noord en Zuid, Haveneiland West en Oost en de Rieteilanden West en Oost. In 2002 kwamen de eerste bewoners en inmiddels is het een volwaardige wijk met ruim 20.000 inwoners, een winkelcentrum en diverse horecavoorzieningen. Op het Steigereiland zijn veel woningen in particulier opdrachtgeverschap gebouwd en ook het Rieteiland-Oost bestaat voor een groot deel uit zelfbebouwde kavels. Zeeburgereiland/Nieuwe Diep wordt ontwikkeld tot woonlocatie. De rioolwaterzuiveringsinstallatie die hier lang stond is uitgeplaatst. Naast de woonbootbewoners die hier al langer aanwezig zijn, is er een asielzoekerscentrum en later studentenhuisvesting gekomen. Recent zijn er zelfbouwkavels uitgegeven en de eerste zelfbouwwoningen zijn inmiddels klaar. Ook is er een school geopend en is er één horeca- voorziening. De studenten vormen nu nog de grootste groep bewoners."
-			}
-			else if (gebiedExtra == "NoordWest"){
-				document.getElementById("p3").innerHTML = "Noord West is vooral een woongebied. Het kent een mix van welvarende buurtcombinaties met weinig sociaaleconomische problematiek en buurtcombinaties die te maken hebben met achterstanden. Het gebied Noord West bestaat uit de buurtcombinaties Tuindorp Oostzaan, Oostzanerwerf, Kadoelen en Banne Buiksloot. Het oude deel van Tuindorp Oostzaan is in de jaren ‘20 van de vorige eeuw gebouwd door woningcorporaties. Net als de tuindorpen Nieuwendam en Buiksloot (gebied Oud-Noord), heeft deze buurtcombinatie lange tijd een functie gehad voor gezinnen met een lager inkomen."
-			}
-			else if (gebiedExtra == "OudNoord"){
-				showImage("OudNoordMap")
-				document.getElementById("p3").innerHTML = "Oud Noord kent verschillende type buurtcombinaties: de naar grootstedelijke woon- en werkmilieus transformerende buurtcombinaties aan de IJ-oever; de aangrenzende focuswijken; en de oostelijke tuindorpen en dijken. Het gebied is heel dynamisch, vooral rond de IJ-oever gebeurt er veel. Maar ook in de (oostelijke) tuindorpen, met hun karakteristieke vooroorlogse huizen en veel groen, verandert de woningvoorraad en de bevolkingssamenstelling. Van de gebiedsontwikkeling aan de Noordelijke IJ-oever kunnen ook de aangrenzende oudere buurtcombinaties profiteren, mits er een goede verbinding tussen de nieuwe en oude buurtcombinaties wordt gemaakt. Stadsdeel Noord kenmerkt zich door een grote verscheidenheid aan buurten. Dit is het sterkst terug te zien in Oud-Noord waar minstens negen verschillende buurtjes te onderscheiden zijn.";
-			}
-			else if (gebiedExtra == "NoordOost"){
-				document.getElementById("p3").innerHTML = "Het gebied Noord Oost bestaat uit de buurtcombinaties Buikslotermeer, Waterlandpleinbuurt (Nieuwendam-Noord) en Waterland met de dorpen: Schellingwoude, Durgerdam, Holysloot, Ransdorp en Zunderdorp. In Noord Oost vormt de A10 een harde scheiding tussen stad en platteland. In ruimtelijk, economisch en sociaal opzicht is er weinig samenhang tussen het deel binnen de ring en het landelijke, welvarende Waterland. De komst van de Noord/Zuidlijn, het vele stedelijk groen en de nabijheid van landelijk Noord maken Noord Oost in potentie een aantrekkelijk gebied om te wonen en werken. Zolang echter de stedelijke vernieuwing in Buikslotermeer en de Waterlandpleinbuurt nog niet is afgerond, blijven deze buurtcombinaties kwetsbaar als het gaat om de sociale structuur en de leefbaarheid."
-			}
-			else if (gebiedExtra == "BijlmerCentrum"){
-				document.getElementById("p3").innerHTML = "Het gebied Bijlmer Centrum bestaat uit de buurt Bijlmer- Centrum (D, F, H) en het bedrijventerrein Amstel III/Bullewijk. Bijlmer Centrum is, samen met Bijlmer Oost, onderdeel van de Bijlmermeer dat in de jaren ‘60 en ‘70 is gebouwd. Het gebied kende een strikte scheiding tussen de verschillende functies: wonen, werken, recreëren en verkeer. Als gevolg van problemen rond het beheer van de flats en de openbare ruimte is begin jaren ‘90 begonnen met de vernieuwing van de Bijlmermeer. Een groot deel van de oorspronkelijke honingraatflats is daarbij vervangen met eengezinswoningen, studentenwoningen en appartementen, vaak in de koopsector. Door de economische crisis is de laatste fase van de vernieuwing gestagneerd. Dit geldt in Bijlmer-Centrum voor de D-buurt en de H-buurt. Met de vernieuwing is de leefbaarheid in de Bijlmer sterk verbeterd. De sociaal- economische positie is echter weinig veranderd en veel huishoudens hebben weinig te besteden. "
-			}
-			else if (gebiedExtra == "BijlmerOost"){
-				document.getElementById("p3").innerHTML = "Bijlmer Oost vormt samen met Bijlmer Centrum de Bijlmermeer en ligt in het oostelijk deel ervan. Het gebied bestaat uit de buurten E, G en K, gebouwd in de jaren ‘60 en ‘70 volgens de principes van de functionele stad. Het gebied kende een strikte scheiding tussen de verschillende functies: wonen, werken, recreëren en verkeer. Als gevolg van problemen rond het beheer van de flats en de openbare ruimte is begin jaren ‘90 begonnen met de vernieuwing van de Bijlmermeer. Een groot deel van de oorspronkelijke flats, van tien verdiepingen in een zeskantige honingraatstructuur, is daarbij vervangen door eengezinswoningen, studentenwoningen en appartementen, vaak in de koopsector. De vernieuwing in de G-buurt is vrijwel afgerond, in de E- en K-buurt ligt nog een woningbouwopgave."
-			}
-			else if (gebiedExtra == "GaasperdamDriemond"){
-				document.getElementById("p3").innerHTML = "Gaasperdam is in de jaren ‘80 gebouwd en bestaat uit laag- en middelhoogbouw. Het dorp Driemond heeft een oude kern, met daaromheen een aantal naoorlogse woonwijken. Gaasperdam is in de jaren 80 in een doorlopende bouwstroom gebouwd. Daardoor is er weliswaar een mix van woningtypes, maar ook veel uniformiteit in stedenbouwkundige opzet, architectuur en gebruikte materialen. Dat levert weinig karakteristieke bebouwing op."
-			}
-			// else if (gebiedExtra == "Westpoort"){
-			// 	document.getElementById("p3").innerHTML = ""
-			// }
-			window.scroll(0,1000)
-		}); 
-
+	  	// event listener -> mouseout
 		google.maps.event.addListener(bermudaTriangle,"mouseout",function(e){
 			this.setOptions({fillColor: y, fillOpacity: opacitySecond});
 			marker.setVisible(false);
 		});
+
+		// event listener -> click
+		google.maps.event.addListener(bermudaTriangle,"click",function(e){
+			d3Bar()
+			window.scroll(0,1000)
+			document.getElementById("p2").innerHTML = polyLabel;
+			function verhaalGebied(gebiedNaam){
+				var imageMap = ["CentrumWestMap", "CentrumOostMap", "WesterparkMap", "BOLOMap", "OudWestDeBaarsjesMap", "GeuzenveldSlotermeerMap", "OsdorpMap", "DeAkerNieuwSlotenMap", "SlotervaartMap", "OudZuidMap", "BuitenveldertZuidasMap", "DePijpRivierenbuurtMap", "OudOostMap", "IndischeBuurtOostelijkHavengebiedMap", "WatergraafsmeerMap", "IJburgZeeburgereilandMap", "NoordWestMap", "OudNoordMap", "NoordOostMap", "BijlmerCentrumMap", "BijlmerOostMap", "GaasperdamDriemondMap", "WestpoortMap"]
+				for (var i = 0; i < 23; i++){
+					if (polyLabel == gebiedNaam[i]){
+						console.log(imageMap[i])
+						image = imageMap[i]
+						document.getElementById("p3").innerHTML = verhalen[i]
+						showImage(image)
+					}
+				}
+			}
+			verhaalGebied(gebiedNaam)
+		}); 
 	}
 
-	// // array met gebieden
+	// array met gebieden
 	gebied = [CentrumWest, CentrumOost, Westerpark, BOLO, OudWestDeBaarsjes, GeuzenveldSlotermeer, Osdorp, 
 	DeAkerNieuwSloten, Slotervaart, OudZuid, BuitenveldertZuidas, DePijpRivierenbuurt, OudOost, IndischeBuurtOostelijkHavengebied, 
 	Watergraafsmeer, IJburgZeeburgereiland, NoordWest, OudNoord, NoordOost, BijlmerCentrum, BijlmerOost, GaasperdamDriemond, Westpoort]
@@ -4206,36 +4156,175 @@ function backTop() {
 	window.scroll(0,0)
 }
 
-var voorkeurWoningwaardeArray = []
+var voorkeurWoningwaardeArrayLaag = []
+var voorkeurWoningwaardeArrayGemiddeld = []
+var voorkeurWoningwaardeArrayHoog = []
+var voorkeurWoningwaardeArrayGeen = []
 var voorkeurBevolkingsdichtheidArray = []
 var voorkeurVeiligheidArray = []
+var voorkeurAllesArray = []
+var dupArray = []
 
 var woningwaardeVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
+var bevolkingsdichtheidVoorkeur = [3, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 1, 1]
+var veiligheidVoorkeur = [2, 2, 2, 1, 1, 1, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 3]
+var idRadio = ["radioVoorkeurWoningwaardeLaag", "radioVoorkeurWoningwaardeGemiddeld", "radioVoorkeurWoningwaardeHoog","radioVoorkeurWoningwaardeGeen"]
 
-function voorkeur(voorkeurWoningwaarde){
+function arrHasDupes(A) {                          // finds any duplicate array elements using the fewest possible comparison
+	var n=A.length;
+                                                     // to ensure the fewest possible comparisons
+	for (var i=0; i<n; i++) {                        // outer loop uses each item i at 0 through n
+		for (var j=i+1; j<n; j++) {              // inner loop only compares items j at i+1 to n
+			if (A[i]==A[j]){
+				dupArray.push(A[i])	
+			}
+		}	
+	}
+	console.log(dupArray)
+}
+
+function voorkeurWoningwaarde(){
+	if (document.getElementById("radioVoorkeurWoningwaardeLaag").checked){
 		for (var i = 0; i <22; i++){
 			if (woningwaardeVoorkeur[i] == 1 ){
-				voorkeurWoningwaardeArray.push(gebiedNaam[i])
+				voorkeurAllesArray.push(gebiedNaam[i])
 			}
 		}
-	console.log(voorkeurWoningwaardeArray)
-	// else if (voorkeurWoningwaarde == "midden"){
-	// 	for (var i = 0; i <23; i++){
-	// 		if (woningwaardeVoorkeur[i] == 2 ){
-	// 			voorkeurWoningwaardeArray.push(gebied[i])
-	// 		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurWoningwaardeGemiddeld").checked){
+		for (var i = 0; i <22; i++){
+			if (woningwaardeVoorkeur[i] == 2 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurWoningwaardeHoog").checked){
+		for (var i = 0; i <22; i++){
+			if (woningwaardeVoorkeur[i] == 3 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurWoningwaardeGeen").checked){
+		for (var i = 0; i <22; i++){
+			voorkeurAllesArray.push(gebiedNaam[i])
+		}
+		console.log(voorkeurAllesArray)
+	}
+
+	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidLaag").checked){
+		for (var i = 0; i <22; i++){
+			if (bevolkingsdichtheidVoorkeur[i] == 1 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidGemiddeld").checked){
+		for (var i = 0; i <22; i++){
+			if (bevolkingsdichtheidVoorkeur[i] == 2 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidHoog").checked){
+		for (var i = 0; i <22; i++){
+			if (bevolkingsdichtheidVoorkeur[i] == 3 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidGeen").checked){
+		for (var i = 0; i <22; i++){
+			voorkeurAllesArray.push(gebiedNaam[i])
+		}
+		console.log(voorkeurAllesArray)
+	}	
+	else if (document.getElementById("radioVoorkeurVeiligheidLaag").checked){
+		for (var i = 0; i <22; i++){
+			if (veiligheidVoorkeur[i] == 1 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurVeiligheidGemiddeld").checked){
+		for (var i = 0; i <22; i++){
+			if (veiligheidVoorkeur[i] == 2 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurVeiligheidHoog").checked){
+		for (var i = 0; i <22; i++){
+			if (veiligheidVoorkeur[i] == 3 ){
+				voorkeurAllesArray.push(gebiedNaam[i])
+			}
+		}
+		console.log(voorkeurAllesArray)
+	}
+	else if (document.getElementById("radioVoorkeurVeiligheidGeen").checked){
+		for (var i = 0; i <22; i++){
+			voorkeurAllesArray.push(gebiedNaam[i])
+		}
+		console.log(voorkeurAllesArray)
+	}	
+	arrHasDupes(voorkeurAllesArray)	
+}
+
+	// for (var i = 0; i < 4; i++){
+	// 	if (laag){
+	// 		var radio = idRadio[i]
 	// 	}
 	// }
-	// else if (voorkeurWoningwaarde == "hoog"){
-	// 	for (var i = 0; i <23; i++){
-	// 		if (woningwaardeVoorkeur[i] == 3 ){
-	// 			voorkeurWoningwaardeArray.push(gebied[i])
-	// 		}
-	// 	}
-	// }
-	// else {
-	// 	//selecteer alles
-	// }
+	// console.log(radio)
+
+
+
+// 	for (var i = 0; i <22; i++){
+// 		if (woningwaardeVoorkeur[i] == 1 ){
+// 			// voorkeurWoningwaardeArrayLaag.push(gebiedNaam[i])
+// 			voorkeurAllesArray.push(gebiedNaam[i])
+// 		}
+// 	}
+// 	// console.log(voorkeurWoningwaardeArrayLaag)
+// }
+
+// function voorkeurWoningwaardeGemiddeld(){
+// 	for (var i = 0; i <22; i++){
+// 		if (woningwaardeVoorkeur[i] == 2 ){
+// 			voorkeurWoningwaardeArrayGemiddeld.push(gebiedNaam[i])
+// 		}
+// 	} 
+// 	// console.log(voorkeurWoningwaardeArrayGemiddeld)
+// }
+// function voorkeurWoningwaardeHoog(){
+// 	for (var i = 0; i <22; i++){
+// 		if (woningwaardeVoorkeur[i] == 3 ){
+// 			voorkeurWoningwaardeArrayHoog.push(gebiedNaam[i])
+// 		}
+// 	}
+// 	// console.log(voorkeurWoningwaardeArrayHoog)
+// }
+
+// function voorkeurWoningwaardeGeen(){
+// 	for (var i = 0; i <22; i++){
+// 		voorkeurWoningwaardeArrayGeen.push(gebiedNaam[i])
+// 	}
+// 	// console.log(voorkeurWoningwaardeArrayGeen)
+// }
+
+// console.log(voorkeurAllesArray)
+
+// for (var i = 0; i < voorkeurWoningwaardeArrayLaag.length; i++){
+// 	if (voorkeurWoningwaardeArrayLaag == voorkeurWoningwaardeArrayGemiddeld)
+// }
 
 	// if (voorkeurBevolkingsdichtheid == "laag"){
 
@@ -4262,4 +4351,3 @@ function voorkeur(voorkeurWoningwaarde){
 	// else if (voorkeurVeiligheid == "geen"){
 		
 	// }
-}
