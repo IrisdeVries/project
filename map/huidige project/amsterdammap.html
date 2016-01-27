@@ -6,6 +6,7 @@
 		<p id="p1">Hello Amsterdam!</p>
 		<p id="p2"></p>
 		<p id="p3"></p>
+		<p id="p4"></p>
 
 		<!-- afbeeldingen stadsdelen -->
 		<!-- <div id="divimg">
@@ -37,6 +38,7 @@
 		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
 		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
 		<script type = "text/javascript" src = "http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type = "text/javascript" src = "mapsLatLng.js"></script>
 		<script type = "text/javascript" src = "GM_basistopo.js"></script>
 		<script type = "text/javascript" src = "verhalen.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
@@ -58,6 +60,16 @@
 			        $("#panelTwee").slideToggle("slow");
 			    });
 			});
+			$(document).ready(function(){
+			    $("#flipDrie").click(function(){
+			        $("#panelDrie").slideToggle("slow");
+			    });
+			});	
+			$(document).ready(function(){
+			    $("#flipVier").click(function(){
+			        $("#panelVier").slideToggle("slow");
+			    });
+			});						
 		</script>
 	</head>
 
@@ -85,8 +97,8 @@
 
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
-		<button id = "knop" onclick = "bevolkingsdichtheidKnop()" style = "position: absolute; z-index: 2; top: 300; left: 150;">Bevolkingsdichtheid</button>
-		<button id = "knop" onclick = "veiligheidKnop()" style = "position: absolute; z-index: 2; top: 350; left: 170;">Veiligheid</button>
+		<button id = "knop" onclick = "bevolkingsdichtheidKnop()"style = "position: absolute; z-index: 2; top: 300; left: 150;">Bevolkingsdichtheid</button>
+		<button id = "knop" onclick = "veiligheidKnop()"style = "position: absolute; z-index: 2; top: 350; left: 170;">Veiligheid</button>
 		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 1000; left: 10;">Top</button>
 
 		<!-- leeftijdsgroep slider -->
@@ -107,12 +119,32 @@
 		<div id="flipTwee" style = "position: absolute; z-index: 3; top: 435; left: 100;">...</div>
 		<div id="panelTwee" style = "position: absolute; z-index: 3; top: 465; left: 60;">
 			<form action="demo_form.asp" method="get">
-			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
+			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaardeLaag()" name="vehicle" value="Bike"> Laag<br>
 			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
 			<input id = "radioVoorkeurWoningwaardeHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
 			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
 			</form>
-		</div>		
+		</div>	
+
+		<div id="flipDrie" style = "position: absolute; z-index: 3; top: 495; left: 300;">...</div>
+		<div id="panelDrie" style = "position: absolute; z-index: 3; top: 525; left: 260;">
+			<form action="demo_form.asp" method="get">
+			<input id = "radioVoorkeurBevolkingsdichtheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
+			</form>
+		</div>	
+
+		<div id="flipVier" style = "position: absolute; z-index: 3; top: 555; left: 200;">...</div>
+		<div id="panelVier" style = "position: absolute; z-index: 3; top: 585; left: 160;">
+			<form action="demo_form.asp" method="get">
+			<input id = "radioVoorkeurVeiligheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
+			<input id = "radioVoorkeurVeiligheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
+			<input id = "radioVoorkeurVeiligheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
+			<input id = "radioVoorkeurVeiligheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>			
+			</form>
+		</div>						
 
 			<!-- <input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 10;"> Laag<br>
 			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 40;"> Gemiddeld<br>
@@ -120,7 +152,7 @@
 			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 40;"> Maakt niet uit<br> -->
 
 
-		<div id = "divradio2" style = "position: absolute; z-index: 2; top: 800; left: 10;">
+		<!-- <div id = "divradio2" style = "position: absolute; z-index: 2; top: 800; left: 10;">
 			<input id = "radioVoorkeurBevolkingsdichtheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
 			<input id = "radioVoorkeurBevolkingsdichtheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
 			<input id = "radioVoorkeurBevolkingsdichtheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
@@ -132,7 +164,7 @@
 			<input id = "radioVoorkeurVeiligheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
 			<input id = "radioVoorkeurVeiligheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
 			<input id = "radioVoorkeurVeiligheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
-		</div>			
+		</div>			 -->
 
 		<!-- script voor informatiecanvas -->
 		<script>
@@ -210,15 +242,15 @@
 				// voorbeeld tekst om te wrappen
 				var text = 'Amsterdam is op te delen in 22 gebieden. Op deze pagina kunt u informatie vinden over de woningwaarde, de bevolkingsdichtheid, de veiligheid en de relatieve frequentie van de leeftijd van de inwoners van elk van deze gebieden. Hover over de kaart voor informatie over de geselecteerde optie of klik op een gebied op de kaart voor uitgebreide gebiedsspecifieke informatie. Om terug te gaan naar het overzicht klikt u op "Top"';
 				var textTwee = 'Als ik in Amsterdam woon, wil ik dat de de waarde van mijn woning ........... is';
-				var textDrie = 'Als ik in Amsterdam woon, wil ik dat de bevolkingsdichtheid in mijn woonomgeving ... is';
-				var textVier = 'Als ik in Amsterdam woon, wil ik dat de veiligheid in mijn woonomgeving relatief ... is';
+				var textDrie = 'Als ik in Amsterdam woon, wil ik dat de bevolkingsdichtheid in mijn woonomgeving ........... is';
+				var textVier = 'Als ik in Amsterdam woon, wil ik dat de veiligheid in mijn woonomgeving relatief ........... is';
 				
 			    ctx.font = '12pt Calibri';
 			    ctx.fillStyle = '#333';
 				wrapText(ctx, text, x, y, maxWidth, lineHeight);
 				wrapText(ctx, textTwee, x, 400, maxWidth, lineHeight);
-				wrapText(ctx, textDrie, x, 520, maxWidth, lineHeight);
-				wrapText(ctx, textVier, x, 610, maxWidth, lineHeight);
+				wrapText(ctx, textDrie, x, 460, maxWidth, lineHeight);
+				wrapText(ctx, textVier, x, 520, maxWidth, lineHeight);
 
 				// bron: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-size/
 				var imageObj = new Image();

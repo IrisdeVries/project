@@ -46,6 +46,14 @@
     font-size: 15px;
 }
 
+#p4 {
+    position: absolute;
+    left: 30px;
+    top: 900px;
+    font-family: "Verdana";
+    font-size: 15px;
+}
+
 #chart {
   font: 10px Verdana;
 }
@@ -141,6 +149,60 @@ font-family: Arial;
 }
 
 #panelTwee {
+  display: none;
+  width: 100px;
+  font-family: Arial;
+  color: #0a090a;
+  font-size: 15px;
+  background: #ffffff;
+  padding: 5px 15px 5px 15px;
+  border: solid #848b8f 1px;
+  text-decoration: none;
+}
+
+#panelDrie, #flipDrie {
+font-family: Arial;
+    color: #0a090a;
+    font-size: 15px;
+    background: #ffffff;
+    padding: 5px 15px 5px 15px;
+    border: solid #848b8f 1px;
+    text-decoration: none;
+}
+
+#flipDrie:hover {
+  background: #e3e3e3;
+  text-decoration: none;
+}
+
+#panelDrie {
+  display: none;
+  width: 100px;
+  font-family: Arial;
+  color: #0a090a;
+  font-size: 15px;
+  background: #ffffff;
+  padding: 5px 15px 5px 15px;
+  border: solid #848b8f 1px;
+  text-decoration: none;
+}
+
+#panelVier, #flipVier {
+font-family: Arial;
+    color: #0a090a;
+    font-size: 15px;
+    background: #ffffff;
+    padding: 5px 15px 5px 15px;
+    border: solid #848b8f 1px;
+    text-decoration: none;
+}
+
+#flipVier:hover {
+  background: #e3e3e3;
+  text-decoration: none;
+}
+
+#panelVier {
   display: none;
   width: 100px;
   font-family: Arial;
