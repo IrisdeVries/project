@@ -53,6 +53,14 @@
     font-family: "Verdana";
     font-size: 15px;
 }
+#p5 {
+    position: absolute;
+    left: 50px;
+    top: 600;
+    font-family: "Verdana";
+    font-size: 15px;
+    z-index: 4;
+}
 
 #chart {
   font: 10px Verdana;
@@ -84,6 +92,7 @@
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
+  z-index: 2;
 }
 
 /* Creates a small triangle extender for the tooltip */
@@ -97,6 +106,31 @@
   content: "\25BC";
   position: absolute;
   text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+#panel, #flip {
+font-family: Arial;
+    color: #0a090a;
+    font-size: 15px;
+    background: #ffffff;
+    padding: 5px 15px 5px 15px;
+    border: solid #848b8f 1px;
+    text-decoration: none;
+}
+
+#chart2 {
+  font: 10px Verdana;
+}
+
+#chart3 {
+  font: 10px Verdana;
 }
 
 /* Style northward tooltips differently */

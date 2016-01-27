@@ -1,23 +1,23 @@
-letter	frequency
-Bijlmer-Oost	1656
-Bijlmer-Centrum	1718
-Gaasperdam/Driemond	1848
-Noord-Oost	2119
-Osdorp	2127
-Geuzenveld/Slotermeer	2179
-Noord-West	2220
-Slotervaart	2246	
-De Aker/Nieuw Sloten	2391
-Oud-Noord	2562
-IJburg/Zeeburgereiland	2755	
-Buitenveldert/Zuidas	2852
-BOLO	2881
-Indische Buurt/Oostelijk Havengebied	3098
-Oud-Oost	3272
-Watergraafsmeer	3293
-Oud-West/ De Baarsjes	3570
-Westerpark	3617
-Pijp	3813	
-Centrum-Oost	3897
-Oud-Zuid	4027
-Centrum-West	4194
+letter	frequency	colorx
+Bijlmer-Oost	1656	"red"
+Bijlmer-Centrum	1718	"red"
+Gaasperdam/Driemond	1848	"red"
+Noord-Oost	2119	"red"
+Osdorp	2127	"red"
+Geuzenveld/Slotermeer	2179	"red"
+Noord-West	2220	"red"
+Slotervaart	2246	"red"
+De Aker/Nieuw Sloten	2391	"red"
+Oud-Noord	2562	"red"
+IJburg/Zeeburgereiland	2755	"red"
+Buitenveldert/Zuidas	2852	"blue"
+BOLO	2881	"blue"
+Indische Buurt/Oostelijk Havengebied	3098	"blue"
+Oud-Oost	3272	"blue"
+Watergraafsmeer	3293	"blue"
+Oud-West/ De Baarsjes	3570	"blue"
+Westerpark	3617	"blue"
+Pijp	3813	"blue"
+Centrum-Oost	3897	"blue"
+Oud-Zuid	4027	"blue"
+Centrum-West	4194	"blue"

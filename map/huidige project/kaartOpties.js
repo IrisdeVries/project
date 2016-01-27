@@ -51,8 +51,12 @@ function geefKaart(gebiedData) {
 
 		// event listener -> click
 		google.maps.event.addListener(bermudaTriangle,"click",function(e){
+			d3.select("svg").remove()	
+			d3.select("svg").remove()	
+			d3.select("svg").remove()
 			d3Bar()
-			window.scroll(0,1000)
+			// window.scroll(0,1000)
+			smooth_scroll_to(document.body, 1000, 1800);
 			document.getElementById("p2").innerHTML = polyLabel;
 			function verhaalGebied(gebiedNaam){
 				var imageMap = ["CentrumWestMap", "CentrumOostMap", "WesterparkMap", "BOLOMap", "OudWestDeBaarsjesMap", 
@@ -612,27 +616,24 @@ function leeftijdsgroepenKnopZeven() {
 // }
 
 function backTop() {
-	window.scroll(0,0)
+	smooth_scroll_to(document.body, 0, 1800);			
+	// window.scroll(0,0)
+	// location.reload();
 }
 
-var voorkeurWoningwaardeArrayLaag = []
-var voorkeurWoningwaardeArrayGemiddeld = []
-var voorkeurWoningwaardeArrayHoog = []
-var voorkeurWoningwaardeArrayGeen = []
+var voorkeurWoningwaardeArray = []
 var voorkeurBevolkingsdichtheidArray = []
 var voorkeurVeiligheidArray = []
 var voorkeurAllesArray = []
-var dupArray = []
-var duplicates = []
+var advies = []
 
 var woningwaardeVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
-var bevolkingsdichtheidVoorkeur = [3, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 1, 1]
-var veiligheidVoorkeur = [2, 2, 2, 1, 1, 1, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 3]
+var bevolkingsdichtheidVoorkeur = [1, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 3, 3, 1, 1]
+var veiligheidVoorkeur = [1, 2, 2, 1, 1, 1, 1, 1, 1, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 3]
 // var idRadio = [radioVoorkeurWoningwaardeLaag, radioVoorkeurWoningwaardeGemiddeld, radioVoorkeurWoningwaardeHoog,radioVoorkeurWoningwaardeGeen, 
 // 	radioVoorkeurBevolkingsdichtheidLaag, radioVoorkeurBevolkingsdichtheidGemiddeld, radioVoorkeurBevolkingsdichtheidHoog, radioVoorkeurBevolkingsdichtheidGeen, 
 // 	radioVoorkeurVeiligheidLaag, radioVoorkeurVeiligheidGemiddeld, radioVoorkeurVeiligheidHoog, radioVoorkeurVeiligheidGeen]
 
-console.log(voorkeurWoningwaardeArrayLaag[0])
 
 function arrHasDupes(A) {                          // finds any duplicate array elements using the fewest possible comparison
 	var n=A.length;
@@ -647,108 +648,151 @@ function arrHasDupes(A) {                          // finds any duplicate array 
 	document.getElementById("p4").innerHTML = dupArray;
 }
 
-function voorkeurWoningwaardeLaag(){
-	for (var i = 0; i <22; i++){
-		if (woningwaardeVoorkeur[i] == 1 ){
-			voorkeurWoningwaardeArrayLaag.push(gebiedNaam[i])
-		}
-	}
-console.log(voorkeurWoningwaardeArrayLaag)	
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
 }
 
 
+// push allemaal in aparte arrays
+// vergelijk 12 en push naar nieuwe array
+// vergelijk nieuwe array met 3
+
+
 function voorkeurWoningwaarde(){
-	if (document.getElementById("radioVoorkeurWoningwaardeGemiddeld").checked){
-		for (var i = 0; i <22; i++){
-			if (woningwaardeVoorkeur[i] == 2 ){
-				voorkeurAllesArray.push(gebiedNaam[i])
+	if (document.getElementById("radioVoorkeurWoningwaardeLaag").checked){
+		if (voorkeurWoningwaardeArray.length > 0){
+						console.log(voorkeurWoningwaardeArray)
+			voorkeurWoningwaardeArray = []
+			console.log("full bitch")
+						console.log(voorkeurWoningwaardeArray)
+		}
+		for (var i = 0; i < 22; i++){
+			if (woningwaardeVoorkeur[i] == 1){
+				voorkeurWoningwaardeArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurWoningwaardeLaag").checked = false;
 	}
+	else if (document.getElementById("radioVoorkeurWoningwaardeGemiddeld").checked){
+		for (var i = 0; i < 22; i++){
+			if (woningwaardeVoorkeur[i] == 2){
+				voorkeurWoningwaardeArray.push(gebiedNaam[i])
+			}
+		}
+		document.getElementById("radioVoorkeurWoningwaardeGemiddeld").checked = false;
+	}	
 	else if (document.getElementById("radioVoorkeurWoningwaardeHoog").checked){
 		for (var i = 0; i <22; i++){
 			if (woningwaardeVoorkeur[i] == 3 ){
-				voorkeurAllesArray.push(gebiedNaam[i])
+				voorkeurWoningwaardeArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurWoningwaardeHoog").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurWoningwaardeGeen").checked){
 		for (var i = 0; i <22; i++){
-			voorkeurAllesArray.push(gebiedNaam[i])
+			voorkeurWoningwaardeArray.push(gebiedNaam[i])
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurWoningwaardeGeen").checked = false;
 	}
 
 	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidLaag").checked){
+		if (voorkeurBevolkingsdichtheidArray.length > 0){
+			voorkeurBevolkingsdichtheidArray = []
+		}
 		for (var i = 0; i <22; i++){
 			if (bevolkingsdichtheidVoorkeur[i] == 1 ){
-				voorkeurAllesArray.push(gebiedNaam[i])
+				voorkeurBevolkingsdichtheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurBevolkingsdichtheidLaag").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidGemiddeld").checked){
 		for (var i = 0; i <22; i++){
 			if (bevolkingsdichtheidVoorkeur[i] == 2 ){
-				voorkeurAllesArray.push(gebiedNaam[i])
+				voorkeurBevolkingsdichtheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurBevolkingsdichtheidGemiddeld").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidHoog").checked){
 		for (var i = 0; i <22; i++){
 			if (bevolkingsdichtheidVoorkeur[i] == 3 ){
-				voorkeurAllesArray.push(gebiedNaam[i])
+				voorkeurBevolkingsdichtheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurBevolkingsdichtheidHoog").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurBevolkingsdichtheidGeen").checked){
 		for (var i = 0; i <22; i++){
-			voorkeurAllesArray.push(gebiedNaam[i])
+			voorkeurBevolkingsdichtheidArray.push(gebiedNaam[i])
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurBevolkingsdichtheidGeen").checked = false;
 	}	
 	else if (document.getElementById("radioVoorkeurVeiligheidLaag").checked){
+		if (voorkeurVeiligheidArray.length > 0){
+			voorkeurVeiligheidArray = []
+		}
 		for (var i = 0; i <22; i++){
 			if (veiligheidVoorkeur[i] == 1 ){
-				duplicates.push(gebiedNaam[i])
+				voorkeurVeiligheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurVeiligheidLaag").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurVeiligheidGemiddeld").checked){
 		for (var i = 0; i <22; i++){
 			if (veiligheidVoorkeur[i] == 2 ){
-				duplicates.push(gebiedNaam[i])
+				voorkeurVeiligheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurVeiligheidGemiddeld").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurVeiligheidHoog").checked){
 		for (var i = 0; i <22; i++){
 			if (veiligheidVoorkeur[i] == 3 ){
-				duplicates.push(gebiedNaam[i])
+				voorkeurVeiligheidArray.push(gebiedNaam[i])
 			}
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurVeiligheidHoog").checked = false;
 	}
 	else if (document.getElementById("radioVoorkeurVeiligheidGeen").checked){
 		for (var i = 0; i <22; i++){
-			duplicates.push(gebiedNaam[i])
+			voorkeurVeiligheidArray.push(gebiedNaam[i])
 		}
-		// console.log(voorkeurAllesArray)
+		document.getElementById("radioVoorkeurVeiligheidGeen").checked = false;
 	}	
-	// arrHasDupes(voorkeurAllesArray)	
+	// console.log(voorkeurWoningwaardeArray)
+	// console.log(voorkeurBevolkingsdichtheidArray)
+	// console.log(voorkeurVeiligheidArray)
+
+	if (voorkeurWoningwaardeArray.length > 0 && voorkeurVeiligheidArray.length > 0 && voorkeurVeiligheidArray.length > 0){
+		for (var i = 0; i < voorkeurWoningwaardeArray.length; i++){
+			if (isInArray(voorkeurWoningwaardeArray[i], voorkeurBevolkingsdichtheidArray)){
+				if (voorkeurAllesArray.length > 0){
+					voorkeurAllesArray = []
+				}
+				voorkeurAllesArray.push(voorkeurWoningwaardeArray[i])
+				console.log(voorkeurAllesArray)
+			}
+			if (isInArray(voorkeurVeiligheidArray[i], voorkeurAllesArray)){
+				if (advies.length > 0){
+					advies = []
+				}
+				advies.push(voorkeurVeiligheidArray[i])
+				console.log(voorkeurVeiligheidArray[i])
+				console.log(advies)
+				document.getElementById("p5").innerHTML = advies;
+			}
+		}
+	}
 }
 
 
-function showImage(IdImage){
-    document.getElementById(IdImage).style.visibility="visible";
-}	
+// function showImage(IdImage){
+//     document.getElementById(IdImage).style.visibility="visible";
+// }	
 
-function hideImage(IdImage){
-	document.getElementById(IdImage).style.visibility="hidden";
-}
+// function hideImage(IdImage){
+// 	document.getElementById(IdImage).style.visibility="hidden";
+// }

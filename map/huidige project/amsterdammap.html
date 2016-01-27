@@ -7,6 +7,7 @@
 		<p id="p2"></p>
 		<p id="p3"></p>
 		<p id="p4"></p>
+		<p id="p5"></p>
 
 		<!-- afbeeldingen stadsdelen -->
 		<!-- <div id="divimg">
@@ -69,7 +70,7 @@
 			    $("#flipVier").click(function(){
 			        $("#panelVier").slideToggle("slow");
 			    });
-			});						
+			});					
 		</script>
 	</head>
 
@@ -91,9 +92,10 @@
 		</div>	
 
 		<!-- barchart -->
-		<div id="chart" style = "position: absolute; z-index: 2; top: 1500; left: 30;"></div>
+		<div id="chart" style = "position: absolute; z-index: 2; top: 900; left: 1000;"></div>
 		<!-- Table -->
-		<div id="chart2" style = "position: absolute; z-index: 2; top: 1000; left: 30;"></div>
+		<div id="chart2" style = "position: absolute; z-index: 2; top: 1200; left: 1000;"></div>
+		<div id="chart3" style = "position: absolute; z-index: 2; top: 1500; left: 1000;"></div>		
 
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
@@ -119,7 +121,7 @@
 		<div id="flipTwee" style = "position: absolute; z-index: 3; top: 435; left: 100;">...</div>
 		<div id="panelTwee" style = "position: absolute; z-index: 3; top: 465; left: 60;">
 			<form action="demo_form.asp" method="get">
-			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaardeLaag()" name="vehicle" value="Bike"> Laag<br>
+			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
 			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
 			<input id = "radioVoorkeurWoningwaardeHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
 			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
@@ -146,28 +148,84 @@
 			</form>
 		</div>						
 
-			<!-- <input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 10;"> Laag<br>
-			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 40;"> Gemiddeld<br>
-			<input id = "radioVoorkeurWoningwaardeHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 30;"> Hoog<br>
-			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike" style = "position: absolute; z-index: 2; top: 460; left: 40;"> Maakt niet uit<br> -->
-
-
-		<!-- <div id = "divradio2" style = "position: absolute; z-index: 2; top: 800; left: 10;">
-			<input id = "radioVoorkeurBevolkingsdichtheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
-		</div>
-
-		<div id = "divradio" style = "position: absolute; z-index: 2; top: 900; left: 10;">
-			<input id = "radioVoorkeurVeiligheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
-			<input id = "radioVoorkeurVeiligheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
-			<input id = "radioVoorkeurVeiligheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
-			<input id = "radioVoorkeurVeiligheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
-		</div>			 -->
-
 		<!-- script voor informatiecanvas -->
 		<script>
+
+/**
+    Smoothly scroll element to the given target (element.scrollTop)
+    for the given duration
+
+    Returns a promise that's fulfilled when done, or rejected if
+    interrupted
+ */
+var smooth_scroll_to = function(element, target, duration) {
+    target = Math.round(target);
+    duration = Math.round(duration);
+    if (duration < 0) {
+        return Promise.reject("bad duration");
+    }
+    if (duration === 0) {
+        element.scrollTop = target;
+        return Promise.resolve();
+    }
+
+    var start_time = Date.now();
+    var end_time = start_time + duration;
+
+    var start_top = element.scrollTop;
+    var distance = target - start_top;
+
+    // based on http://en.wikipedia.org/wiki/Smoothstep
+    var smooth_step = function(start, end, point) {
+        if(point <= start) { return 0; }
+        if(point >= end) { return 1; }
+        var x = (point - start) / (end - start); // interpolation
+        return x*x*(3 - 2*x);
+    }
+
+    return new Promise(function(resolve, reject) {
+        // This is to keep track of where the element's scrollTop is
+        // supposed to be, based on what we're doing
+        var previous_top = element.scrollTop;
+
+        // This is like a think function from a game loop
+        var scroll_frame = function() {
+            if(element.scrollTop != previous_top) {
+                reject("interrupted");
+                return;
+            }
+
+            // set the scrollTop for this frame
+            var now = Date.now();
+            var point = smooth_step(start_time, end_time, now);
+            var frameTop = Math.round(start_top + (distance * point));
+            element.scrollTop = frameTop;
+
+            // check if we're done!
+            if(now >= end_time) {
+                resolve();
+                return;
+            }
+
+            // If we were supposed to scroll but didn't, then we
+            // probably hit the limit, so consider it done; not
+            // interrupted.
+            if(element.scrollTop === previous_top
+                && element.scrollTop !== frameTop) {
+                resolve();
+                return;
+            }
+            previous_top = element.scrollTop;
+
+            // schedule next frame for execution
+            setTimeout(scroll_frame, 0);
+        }
+
+        // boostrap the animation process
+        setTimeout(scroll_frame, 0);
+    });
+}
+
 			// laad data in
 			var woningwaarde = []
 			var woningwaardem2 = []
@@ -304,7 +362,7 @@
 			function d3Bar() {
 				var margin = {top: 40, right: 20, bottom: 30, left: 40},
 			    width = 400 - margin.left - margin.right,
-			    height = 300 - margin.top - margin.bottom;
+			    height = 250 - margin.top - margin.bottom;
 
 				var formatPercent = d3.format(".0%");
 
@@ -314,6 +372,9 @@
 				var y = d3.scale.linear()
 				    .range([height, 0]);
 
+				var y2 = d3.scale.linear()
+				    .range([height, 100]);				    
+
 				var xAxis = d3.svg.axis()
 				    .scale(x)
 				    .orient("bottom");
@@ -322,6 +383,10 @@
 				    .scale(y)
 				    .orient("left")
 
+				var yAxis2 = d3.svg.axis()
+				    .scale(y2)
+				    .orient("left")				    
+
 				var tip = d3.tip()
 				  .attr('class', 'd3-tip')
 				  .offset([-10, 0])
@@ -329,6 +394,17 @@
 				    return "<strong>gebied:</strong> <span style='color:red'>" + d.letter + "</span>";
 				  })
 
+				  // load data
+				d3.tsv("data.tsv", drawBar)
+				d3.tsv("bevolkingsdichtheid.tsv", drawBar2)
+				d3.tsv("veiligheid.tsv", drawBar3)				
+
+				function type(d) {
+				  d.frequency = +d.frequency;
+				  return d;
+				}
+
+				  // chart 1
 				var svg = d3.select("#chart").append("svg")
 				    .attr("width", width + margin.left + margin.right)
 				    .attr("height", height + margin.top + margin.bottom)
@@ -337,8 +413,6 @@
 
 				svg.call(tip);
 
-				d3.tsv("data.tsv", drawBar)
-				
 				function drawBar(data){
 				  x.domain(data.map(function(d) { return d.letter; }));
 				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
@@ -366,15 +440,13 @@
 				      .attr("width", x.rangeBand())
 				      .attr("y", function(d) { return y(d.frequency); })
 				      .attr("height", function(d) { return height - y(d.frequency); })
+				      // .style("fill", function(d) { return d.color; })
 				      .on('mouseover', tip.show)
 				      .on('mouseout', tip.hide)
 				};
 
-				function type(d) {
-				  d.frequency = +d.frequency;
-				  return d;
-				}
 
+				// chart 2
 				var svgTwee = d3.select("#chart2").append("svg")
 				    .attr("width", width + margin.left + margin.right)
 				    .attr("height", height + margin.top + margin.bottom)
@@ -383,9 +455,9 @@
 
 				svgTwee.call(tip);
 				
-				function drawBar(data){
+				function drawBar2(data){
 				  x.domain(data.map(function(d) { return d.letter; }));
-				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+				  y2.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
 				  svgTwee.append("g")
 				      .attr("class", "x axis")
@@ -394,7 +466,7 @@
 
 				  svgTwee.append("g")
 				      .attr("class", "y axis")
-				      .call(yAxis)
+				      .call(yAxis2)
 				    .append("text")
 				      .attr("transform", "rotate(-90)")
 				      .attr("y", 6)
@@ -408,16 +480,51 @@
 				      .attr("class", "bar")
 				      .attr("x", function(d) { return x(d.letter); })
 				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y(d.frequency); })
+				      .attr("y", function(d) { return y2(d.frequency); })
 				      .attr("height", function(d) { return height - y(d.frequency); })
 				      .on('mouseover', tip.show)
 				      .on('mouseout', tip.hide)
 				};
 
-				function type(d) {
-				  d.frequency = +d.frequency;
-				  return d;
-				}
+				// chart 3
+				var svg3 = d3.select("#chart3").append("svg")
+				    .attr("width", width + margin.left + margin.right)
+				    .attr("height", height + margin.top + margin.bottom)
+				  .append("g")
+				    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+				svg3.call(tip);
+
+				function drawBar3(data){
+				  x.domain(data.map(function(d) { return d.letter; }));
+				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+				  svg3.append("g")
+				      .attr("class", "x axis")
+				      .attr("transform", "translate(0," + height + ")")
+				      // .call(xAxis);
+
+				  svg3.append("g")
+				      .attr("class", "y axis")
+				      .call(yAxis)
+				    .append("text")
+				      .attr("transform", "rotate(-90)")
+				      .attr("y", 6)
+				      .attr("dy", ".71em")
+				      .style("text-anchor", "end")
+				      .text("Woningwaarde per m2");
+
+				  svg3.selectAll(".bar")
+				      .data(data)
+				    .enter().append("rect")
+				      .attr("class", "bar")
+				      .attr("x", function(d) { return x(d.letter); })
+				      .attr("width", x.rangeBand())
+				      .attr("y", function(d) { return y(d.frequency); })
+				      .attr("height", function(d) { return height - y(d.frequency); })
+				      .on('mouseover', tip.show)
+				      .on('mouseout', tip.hide)
+				};				
 			}
 		</script>
 	</body>
