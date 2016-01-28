@@ -103,8 +103,6 @@ function geefKaart(gebiedData) {
 	// als je voorkeuren hebt aangegeven
 	if (gebiedData == advies){
 		for (var i = 0; i<23; i++){
-			console.log("XXXXXX")
-			console.log(adviesName)
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
@@ -666,7 +664,6 @@ function voorkeurWoningwaarde(){
 			if (woningwaardeVoorkeur[i] == 1){
 				voorkeurWoningwaardeArray.push(gebiedNaam[i])
 				voorkeurWoningwaardeName.push(gebiedExtra[i])
-				console.log(voorkeurWoningwaardeName)
 			}
 		}
 		document.getElementById("radioVoorkeurWoningwaardeLaag").checked = false;
@@ -679,7 +676,6 @@ function voorkeurWoningwaarde(){
 		for (var i = 0; i < 22; i++){
 			if (woningwaardeVoorkeur[i] == 2){
 				voorkeurWoningwaardeArray.push(gebiedNaam[i])
-				console.log(voorkeurWoningwaardeArray)
 				voorkeurWoningwaardeName.push(gebiedExtra[i])
 			}
 		}
@@ -694,7 +690,6 @@ function voorkeurWoningwaarde(){
 			if (woningwaardeVoorkeur[i] == 3 ){
 				voorkeurWoningwaardeArray.push(gebiedNaam[i])
 				voorkeurWoningwaardeName.push(gebiedExtra[i])
-				console.log(voorkeurWoningwaardeArray)
 			}
 		}
 		document.getElementById("radioVoorkeurWoningwaardeHoog").checked = false;
@@ -707,7 +702,6 @@ function voorkeurWoningwaarde(){
 		for (var i = 0; i <22; i++){
 			voorkeurWoningwaardeArray.push(gebiedNaam[i])
 			voorkeurWoningwaardeName.push(gebiedExtra[i])
-			console.log(voorkeurWoningwaardeArray)
 		}
 		document.getElementById("radioVoorkeurWoningwaardeGeen").checked = false;
 	}
@@ -818,13 +812,10 @@ function voorkeurWoningwaarde(){
 			if (isInArray(voorkeurWoningwaardeArray[i], voorkeurBevolkingsdichtheidArray)){
 				voorkeurAllesArray.push(voorkeurWoningwaardeArray[i])
 				voorkeurAllesName.push(voorkeurWoningwaardeName[i])
-				console.log(voorkeurAllesArray)
 			}
 			if (isInArray(voorkeurVeiligheidArray[i], voorkeurAllesArray)){
 				advies.push(voorkeurVeiligheidArray[i])
 				adviesName.push(voorkeurVeiligheidName[i])
-				console.log(voorkeurVeiligheidArray[i])
-				console.log(advies)
 				document.getElementById("textAreaAdvies").innerHTML = "Jouw voorkeur komt overeen met: \n"+ advies;
 				geefKaart(advies)
 				document.getElementById("titel").innerHTML = "Voorkeur";
