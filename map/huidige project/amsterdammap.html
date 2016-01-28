@@ -1,45 +1,24 @@
+<!-- Eindproject minor programmeren 2015-2016
+Data Visualisatie
+"Wonen in Amsterdam"
+Iris de Vries
+10367675-->
+
 <code html>
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- p tags die ik later ga gebruiken als tekst op m'n pagina -->
 		<title> Wonen in Amsterdam </title>
 		<p id="titel">Hello Amsterdam!</p>
-		<p id="p2"></p>
-		<p id="p3"></p>
-		<p id="p4"></p>
-		<p id="p5"></p>
+		<p id="titelPagina2"></p>
+		<p id="verhaal"></p>
 		<p id="uitlegChart1"></p>
 		<p id="uitlegChart2"></p>
 		<p id="uitlegChart3"></p>
-		<textarea id="textarea" rows="4" cols="40">Hier verschijnt uw voorkeur</textarea>
+		<textarea id="textAreaAdvies" rows="4" cols="40">Hier verschijnt uw voorkeur</textarea>
 
-		<!-- afbeeldingen stadsdelen -->
-		<!-- <div id="divimg">
-			<img id = "CentrumWestMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.40.25.png" style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "CentrumOostMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.40.50.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "WesterparkMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.42.25.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "BOLOMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.43.49.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "OudWestDeBaarsjesMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.45.26.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "GeuzenveldSlotermeerMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.47.19.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "OsdorpMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2015.48.26.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "DeAkerNieuwSlotenMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.04.34.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "SlotervaartMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.08.34.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "OudZuidMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.10.54.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "BuitenveldertZuidasMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.10.54.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "DePijpRivierenbuurtMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.12.35.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "OudOostMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.14.49.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "IndischeBuurtOostelijkHavengebiedMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.30.39.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "WatergraafsmeerMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.35.18.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "IJburgZeeburgereilandMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.37.17.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "NoordWestMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.39.49.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "OudNoordMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/OudNoordmap.jpg"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "NoordOostMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.41.53.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "BijlmerCentrumMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.43.26.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "BijlmerOostMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.44.31.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "GaasperdamDriemondMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.45.37.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-			<img id = "WestpoortMap" src="https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-24%20om%2016.45.37.png"style="width:142px;height:104px; position: absolute; z-index: 2; top: 990; left: 1200; visibility:hidden">
-	</div> -->
-	
+		<!-- javascript, css, d3, jquery etc -->
 		<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no"/>
 		<link rel="stylesheet" type="text/css" href="amsterdammap.css"/>
 		<script type = "text/javascript" src = "http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -54,6 +33,7 @@
 		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
+		<!-- stukje jquery voor dropdownmenu's -->
 		<script> 
 			$(document).ready(function(){
 			    $("#flip").click(function(){
@@ -74,7 +54,7 @@
 			    $("#flipVier").click(function(){
 			        $("#panelVier").slideToggle("slow");
 			    });
-			});					
+			});				
 		</script>
 	</head>
 
@@ -98,140 +78,143 @@
 			<canvas id = "myCanvas4" width = "500" height = "500"></canvas>
 		</div>	
 
-		<!-- barchart -->
+		<!-- barcharts -->
 		<div id="chart" style = "position: absolute; z-index: 2; top: 1300; left: 10;"></div>
-		<!-- Table -->
 		<div id="chart2" style = "position: absolute; z-index: 2; top: 1300; left: 500;"></div>
 		<div id="chart3" style = "position: absolute; z-index: 2; top: 1300; left: 1000;"></div>		
 
 		<!-- knoppen -->
-		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
+		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10;">Woningwaarde</button>
 		<button id = "knop" onclick = "bevolkingsdichtheidKnop()"style = "position: absolute; z-index: 2; top: 300; left: 150;">Bevolkingsdichtheid</button>
 		<button id = "knop" onclick = "veiligheidKnop()"style = "position: absolute; z-index: 2; top: 350; left: 170;">Veiligheid</button>
 		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 1000; left: 10;">Top</button>
 
-		<!-- leeftijdsgroep slider -->
+		<!-- leeftijdsgroep dropdown -->
 		<div id="flip" style = "position: absolute; z-index: 3; top: 350; left: 10;">Leeftijdsgroepen</div>
 		<div id="panel" style = "position: absolute; z-index: 3; top: 380; left: 10;">
 			<form action="demo_form.asp" method="get">
-				<input type="radio" onclick = "leeftijdsgroepenKnopEen()" name="vehicle" value="Bike"> 0-3<br>
-			    <input type="radio" onclick = "leeftijdsgroepenKnopTwee()" name="vehicle" value="Car"> 4-12<br>
-		     	<input type="radio" onclick = "leeftijdsgroepenKnopDrie()" name="vehicle" value="Bike"> 13-17<br>
-			    <input type="radio" onclick = "leeftijdsgroepenKnopVier()" name="vehicle" value="Bike"> 18-24<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnopVijf()" name="vehicle" value="Car"> 25-49<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnopZes()" name="vehicle" value="Car"> 50-64<br>
-				<input type="radio" onclick = "leeftijdsgroepenKnopZeven()" name="vehicle" value="Car"> 65+<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopEen()" name="radio" value="leeftijdsgroep"> 0-3<br>
+			    <input type="radio" onclick = "leeftijdsgroepenKnopTwee()" name="radio" value="leeftijdsgroep"> 4-12<br>
+		     	<input type="radio" onclick = "leeftijdsgroepenKnopDrie()" name="radio" value="leeftijdsgroep"> 13-17<br>
+			    <input type="radio" onclick = "leeftijdsgroepenKnopVier()" name="radio" value="leeftijdsgroep"> 18-24<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopVijf()" name="radio" value="leeftijdsgroep"> 25-49<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopZes()" name="radio" value="leeftijdsgroep"> 50-64<br>
+				<input type="radio" onclick = "leeftijdsgroepenKnopZeven()" name="radio" value="leeftijdsgroep"> 65+<br>
 			</form>
 		</div>
 
-		<!-- voorkeursknoppen -->
+		<!-- voorkeursknoppen dropdown-->
 		<div id="flipTwee" style = "position: absolute; z-index: 3; top: 435; left: 100;">...</div>
 		<div id="panelTwee" style = "position: absolute; z-index: 3; top: 465; left: 60;">
 			<form action="demo_form.asp" method="get">
-			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
-			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
-			<input id = "radioVoorkeurWoningwaardeHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
-			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
+			<input id = "radioVoorkeurWoningwaardeLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="woningwaarde"> Laag<br>
+			<input id = "radioVoorkeurWoningwaardeGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="woningwaarde"> Gemiddeld<br>
+			<input id = "radioVoorkeurWoningwaardeHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="woningwaarde"> Hoog<br>
+			<input id = "radioVoorkeurWoningwaardeGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="woningwaarde"> Maakt niet uit<br>
 			</form>
 		</div>	
 
 		<div id="flipDrie" style = "position: absolute; z-index: 3; top: 495; left: 300;">...</div>
 		<div id="panelDrie" style = "position: absolute; z-index: 3; top: 525; left: 260;">
 			<form action="demo_form.asp" method="get">
-			<input id = "radioVoorkeurBevolkingsdichtheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
-			<input id = "radioVoorkeurBevolkingsdichtheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="bevolkingsdichtheid"> Laag<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="bevolkingsdichtheid"> Gemiddeld<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="bevolkingsdichtheid"> Hoog<br>
+			<input id = "radioVoorkeurBevolkingsdichtheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="bevolkingsdichtheid"> Maakt niet uit<br>
 			</form>
 		</div>	
 
 		<div id="flipVier" style = "position: absolute; z-index: 3; top: 555; left: 200;">...</div>
 		<div id="panelVier" style = "position: absolute; z-index: 3; top: 585; left: 160;">
 			<form action="demo_form.asp" method="get">
-			<input id = "radioVoorkeurVeiligheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Laag<br>
-			<input id = "radioVoorkeurVeiligheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Gemiddeld<br>
-			<input id = "radioVoorkeurVeiligheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Hoog<br>
-			<input id = "radioVoorkeurVeiligheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="vehicle" value="Bike"> Maakt niet uit<br>			
+			<input id = "radioVoorkeurVeiligheidLaag"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="veiligheid"> Laag<br>
+			<input id = "radioVoorkeurVeiligheidGemiddeld"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="veiligheid"> Gemiddeld<br>
+			<input id = "radioVoorkeurVeiligheidHoog"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="veiligheid"> Hoog<br>
+			<input id = "radioVoorkeurVeiligheidGeen"type="radio" onclick = "voorkeurWoningwaarde()" name="radio" value="veiligheid"> Maakt niet uit<br>			
 			</form>
 		</div>						
 
 		<!-- script voor informatiecanvas -->
 		<script>
+		// zorgt dat de pagina helemaal "bovenaan begint" als er is ververst
+		window.onbeforeunload = function(){
+			window.scrollTo(0,0);
+		}
+			// dit stukje script (regel 141-207) is van: https://coderwall.com/p/hujlhg/smooth-scrolling-without-jquery
+			/**
+			    Smoothly scroll element to the given target (element.scrollTop)
+			    for the given duration
 
-/**
-    Smoothly scroll element to the given target (element.scrollTop)
-    for the given duration
+			    Returns a promise that's fulfilled when done, or rejected if
+			    interrupted
+			 */
+			var smooth_scroll_to = function(element, target, duration) {
+			    target = Math.round(target);
+			    duration = Math.round(duration);
+			    if (duration < 0) {
+			        return Promise.reject("bad duration");
+			    }
+			    if (duration === 0) {
+			        element.scrollTop = target;
+			        return Promise.resolve();
+			    }
 
-    Returns a promise that's fulfilled when done, or rejected if
-    interrupted
- */
-var smooth_scroll_to = function(element, target, duration) {
-    target = Math.round(target);
-    duration = Math.round(duration);
-    if (duration < 0) {
-        return Promise.reject("bad duration");
-    }
-    if (duration === 0) {
-        element.scrollTop = target;
-        return Promise.resolve();
-    }
+			    var start_time = Date.now();
+			    var end_time = start_time + duration;
 
-    var start_time = Date.now();
-    var end_time = start_time + duration;
+			    var start_top = element.scrollTop;
+			    var distance = target - start_top;
 
-    var start_top = element.scrollTop;
-    var distance = target - start_top;
+			    // based on http://en.wikipedia.org/wiki/Smoothstep
+			    var smooth_step = function(start, end, point) {
+			        if(point <= start) { return 0; }
+			        if(point >= end) { return 1; }
+			        var x = (point - start) / (end - start); // interpolation
+			        return x*x*(3 - 2*x);
+			    }
 
-    // based on http://en.wikipedia.org/wiki/Smoothstep
-    var smooth_step = function(start, end, point) {
-        if(point <= start) { return 0; }
-        if(point >= end) { return 1; }
-        var x = (point - start) / (end - start); // interpolation
-        return x*x*(3 - 2*x);
-    }
+			    return new Promise(function(resolve, reject) {
+			        // This is to keep track of where the element's scrollTop is
+			        // supposed to be, based on what we're doing
+			        var previous_top = element.scrollTop;
 
-    return new Promise(function(resolve, reject) {
-        // This is to keep track of where the element's scrollTop is
-        // supposed to be, based on what we're doing
-        var previous_top = element.scrollTop;
+			        // This is like a think function from a game loop
+			        var scroll_frame = function() {
+			            if(element.scrollTop != previous_top) {
+			                reject("interrupted");
+			                return;
+			            }
 
-        // This is like a think function from a game loop
-        var scroll_frame = function() {
-            if(element.scrollTop != previous_top) {
-                reject("interrupted");
-                return;
-            }
+			            // set the scrollTop for this frame
+			            var now = Date.now();
+			            var point = smooth_step(start_time, end_time, now);
+			            var frameTop = Math.round(start_top + (distance * point));
+			            element.scrollTop = frameTop;
 
-            // set the scrollTop for this frame
-            var now = Date.now();
-            var point = smooth_step(start_time, end_time, now);
-            var frameTop = Math.round(start_top + (distance * point));
-            element.scrollTop = frameTop;
+			            // check if we're done!
+			            if(now >= end_time) {
+			                resolve();
+			                return;
+			            }
 
-            // check if we're done!
-            if(now >= end_time) {
-                resolve();
-                return;
-            }
+			            // If we were supposed to scroll but didn't, then we
+			            // probably hit the limit, so consider it done; not
+			            // interrupted.
+			            if(element.scrollTop === previous_top
+			                && element.scrollTop !== frameTop) {
+			                resolve();
+			                return;
+			            }
+			            previous_top = element.scrollTop;
 
-            // If we were supposed to scroll but didn't, then we
-            // probably hit the limit, so consider it done; not
-            // interrupted.
-            if(element.scrollTop === previous_top
-                && element.scrollTop !== frameTop) {
-                resolve();
-                return;
-            }
-            previous_top = element.scrollTop;
+			            // schedule next frame for execution
+			            setTimeout(scroll_frame, 0);
+			        }
 
-            // schedule next frame for execution
-            setTimeout(scroll_frame, 0);
-        }
-
-        // boostrap the animation process
-        setTimeout(scroll_frame, 0);
-    });
-}
+			        // boostrap the animation process
+			        setTimeout(scroll_frame, 0);
+			    });
+			}
 
 			// laad data in
 			var woningwaarde = []
@@ -248,7 +231,7 @@ var smooth_scroll_to = function(element, target, duration) {
 			var leeftijdZes = []
 			var leeftijdZeven = []
 			var veiligheid = []
-			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
+			d3.tsv("/project/data/gebieden/WOZ.tsv", function(data) {
 				for (j = 0; j < 23; j++){
 					data[j].WOZ = +data[j].WOZ
 					data[j].WOZm2 = +data[j].WOZm2
@@ -271,7 +254,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				console.log(gebiedExtra)
 			});
 
-			// functie om tekst te wrappen
+			// functie om tekst te "wrappen" -> zorgt ervoor dat text op canvas blijft
 			function wrapText(context, text, x, y, maxWidth, lineHeight) {
 		        var words = text.split(' ');
 		        var line = '';
@@ -292,14 +275,14 @@ var smooth_scroll_to = function(element, target, duration) {
 		        context.fillText(line, x, y);
 	        }
 
-	        // hoe moet de opmaak?
+	        // canvas
 			var c = document.getElementById("myCanvas1");
 				var ctx = c.getContext("2d");
 				var maxWidth = 370;
 			    var lineHeight = 25;
 			    var x = (myCanvas1.width - maxWidth) / 2;
 			    var y = 50;
-			    // variablen van maken
+
 				ctx.rect(10,50,400,800);
 				ctx.fillStyle = "white";
 				ctx.fill();
@@ -341,7 +324,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				ctx2.fillStyle = "black";
 
 
-			// draw legend functie
+			// teken-legenda-functie
 			function drawLegend(kleurenLegenda, dataLegenda) {
 			var c = document.getElementById("myCanvas3");
 				var ctx = c.getContext("2d");
@@ -424,32 +407,32 @@ var smooth_scroll_to = function(element, target, duration) {
 				  x.domain(data.map(function(d) { return d.letter; }));
 				  y.domain([0, d3.max(data, function(d) { return +d.frequency; })]);
 
-				  svg.append("g")
-				      .attr("class", "x axis")
-				      .attr("transform", "translate(0," + height + ")")
-				      // .call(xAxis);
+				svg.append("g")
+				    .attr("class", "x axis")
+				    .attr("transform", "translate(0," + height + ")")
+				    // .call(xAxis);
 
-				  svg.append("g")
-				      .attr("class", "y axis")
-				      .call(yAxis)
-				    .append("text")
-				      .attr("transform", "rotate(-90)")
-				      .attr("y", 6)
-				      .attr("dy", ".71em")
-				      .style("text-anchor", "end")
-				      .text("Woningwaarde per m2");
+				svg.append("g")
+				    .attr("class", "y axis")
+				    .call(yAxis)
+				  .append("text")
+				    .attr("transform", "rotate(-90)")
+				    .attr("y", 6)
+				    .attr("dy", ".71em")
+				    .style("text-anchor", "end")
+				    .text("Woningwaarde per m2");
 
-				  svg.selectAll(".bar")
-				      .data(data)
-				    .enter().append("rect")
-				      .attr("class", function(d) { return "bar "+d.letter })
-				      .attr("x", function(d) { return x(d.letter); })
-				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y(d.frequency); })
-				      .attr("height", function(d) { return height - y(d.frequency); })
-				      .style("fill", function(d) { return d.color; })
-				      .on('mouseover', tip.show)
-				      .on('mouseout', tip.hide)
+				svg.selectAll(".bar")
+				    .data(data)
+				  .enter().append("rect")
+				    .attr("class", function(d) { return "bar "+d.letter })
+				    .attr("x", function(d) { return x(d.letter); })
+				    .attr("width", x.rangeBand())
+				    .attr("y", function(d) { return y(d.frequency); })
+				    .attr("height", function(d) { return height - y(d.frequency); })
+				    .style("fill", function(d) { return d.color; })
+				    .on('mouseover', tip.show)
+				    .on('mouseout', tip.hide)
 				};
 
 
@@ -466,31 +449,32 @@ var smooth_scroll_to = function(element, target, duration) {
 				  x.domain(data.map(function(d) { return d.letter; }));
 				  y2.domain([0, d3.max(data, function(d) { return +d.frequency; })]);
 				  
-				  svgTwee.append("g")
-				      .attr("class", "x axis")
-				      .attr("transform", "translate(0," + height + ")")
-				      // .call(xAxis);
+				svgTwee.append("g")
+				    .attr("class", "x axis")
+				    .attr("transform", "translate(0," + height + ")")
+				    // .call(xAxis);
 
-				  svgTwee.append("g")
-				      .attr("class", "y axis")
-				      .call(yAxis2)
-				    .append("text")
-				      .attr("transform", "rotate(-90)")
-				      .attr("y", 6)
-				      .attr("dy", ".71em")
-				      .style("text-anchor", "end")
-				      .text("Bevolkingsdichtheid per km2");
+				svgTwee.append("g")
+				    .attr("class", "y axis")
+				    .call(yAxis2)
+				  .append("text")
+				    .attr("transform", "rotate(-90)")
+				    .attr("y", 6)
+				    .attr("dy", ".71em")
+				    .style("text-anchor", "end")
+				    .text("Bevolkingsdichtheid per km2");
 
-				  svgTwee.selectAll(".bar")
-				      .data(data)
-				    .enter().append("rect")
-				      .attr("class", "bar")
-				      .attr("x", function(d) { return x(d.letter); })
-				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y2(+d.frequency); })
-				      .attr("height", function(d) { return height - y2(d.frequency); })
-				      .on('mouseover', tip.show)
-				      .on('mouseout', tip.hide)
+				svgTwee.selectAll(".bar")
+				    .data(data)
+				  .enter().append("rect")
+				    .attr("class", "bar")
+				    .attr("x", function(d) { return x(d.letter); })
+				    .attr("width", x.rangeBand())
+				    .attr("y", function(d) { return y2(+d.frequency); })
+				    .attr("height", function(d) { return height - y2(d.frequency); })
+				    .style("fill", function(d) { return d.color; })
+				    .on('mouseover', tip.show)
+				    .on('mouseout', tip.hide)
 				};
 
 				// chart 3
@@ -506,34 +490,34 @@ var smooth_scroll_to = function(element, target, duration) {
 				  x.domain(data.map(function(d) { return d.letter; }));
 				  y.domain([0, d3.max(data, function(d) { return parseFloat(d.frequency); })]);
 
-				  svg3.append("g")
-				      .attr("class", "x axis")
-				      .attr("transform", "translate(0," + height + ")")
-				      // .call(xAxis);
+				svg3.append("g")
+				    .attr("class", "x axis")
+				    .attr("transform", "translate(0," + height + ")")
+				    // .call(xAxis);
 
-				  svg3.append("g")
-				      .attr("class", "y axis")
-				      .call(yAxis)
-				    .append("text")
-				      .attr("transform", "rotate(-90)")
-				      .attr("y", 6)
-				      .attr("dy", ".71em")
-				      .style("text-anchor", "end")
-				      .text("Veiligheid");
+				svg3.append("g")
+				    .attr("class", "y axis")
+				    .call(yAxis)
+				  .append("text")
+				    .attr("transform", "rotate(-90)")
+				    .attr("y", 6)
+				    .attr("dy", ".71em")
+				    .style("text-anchor", "end")
+				    .text("Veiligheid");
 
-				  svg3.selectAll(".bar")
-				      .data(data)
-				    .enter().append("rect")
-				      .attr("class", "bar")
-				      .attr("x", function(d) { return x(d.letter); })
-				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) {return y(parseFloat(d.frequency)); })
-				      .attr("height", function(d) { return height - y(parseFloat(d.frequency)); })
-				      .on('mouseover', tip.show)
-				      .on('mouseout', tip.hide)
+				svg3.selectAll(".bar")
+				    .data(data)
+				  .enter().append("rect")
+				    .attr("class", "bar")
+				    .attr("x", function(d) { return x(d.letter); })
+				    .attr("width", x.rangeBand())
+				    .attr("y", function(d) {return y(parseFloat(d.frequency)); })
+				    .attr("height", function(d) { return height - y(parseFloat(d.frequency)); })
+				    .style("fill", function(d) { return d.color; })
+				    .on('mouseover', tip.show)
+				    .on('mouseout', tip.hide)
 				};				
 			}
-
 		</script>
 	</body>
 </html>

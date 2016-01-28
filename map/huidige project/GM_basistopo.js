@@ -20,7 +20,7 @@ var basisTopoMapTypeOptions = {
 
 		loadbalancerTeller += 1;
 
-		if (loadbalancerTeller => LOADBALANCERAANTAL){loadbalencerTeller = 1};
+		if (loadbalancerTeller >= LOADBALANCERAANTAL){loadbalencerTeller = 1};
 
 		return BASIS_TEGEL_URL + "merc_topo/" + zoom + "/" + coord.x + "_" + coord.y + BASIS_FORMAAT_EXT;
 	},

@@ -1,3 +1,9 @@
+/*Eindproject minor programmeren 2015-2016
+Data Visualisatie
+"Wonen in Amsterdam"
+Iris de Vries
+10367675*/
+
 .labels {
     color: white;
     background-color: black;
@@ -38,7 +44,7 @@
     font-family: "Verdana";
     font-size: 20px;
 }
-#p3 {
+#verhaal {
     position: absolute;
     left: 340px;
     top: 900px;
@@ -46,22 +52,6 @@
     text-align: center;
     font-family: "Verdana";
     font-size: 15px;
-}
-
-#p4 {
-    position: absolute;
-    left: 30px;
-    top: 900px;
-    font-family: "Verdana";
-    font-size: 15px;
-}
-#p5 {
-    position: absolute;
-    left: 50px;
-    top: 600;
-    font-family: "Verdana";
-    font-size: 15px;
-    z-index: 4;
 }
 
 #uitlegChart1 {
@@ -94,7 +84,7 @@
     z-index: 4;
 }
 
-#textarea {
+#textAreaAdvies {
     position: absolute;
     left: 10px;
     top: 600;

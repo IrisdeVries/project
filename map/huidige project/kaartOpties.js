@@ -1,23 +1,28 @@
+/*Eindproject minor programmeren 2015-2016
+Data Visualisatie
+"Wonen in Amsterdam"
+Iris de Vries
+10367675*/
+
+// kaartopties
 var kaartOpties = {
 	center: BASIS_CENTRUM_LATLNG,
 	zoom: BASIS_INZOOM,
+	minZoom: BASIS_MINZOOM,
+	maxZoom: BASIS_MAXZOOM,
 	mapTypeControlOptions: {
 		maptypeIds: ['BASISTOPO']
 	}
 };
 
-		function highlight(wijk) {
-			d3.select("svg")
-			console.log(wijk);
-		}
-
+// functie roept kaart aan
 function geefKaart(gebiedData) {
 	var map = new google.maps.Map(document.getElementById('map_canvas'), kaartOpties);
 	map.mapTypes.set('BASISTOPO, basisTopoMapType')
 	map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
 	// construct the polygon with labels
-	function constructPolygon(x, y, polyLabel, opacityFirst, opacitySecond, gebiedExtra) {
+	function constructPolygon(pad, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra) {
 		var marker = new MarkerWithLabel({
 	        position: new google.maps.LatLng(0,0),
 	        draggable: false,
@@ -31,41 +36,44 @@ function geefKaart(gebiedData) {
 	        visible: false
 	    });	
 
-		var bermudaTriangle = new google.maps.Polygon({
-		    paths: x,
+		var gebiedPolygoon = new google.maps.Polygon({
+		    paths: pad,
 		    strokeColor: 'black',
 		    strokeOpacity: 0.7,
 		    strokeWeight: 1,
-		    fillColor: y,
+		    fillColor: kleur,
 		    fillOpacity: opacitySecond,
 		    labelClass: polyLabel
 		  });
-	  	bermudaTriangle.setMap(map);
+	  	gebiedPolygoon.setMap(map);
 
 	  	// event listener -> mouseover
-	  	google.maps.event.addListener(bermudaTriangle,"mouseover",function(e){
-			this.setOptions({fillColor: y, fillOpacity: opacityFirst});
+	  	google.maps.event.addListener(gebiedPolygoon,"mouseover",function(e){
+			this.setOptions({fillColor: kleur, fillOpacity: opacityFirst});
 			marker.setPosition(e.latLng);
         	marker.setVisible(true);
 		}); 
 
 	  	// event listener -> mouseout
-		google.maps.event.addListener(bermudaTriangle,"mouseout",function(e){
-			this.setOptions({fillColor: y, fillOpacity: opacitySecond});
+		google.maps.event.addListener(gebiedPolygoon,"mouseout",function(e){
+			this.setOptions({fillColor: kleur, fillOpacity: opacitySecond});
 			marker.setVisible(false);
 		});
 
 		// event listener -> click
-		google.maps.event.addListener(bermudaTriangle,"click",function(e){
+		google.maps.event.addListener(gebiedPolygoon,"click",function(e){
 			d3.select("svg").remove()	
 			d3.select("svg").remove()	
 			d3.select("svg").remove()
 			d3Bar()
 
-			highlight(this.labelClass)
-			// window.scroll(0,1000)
+			// scrollt naar beneden
 			smooth_scroll_to(document.body, 1000, 1800);
+
+			// verandert titel van pagina in naam gebied
 			document.getElementById("titelPagina2").innerHTML = polyLabel;
+
+			// geeft verhaal dat hoort bij gebied
 			function verhaalGebied(gebiedNaam){
 				var imageMap = ["CentrumWestMap", "CentrumOostMap", "WesterparkMap", "BOLOMap", "OudWestDeBaarsjesMap", 
 				"GeuzenveldSlotermeerMap", "OsdorpMap", "DeAkerNieuwSlotenMap", "SlotervaartMap", "OudZuidMap", "BuitenveldertZuidasMap", 
@@ -75,7 +83,7 @@ function geefKaart(gebiedData) {
 					if (polyLabel == gebiedNaam[i]){
 						console.log(imageMap[i])
 						image = imageMap[i]
-						document.getElementById("p3").innerHTML = verhalen[i]
+						document.getElementById("verhaal").innerHTML = verhalen[i]
 						document.getElementById("uitlegChart1").innerHTML = uitlegChart1Verhaal[i];
 						document.getElementById("uitlegChart2").innerHTML = uitlegChart2Verhaal[i];
 						document.getElementById("uitlegChart3").innerHTML = uitlegChart3Verhaal[i];
@@ -161,8 +169,6 @@ function geefKaart(gebiedData) {
 
 	// loop door alle gebieden en vul kaart in
 	// als je op knop drukt voor woningwaarde
-	opacityFirst = 0.9;
-	opacitySecond = 0.7;
 	if (gebiedData == woningwaardem2){
 		for (i = 0; i < 23; i++){
 			gebied_i = gebied[i]
@@ -170,27 +176,27 @@ function geefKaart(gebiedData) {
 			gebiedExtra_i = gebiedExtra[i]
 			opacityFirst = 0.9;
 			opacitySecond = 0.7;
-			if (gebiedData[i] < 1800) {
+			if (gebiedData[i] <= 1800) {
 				kleur = "#1a9850"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 1800 && gebiedData[i] < 2100) {
+			else if (gebiedData[i] >= 1800 && gebiedData[i] < 2100) {
 				kleur = "#91cf60"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 2100 && gebiedData[i] < 2500) {
+			else if (gebiedData[i] >= 2100 && gebiedData[i] < 2500) {
 				kleur = "#d9ef8b"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 2500 && gebiedData[i] < 3000) {
+			else if (gebiedData[i] >= 2500 && gebiedData[i] < 3000) {
 				kleur = "#fee08b"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 3000 && gebiedData[i] < 3500) {
+			else if (gebiedData[i] >= 3000 && gebiedData[i] < 3500) {
 				kleur = "#fc8d59"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 3500 && gebiedData[i] < 4200) {
+			else if (gebiedData[i] >= 3500 && gebiedData[i] < 4200) {
 				kleur = "#d73027"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -205,30 +211,32 @@ function geefKaart(gebiedData) {
 	// als je op knop druk voor bevolkingsdichtheid
 	else if (gebiedData == bevolkingsdichtheidkm2){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 1000 && gebiedData[i] < 1500) {
+			if (gebiedData[i] >= 1000 && gebiedData[i] < 4000) {
 				kleur = "#fee5d9"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 1499 && gebiedData[i] < 3000) {
+			else if (gebiedData[i] >= 4000 && gebiedData[i] < 6000) {
 				kleur = "#fcbba1"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 2999 && gebiedData[i] < 10000) {
+			else if (gebiedData[i] >= 6000 && gebiedData[i] < 10000) {
 				kleur = "#fc9272"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 9999 && gebiedData[i] < 15000) {
+			else if (gebiedData[i] >= 10000 && gebiedData[i] < 13000) {
 				kleur = "#fb6a4a"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 14999 && gebiedData[i] < 20000) {
+			else if (gebiedData[i] >= 13000 && gebiedData[i] < 18000) {
 				kleur = "#de2d26"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 20000) {
+			else if (gebiedData[i] >= 18000) {
 				kleur = "#a50f15"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -243,6 +251,8 @@ function geefKaart(gebiedData) {
 
 	else if (gebiedData == leeftijdEen){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
@@ -280,6 +290,8 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdTwee){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
@@ -317,30 +329,32 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdDrie){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 0.99 && gebiedData[i] < 1.5) {
+			if (gebiedData[i] >= 0.99 && gebiedData[i] < 1.5) {
 				kleur = "#fee5d9"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 1.5 && gebiedData[i] < 2.5) {
+			else if (gebiedData[i] >= 1.5 && gebiedData[i] < 2.5) {
 				kleur = "#fcbba1"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 2.5 && gebiedData[i] < 3.0) {
+			else if (gebiedData[i] >= 2.5 && gebiedData[i] < 3.0) {
 				kleur = "#fc9272"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 3.5 && gebiedData[i] < 3.5) {
+			else if (gebiedData[i] >= 3.0 && gebiedData[i] < 3.5) {
 				kleur = "#fb6a4a"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 3.5 && gebiedData[i] < 4.5) {
+			else if (gebiedData[i] >= 3.5 && gebiedData[i] < 4.5) {
 				kleur = "#de2d26"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 4.5) {
+			else if (gebiedData[i] >= 4.5) {
 				kleur = "#a50f15"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -354,6 +368,8 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdVier){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
@@ -391,30 +407,32 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdVijf){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 32 && gebiedData[i] < 33) {
+			if (gebiedData[i] >= 32 && gebiedData[i] < 34) {
 				kleur = "#fee5d9"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 33 && gebiedData[i] < 35) {
+			else if (gebiedData[i] >= 34 && gebiedData[i] < 36) {
 				kleur = "#fcbba1"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 35 && gebiedData[i] < 40) {
+			else if (gebiedData[i] >= 36 && gebiedData[i] < 40) {
 				kleur = "#fc9272"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 40 && gebiedData[i] < 45) {
+			else if (gebiedData[i] >= 40 && gebiedData[i] < 43) {
 				kleur = "#fb6a4a"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 45 && gebiedData[i] < 50) {
+			else if (gebiedData[i] >= 43 && gebiedData[i] < 50) {
 				kleur = "#de2d26"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 50) {
+			else if (gebiedData[i] >= 50) {
 				kleur = "#a50f15"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -428,30 +446,32 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdZes){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 12 && gebiedData[i] < 15) {
+			if (gebiedData[i] >= 10 && gebiedData[i] < 12) {
 				kleur = "#fee5d9"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 15 && gebiedData[i] < 18) {
+			else if (gebiedData[i] >= 12 && gebiedData[i] < 15) {
 				kleur = "#fcbba1"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 18 && gebiedData[i] < 21) {
+			else if (gebiedData[i] >= 15 && gebiedData[i] < 18) {
 				kleur = "#fc9272"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 21 && gebiedData[i] < 23) {
+			else if (gebiedData[i] >= 18 && gebiedData[i] < 20) {
 				kleur = "#fb6a4a"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 23 && gebiedData[i] < 26) {
+			else if (gebiedData[i] >= 20 && gebiedData[i] < 26) {
 				kleur = "#de2d26"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 26) {
+			else if (gebiedData[i] >= 26) {
 				kleur = "#a50f15"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -465,30 +485,32 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == leeftijdZeven){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 7 && gebiedData[i] < 10) {
+			if (gebiedData[i] >= 7 && gebiedData[i] < 9) {
 				kleur = "#fee5d9"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 10 && gebiedData[i] < 13) {
+			else if (gebiedData[i] >= 9 && gebiedData[i] < 11) {
 				kleur = "#fcbba1"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 13 && gebiedData[i] < 16) {
+			else if (gebiedData[i] >= 11 && gebiedData[i] < 13) {
 				kleur = "#fc9272"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 16 && gebiedData[i] < 20) {
+			else if (gebiedData[i] >= 13 && gebiedData[i] < 15) {
 				kleur = "#fb6a4a"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 10 && gebiedData[i] < 24) {
+			else if (gebiedData[i] >= 15 && gebiedData[i] < 24) {
 				kleur = "#de2d26"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 24) {
+			else if (gebiedData[i] >= 24) {
 				kleur = "#a50f15"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
@@ -502,31 +524,33 @@ function geefKaart(gebiedData) {
 	}
 	else if (gebiedData == veiligheid){
 		for (i = 0; i < 23; i++){
+			opacityFirst = 0.9;
+			opacitySecond = 0.7;
 			gebied_i = gebied[i]
 			polyLabel = gebiedNaam[i]
 			gebiedExtra_i = gebiedExtra[i]
-			if (gebiedData[i] > 55 && gebiedData[i] < 70) {
-				kleur = "#fee5d9"
+			if (gebiedData[i] >= 55 && gebiedData[i] < 70) {
+				kleur = "#1a9850"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 70 && gebiedData[i] < 80) {
-				kleur = "#fcbba1"
+			else if (gebiedData[i] >= 70 && gebiedData[i] < 80) {
+				kleur = "#91cf60"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 80 && gebiedData[i] < 90) {
-				kleur = "#fc9272"
+			else if (gebiedData[i] >= 80 && gebiedData[i] < 90) {
+				kleur = "#d9ef8b"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 90 && gebiedData[i] < 100) {
-				kleur = "#fb6a4a"
+			else if (gebiedData[i] >= 90 && gebiedData[i] < 100) {
+				kleur = "#fee08b"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 100 && gebiedData[i] < 110) {
-				kleur = "#de2d26"
+			else if (gebiedData[i] >= 100 && gebiedData[i] < 110) {
+				kleur = "#fc8d59"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
-			else if (gebiedData[i] > 110) {
-				kleur = "#a50f15"
+			else if (gebiedData[i] >= 110) {
+				kleur = "#d73027"
 				constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 			}
 			else {
@@ -611,35 +635,42 @@ function bevolkingsdichtheidKnop() {
 function leeftijdsgroepenKnopEen() {
 	geefKaart(leeftijdEen)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroep 0-3";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 function leeftijdsgroepenKnopTwee() {
 	geefKaart(leeftijdTwee)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 4-12";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 function leeftijdsgroepenKnopDrie() {
 	geefKaart(leeftijdDrie)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 12-17";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 function leeftijdsgroepenKnopVier() {
 	geefKaart(leeftijdVier)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 18-24";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 function leeftijdsgroepenKnopVijf() {
 	geefKaart(leeftijdVijf)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 25-49";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 function leeftijdsgroepenKnopZes() {
 	geefKaart(leeftijdZes)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 49-64";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 function leeftijdsgroepenKnopZeven() {
 	geefKaart(leeftijdZeven)
 	document.getElementById("titel").innerHTML = "Leeftijdsgroepen 65+";
+	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
 // function postcodeFunction() {
@@ -925,7 +956,7 @@ function voorkeurWoningwaarde(){
 				adviesName.push(voorkeurVeiligheidName[i])
 				console.log(voorkeurVeiligheidArray[i])
 				console.log(advies)
-				document.getElementById("textarea").innerHTML = "Jouw voorkeur komt overeen met: \n"+ advies;
+				document.getElementById("textAreaAdvies").innerHTML = "Jouw voorkeur komt overeen met: \n"+ advies;
 				geefKaart(advies)
 				document.getElementById("titel").innerHTML = "Voorkeur";
 			}
