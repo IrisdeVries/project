@@ -81,7 +81,6 @@ function geefKaart(gebiedData) {
 				"NoordWestMap", "OudNoordMap", "NoordOostMap", "BijlmerCentrumMap", "BijlmerOostMap", "GaasperdamDriemondMap", "WestpoortMap"]
 				for (var i = 0; i < 23; i++){
 					if (polyLabel == gebiedNaam[i]){
-						console.log(imageMap[i])
 						image = imageMap[i]
 						document.getElementById("verhaal").innerHTML = verhalen[i]
 						document.getElementById("uitlegChart1").innerHTML = uitlegChart1Verhaal[i];
@@ -100,47 +99,8 @@ function geefKaart(gebiedData) {
 	DeAkerNieuwSloten, Slotervaart, OudZuid, BuitenveldertZuidas, DePijpRivierenbuurt, OudOost, IndischeBuurtOostelijkHavengebied, 
 	Watergraafsmeer, IJburgZeeburgereiland, NoordWest, OudNoord, NoordOost, BijlmerCentrum, BijlmerOost, GaasperdamDriemond, Westpoort]
 
-	// // namen van gebieden
-	// gebiedNaam = ["Noord-West", "Noord-Oost", "Oud-Noord", "Westpoort", "Geuzenveld/Slotermeer", "YOLO IN BOLO", "Westerpark", "Centrum-West", 
-	// "Centrum-Oost", "Indische Buurt/Oostelijk Havengebied", "IJburg/Zeeburgereiland", "Oud-Oost", "Watergraafsmeer", "De Pijp/ Rivierenbuurt", 
-	// "Oud-Zuid", "Oud-West/ De Baarsjes", "Slotervaart", "Osdorp", "De Aker/ Nieuwsloten", "Buitenveldert/ Zuidas", "Bijlmer-Centrum",
-	//  "Gaasperdam/ Driemond", "Bijlmer-Oost"]
-	
-	// var kleurMap = ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027", "green"]	
-	// var grenzen = [1700, 1800, 2100, 2500, 3000, 3500, 4200]
-	// var opacityFirst = 0.9;
-	// var opacitySecond = 0.7;
-
-	// for (var i = 0; i < 23; i++){
-	// 	gebied_i = gebied[i]
-	// 	polyLabel = gebiedNaam[i]
-	// 	gebiedExtra_i = gebiedExtra[i]
-	// 	console.log(gebiedData[i])
-	// 	if (gebiedData[i] > grenzen[0] && < grenzen[1]) {
-	// 		constructPolygon(gebied_i, kleurMap[0], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else if (gebiedData[i] > grenzen[1] && gebiedData[i] < grenzen[2]) {
-	// 		constructPolygon(gebied_i, kleurMap[1], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else if (gebiedData[i] > grenzen[2] && gebiedData[i] < grenzen[3]) {
-	// 		constructPolygon(gebied_i, kleurMap[2], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else if (gebiedData[i] > grenzen[3] && gebiedData[i] < grenzen[4]) {
-	// 		constructPolygon(gebied_i, kleurMap[3], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else if (gebiedData[i] > grenzen[4] && gebiedData[i] < grenzen[5]) {
-	// 		constructPolygon(gebied_i, kleurMap[4], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else if (gebiedData[i] > grenzen[5] && gebiedData[i] < grenzen[6]) {
-	// 		constructPolygon(gebied_i, kleurMap[5], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// 	else {
-	// 		opacityFirst = 0.2;
-	// 		opacitySecond = 0.1;
-	// 		constructPolygon(gebied_i, kleurMap[6], polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-	// 	}
-	// }
-
+	// loop door alle gebieden en vul kaart in
+	// als je voorkeuren hebt aangegeven
 	if (gebiedData == advies){
 		for (var i = 0; i<23; i++){
 			console.log("XXXXXX")
@@ -157,17 +117,11 @@ function geefKaart(gebiedData) {
 		opacityFirst = 0.9;
 		opacitySecond = 0.7;
 		for (var i = 0; i < advies.length; i++){
-		gebied_i = gebied[i] // if postcode == xxxx xxxx xxxx, dan gebied_i = x
-		polyLabel = "Oud-Noord" // same
+		gebied_i = gebied[i] 
 		constructPolygon(gebied_i, kleur, polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
 		}
-	
-		// for (var i = 0; i < advies.length; i++){
-		// 	constructPolygon(adviesName[i], "red", polyLabel, opacityFirst, opacitySecond, gebiedExtra_i)
-		// }
 	}
 
-	// loop door alle gebieden en vul kaart in
 	// als je op knop drukt voor woningwaarde
 	if (gebiedData == woningwaardem2){
 		for (i = 0; i < 23; i++){
@@ -248,7 +202,7 @@ function geefKaart(gebiedData) {
 			}
 		}
 	}
-
+	// als je op knop drukt voor leeftijden
 	else if (gebiedData == leeftijdEen){
 		for (i = 0; i < 23; i++){
 			opacityFirst = 0.9;
@@ -522,6 +476,8 @@ function geefKaart(gebiedData) {
 			}
 		}
 	}
+
+	// als je op knop druk van veiligheid
 	else if (gebiedData == veiligheid){
 		for (i = 0; i < 23; i++){
 			opacityFirst = 0.9;
@@ -561,6 +517,8 @@ function geefKaart(gebiedData) {
 			}
 		}
 	}
+
+	// anders
 	else if (gebiedData == postcode){
 		opacityFirst = 0.2;
 		opacitySecond = 0.1;
@@ -588,9 +546,7 @@ function geefKaart(gebiedData) {
 	}
 }
 
-// woningwaarde = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
-// huishoudenstypenData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
-// bevolkingsdichtheidData = [2220, 2119, 2562, 1854, 2179, 2881, 3617, 4194, 3897, 3098, 2755, 3272, 3293, 3813, 4027]
+
 postcode = []
 kleurenWoningwaarde = ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027"]
 kleurenBevolkingsdichtheid = ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26", "#a50f15"]
@@ -601,19 +557,8 @@ knoppen = ["woningwaardeKnop", "veiligheidKnop", "bevolkingsdichtheidKnop"]
 knoppenText = ["woningwaarde per m\&sup2", "Veiligheid", "Bevolkingsdichtheid"]
 knoppenId = []
 
-// werkt pas bij tweede klik
 
-// function knop() {
-// 	for (var i = 0; i <3; i++){
-// 		document.getElementById(knoppen[i]).onclick = function() {
-//    			geefKaart(woningwaardem2)
-//    			drawLegend(kleurenWoningwaarde, dataLegendaWoningwaarde)
-// 			document.getElementById("titel").innerHTML = knoppenText[i];
-// 		};
-
-// 	}
-// }
-
+// functies die aan knoppen zijn gebonden
 function woningwaardeKnop() {
 	drawLegend(kleurenWoningwaarde, dataLegendaWoningwaarde)
 	geefKaart(woningwaardem2)
@@ -673,38 +618,11 @@ function leeftijdsgroepenKnopZeven() {
 	drawLegend(kleurenBevolkingsdichtheid, dataLegendaBevolkingsdichtheid)
 }
 
-// function postcodeFunction() {
-// 	if (document.getElementById("inputPostcode").value == "1031"){
-// 		postcode.push(1031)
-// 		geefKaart(postcode)
-// 		d3Bar()
-// 	}
-// }
-
 function backTop() {
 	smooth_scroll_to(document.body, 0, 1800);			
-	// window.scroll(0,0)
-	// location.reload();
 }
 
-// var idRadio = [radioVoorkeurWoningwaardeLaag, radioVoorkeurWoningwaardeGemiddeld, radioVoorkeurWoningwaardeHoog,radioVoorkeurWoningwaardeGeen, 
-// 	radioVoorkeurBevolkingsdichtheidLaag, radioVoorkeurBevolkingsdichtheidGemiddeld, radioVoorkeurBevolkingsdichtheidHoog, radioVoorkeurBevolkingsdichtheidGeen, 
-// 	radioVoorkeurVeiligheidLaag, radioVoorkeurVeiligheidGemiddeld, radioVoorkeurVeiligheidHoog, radioVoorkeurVeiligheidGeen]
-
-
-function arrHasDupes(A) {                          // finds any duplicate array elements using the fewest possible comparison
-	var n=A.length;
-                                                     // to ensure the fewest possible comparisons
-	for (var i=0; i<n; i++) {                        // outer loop uses each item i at 0 through n
-		for (var j=i+1; j<n; j++) {              // inner loop only compares items j at i+1 to n
-			if (A[i]==A[j]){
-				dupArray.push(A[i])	
-			}
-		}	
-	}
-	document.getElementById("p4").innerHTML = dupArray;
-}
-
+// functie die checkt of een waarde in een array zit
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
@@ -713,7 +631,6 @@ function isInArray(value, array) {
 // push allemaal in aparte arrays
 // vergelijk 12 en push naar nieuwe array
 // vergelijk nieuwe array met 3
-
 var voorkeurWoningwaardeArray = []
 var voorkeurAllesName = []
 var adviesName = []
@@ -725,9 +642,10 @@ var voorkeurAllesArray = []
 var advies = []
 var voorkeurWoningwaardeName = []
 
-var woningwaardeVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
-var bevolkingsdichtheidVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
-var veiligheidVoorkeur = [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2 ]
+// indeling gebieden voorkeur 3 = hoog, 2 = gem 1 = laag
+var woningwaardeVoorkeur = [3,3,3,2,3,2,2,2,2,3,2,3,3,3,3,2,2,2,2,1,1,1,1]
+var bevolkingsdichtheidVoorkeur = [3,2,2,2,3,1,1,1,2,2,1,3,3,3,1,1,1,1,1,1,2,1]
+var veiligheidVoorkeur = [3,3,2,3,1,3,2,1,3,1,1,1,2,3,2,2,2,3,3,3,3,2,1]
 
 var voorkeurDictionary = {
 	"voorkeurWoningwaardeArray":[],
@@ -737,50 +655,7 @@ var voorkeurDictionary = {
 	"advies":[]
 };
 
-
-	// function voorkeurWoningwaarde() {
-	// 	var radioId = ["radioVoorkeurWoningwaardeLaag", "radioVoorkeurWoningwaardeGemiddeld", "radioVoorkeurWoningwaardeHoog", "radioVoorkeurWoningwaardeGeen", "radioVoorkeurBevolkingsdichtheidLaag",
-	// 			"radioVoorkeurBevolkingsdichtheidGemiddeld", "radioVoorkeurBevolkingsdichtheidHoog", "radioVoorkeurBevolkingsdichtheidGeen", "radioVoorkeurVeiligheidLaag", "radioVoorkeurVeiligheidGemiddeld",
-	// 			"radioVoorkeurVeiligheidHoog", "radioVoorkeurVeiligheidGeen"]
-	// 	for (var i = 0; i < 12; i++){
-	// 		if (document.getElementById(radioId[i]).checked){
-	// 			var voorkeur = ["voorkeurWoningwaardeArray", "voorkeurBevolkingsdichtheidArray", "voorkeurVeiligheidArray", "voorkeurAllesArray", "advies"]
-	// 			for (var i = 0; i < 5; i++){
-	// 				if (voorkeurDictionary.voorkeur[i].length > 0){
-	// 					array = []
-	// 				}
-	// 			}
-	// 			for (var i = 0; i < 22; i++){
-	// 				if (woningwaardeVoorkeur[i] == 1){
-	// 					array.push(gebiedNaam[i])
-	// 				}
-	// 			}
-	// 			document.getElementById("radioVoorkeurWoningwaardeLaag").checked = false;
-	// 		}
-	// 	}
-	// 	if (voorkeurWoningwaardeArray.length > 0 && voorkeurVeiligheidArray.length > 0 && voorkeurVeiligheidArray.length > 0){
-	// 		// console.log("assholes")
-	// 	for (var i = 0; i < voorkeurWoningwaardeArray.length; i++){
-	// 		if (isInArray(voorkeurWoningwaardeArray[i], voorkeurBevolkingsdichtheidArray)){
-	// 			if (voorkeurAllesArray.length > 0){
-	// 				voorkeurAllesArray = []
-	// 			}
-	// 			voorkeurAllesArray.push(voorkeurWoningwaardeArray[i])
-	// 			console.log(voorkeurAllesArray)
-	// 		}
-	// 		if (isInArray(voorkeurVeiligheidArray[i], voorkeurAllesArray)){
-	// 			if (advies.length > 0){
-	// 				advies = []
-	// 			}
-	// 			advies.push(voorkeurVeiligheidArray[i])
-	// 			console.log(voorkeurVeiligheidArray[i])
-	// 			console.log(advies)
-	// 			document.getElementById("p5").innerHTML = advies;
-	// 		}
-	// 	}
-	// }
-	// }
-
+// functie voor voorkeur verwerken
 function voorkeurWoningwaarde(){
 	if (document.getElementById("radioVoorkeurWoningwaardeLaag").checked){
 		if (voorkeurWoningwaardeArray.length > 0){
@@ -941,17 +816,11 @@ function voorkeurWoningwaarde(){
 	if (voorkeurWoningwaardeArray.length > 0 && voorkeurVeiligheidArray.length > 0 && voorkeurVeiligheidArray.length > 0){
 		for (var i = 0; i < voorkeurWoningwaardeArray.length; i++){
 			if (isInArray(voorkeurWoningwaardeArray[i], voorkeurBevolkingsdichtheidArray)){
-				// if (voorkeurAllesArray.length > 0){
-				// 	voorkeurAllesArray = []
-				// }
 				voorkeurAllesArray.push(voorkeurWoningwaardeArray[i])
 				voorkeurAllesName.push(voorkeurWoningwaardeName[i])
 				console.log(voorkeurAllesArray)
 			}
 			if (isInArray(voorkeurVeiligheidArray[i], voorkeurAllesArray)){
-				// if (advies.length > 0){
-				// 	advies = []
-				// }
 				advies.push(voorkeurVeiligheidArray[i])
 				adviesName.push(voorkeurVeiligheidName[i])
 				console.log(voorkeurVeiligheidArray[i])
@@ -963,12 +832,3 @@ function voorkeurWoningwaarde(){
 		}
 	}
 }
-
-
-// function showImage(IdImage){
-//     document.getElementById(IdImage).style.visibility="visible";
-// }	
-
-// function hideImage(IdImage){
-// 	document.getElementById(IdImage).style.visibility="hidden";
-// }

@@ -1,24 +1,24 @@
-letter	frequency
-Centrum-West	117.4
-Centrum-Oost	131
-Westerpark	83
-Bos en Lommer	105
-Oud-West/De Baarsjes	74.7
-Geuzenveld/Slotermeer	128.75
-Osdorp	95.25
-De Aker/Nieuw Sloten	76
-Slotervaart	107.75
-Oud-Zuid	74.86
-Buitenveldert/Zuidas	60
-De Pijp/Rivierenbuurt	75.17
-Oud-Oost	92.25
-Indische Buurt/Oostelijk Havengebied	110.4
-Watergraafsmeer	86.86
-IJburg/Zeeburgereiland	81,5
-Noord-West	90
-Oud-Noord	104
-Noord-Oost	113.67
-Bijlmer-Centrum	125.67
-Bijlmer-Oost	119.5
-Gaasperdam/Driemond	95.75
-Westpoort	0
+letter	frequency	color
+Centrum-West	117.4	"red"
+Centrum-Oost	131	"red"
+Westerpark	83	"orange"
+Bos en Lommer	105	"red"
+Oud-West/De Baarsjes	74.7	"green"
+Geuzenveld/Slotermeer	128.75	"red"
+Osdorp	95.25	"orange"
+De Aker/Nieuw Sloten	76	"green"
+Slotervaart	107.75	"red"
+Oud-Zuid	74.86	"green"
+Buitenveldert/Zuidas	60	"green"
+De Pijp/Rivierenbuurt	75.17	"green"
+Oud-Oost	92.25	"orange"
+Indische Buurt/Oostelijk Havengebied	110.4	"red"
+Watergraafsmeer	86.86	"orange"
+IJburg/Zeeburgereiland	81,5	"orange"
+Noord-West	90	"orange"
+Oud-Noord	104	"red"
+Noord-Oost	113.67	"red"
+Bijlmer-Centrum	125.67	"red"
+Bijlmer-Oost	119.5	"red"
+Gaasperdam/Driemond	95.75	"orange"
+Westpoort	0	"green"

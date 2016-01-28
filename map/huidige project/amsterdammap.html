@@ -79,15 +79,15 @@ Iris de Vries
 		</div>	
 
 		<!-- barcharts -->
-		<div id="chart" style = "position: absolute; z-index: 2; top: 1300; left: 10;"></div>
-		<div id="chart2" style = "position: absolute; z-index: 2; top: 1300; left: 500;"></div>
-		<div id="chart3" style = "position: absolute; z-index: 2; top: 1300; left: 1000;"></div>		
+		<div id="chart" style = "position: absolute; z-index: 2; top: 1200; left: 10;"></div>
+		<div id="chart2" style = "position: absolute; z-index: 2; top: 1200; left: 500;"></div>
+		<div id="chart3" style = "position: absolute; z-index: 2; top: 1200; left: 1000;"></div>		
 
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10;">Woningwaarde</button>
 		<button id = "knop" onclick = "bevolkingsdichtheidKnop()"style = "position: absolute; z-index: 2; top: 300; left: 150;">Bevolkingsdichtheid</button>
 		<button id = "knop" onclick = "veiligheidKnop()"style = "position: absolute; z-index: 2; top: 350; left: 170;">Veiligheid</button>
-		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 1000; left: 10;">Top</button>
+		<button id = "knop" onclick = "backTop()" style = "position: absolute; z-index: 2; top: 900; left: 10;">Top</button>
 
 		<!-- leeftijdsgroep dropdown -->
 		<div id="flip" style = "position: absolute; z-index: 3; top: 350; left: 10;">Leeftijdsgroepen</div>
@@ -231,7 +231,7 @@ Iris de Vries
 			var leeftijdZes = []
 			var leeftijdZeven = []
 			var veiligheid = []
-			d3.tsv("/project/data/gebieden/WOZ.tsv", function(data) {
+			d3.tsv("/data/gebieden/WOZ.tsv", function(data) {
 				for (j = 0; j < 23; j++){
 					data[j].WOZ = +data[j].WOZ
 					data[j].WOZm2 = +data[j].WOZm2
@@ -385,7 +385,7 @@ Iris de Vries
 				  })
 
 				  // load data
-				d3.tsv("data.tsv", drawBar)
+				d3.tsv("woningwaarde.tsv", drawBar)
 				d3.tsv("bevolkingsdichtheid.tsv", drawBar2)
 				d3.tsv("veiligheid.tsv", drawBar3)				
 
@@ -428,8 +428,8 @@ Iris de Vries
 				    .attr("class", function(d) { return "bar "+d.letter })
 				    .attr("x", function(d) { return x(d.letter); })
 				    .attr("width", x.rangeBand())
-				    .attr("y", function(d) { return y(d.frequency); })
-				    .attr("height", function(d) { return height - y(d.frequency); })
+				    .attr("y", function(d) { return y(+d.frequency); })
+				    .attr("height", function(d) { return height - y(+d.frequency); })
 				    .style("fill", function(d) { return d.color; })
 				    .on('mouseover', tip.show)
 				    .on('mouseout', tip.hide)
@@ -471,7 +471,7 @@ Iris de Vries
 				    .attr("x", function(d) { return x(d.letter); })
 				    .attr("width", x.rangeBand())
 				    .attr("y", function(d) { return y2(+d.frequency); })
-				    .attr("height", function(d) { return height - y2(d.frequency); })
+				    .attr("height", function(d) { return height - y2(+d.frequency); })
 				    .style("fill", function(d) { return d.color; })
 				    .on('mouseover', tip.show)
 				    .on('mouseout', tip.hide)
