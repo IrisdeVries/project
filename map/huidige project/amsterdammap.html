@@ -3,11 +3,15 @@
 <html>
 	<head>
 		<title> Wonen in Amsterdam </title>
-		<p id="p1">Hello Amsterdam!</p>
+		<p id="titel">Hello Amsterdam!</p>
 		<p id="p2"></p>
 		<p id="p3"></p>
 		<p id="p4"></p>
 		<p id="p5"></p>
+		<p id="uitlegChart1"></p>
+		<p id="uitlegChart2"></p>
+		<p id="uitlegChart3"></p>
+		<textarea id="textarea" rows="4" cols="40">Hier verschijnt uw voorkeur</textarea>
 
 		<!-- afbeeldingen stadsdelen -->
 		<!-- <div id="divimg">
@@ -90,12 +94,15 @@
 		<div id = "divcanvas3" style = "position: absolute; z-index: 2; top: 60; left: 910;">
 			<canvas id = "myCanvas3" width = "500" height = "60"></canvas>
 		</div>	
+		<div id = "divcanvas4" style = "position: absolute; z-index: 2; top: 1200; left: 10;">
+			<canvas id = "myCanvas4" width = "500" height = "500"></canvas>
+		</div>	
 
 		<!-- barchart -->
-		<div id="chart" style = "position: absolute; z-index: 2; top: 900; left: 1000;"></div>
+		<div id="chart" style = "position: absolute; z-index: 2; top: 1300; left: 10;"></div>
 		<!-- Table -->
-		<div id="chart2" style = "position: absolute; z-index: 2; top: 1200; left: 1000;"></div>
-		<div id="chart3" style = "position: absolute; z-index: 2; top: 1500; left: 1000;"></div>		
+		<div id="chart2" style = "position: absolute; z-index: 2; top: 1300; left: 500;"></div>
+		<div id="chart3" style = "position: absolute; z-index: 2; top: 1300; left: 1000;"></div>		
 
 		<!-- knoppen -->
 		<button id = "knop" onclick = "woningwaardeKnop()" style = "position: absolute; z-index: 2; top: 300; left: 10; color:"white"; font-family:Verdana;">Woningwaarde</button>
@@ -302,7 +309,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				var textTwee = 'Als ik in Amsterdam woon, wil ik dat de de waarde van mijn woning ........... is';
 				var textDrie = 'Als ik in Amsterdam woon, wil ik dat de bevolkingsdichtheid in mijn woonomgeving ........... is';
 				var textVier = 'Als ik in Amsterdam woon, wil ik dat de veiligheid in mijn woonomgeving relatief ........... is';
-				
+
 			    ctx.font = '12pt Calibri';
 			    ctx.fillStyle = '#333';
 				wrapText(ctx, text, x, y, maxWidth, lineHeight);
@@ -313,25 +320,25 @@ var smooth_scroll_to = function(element, target, duration) {
 				// bron: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-size/
 				var imageObj = new Image();
 	      		imageObj.onload = function() {
-	       	 		ctx.drawImage(imageObj, 10, 10, 45, 45);
+	       	 		ctx2.drawImage(imageObj, 10, 10, 45, 45);
 	      		};
 	      		imageObj.src = 'http://www.brianrose.com/amsterdam/images/LogoAmsterdam.gif';
 
 	      	var c = document.getElementById("myCanvas2");
-				var ctx = c.getContext("2d");
+				var ctx2 = c.getContext("2d");
 				var maxWidth = 400;
 			    var lineHeight = 25;
 			    var x = (myCanvas1.width - maxWidth) / 2;
 			    var y = 60;
 			    // variablen van maken
-				ctx.rect(0,10,500,45);
-				ctx.fillStyle = "red";
-				ctx.fill();
-				ctx.font = "20px Verdana";
-				ctx.fillStyle = "white";
-				ctx.fillText("Wonen in Amsterdam",70,40);
-				ctx.font = "12px Verdana";
-				ctx.fillStyle = "black";
+				ctx2.rect(0,10,500,45);
+				ctx2.fillStyle = "red";
+				ctx2.fill();
+				ctx2.font = "20px Verdana";
+				ctx2.fillStyle = "white";
+				ctx2.fillText("Wonen in Amsterdam",70,40);
+				ctx2.font = "12px Verdana";
+				ctx2.fillStyle = "black";
 
 
 			// draw legend functie
@@ -360,9 +367,9 @@ var smooth_scroll_to = function(element, target, duration) {
 
 			// d3 bar chart
 			function d3Bar() {
-				var margin = {top: 40, right: 20, bottom: 30, left: 40},
+				var margin = {top: 50, right: 20, bottom: 30, left: 50},
 			    width = 400 - margin.left - margin.right,
-			    height = 250 - margin.top - margin.bottom;
+			    height = 300 - margin.top - margin.bottom;
 
 				var formatPercent = d3.format(".0%");
 
@@ -373,7 +380,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				    .range([height, 0]);
 
 				var y2 = d3.scale.linear()
-				    .range([height, 100]);				    
+				    .range([height, 0]);				    			    
 
 				var xAxis = d3.svg.axis()
 				    .scale(x)
@@ -415,7 +422,7 @@ var smooth_scroll_to = function(element, target, duration) {
 
 				function drawBar(data){
 				  x.domain(data.map(function(d) { return d.letter; }));
-				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+				  y.domain([0, d3.max(data, function(d) { return +d.frequency; })]);
 
 				  svg.append("g")
 				      .attr("class", "x axis")
@@ -435,12 +442,12 @@ var smooth_scroll_to = function(element, target, duration) {
 				  svg.selectAll(".bar")
 				      .data(data)
 				    .enter().append("rect")
-				      .attr("class", "bar")
+				      .attr("class", function(d) { return "bar "+d.letter })
 				      .attr("x", function(d) { return x(d.letter); })
 				      .attr("width", x.rangeBand())
 				      .attr("y", function(d) { return y(d.frequency); })
 				      .attr("height", function(d) { return height - y(d.frequency); })
-				      // .style("fill", function(d) { return d.color; })
+				      .style("fill", function(d) { return d.color; })
 				      .on('mouseover', tip.show)
 				      .on('mouseout', tip.hide)
 				};
@@ -457,8 +464,8 @@ var smooth_scroll_to = function(element, target, duration) {
 				
 				function drawBar2(data){
 				  x.domain(data.map(function(d) { return d.letter; }));
-				  y2.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
+				  y2.domain([0, d3.max(data, function(d) { return +d.frequency; })]);
+				  
 				  svgTwee.append("g")
 				      .attr("class", "x axis")
 				      .attr("transform", "translate(0," + height + ")")
@@ -472,7 +479,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				      .attr("y", 6)
 				      .attr("dy", ".71em")
 				      .style("text-anchor", "end")
-				      .text("Woningwaarde per m2");
+				      .text("Bevolkingsdichtheid per km2");
 
 				  svgTwee.selectAll(".bar")
 				      .data(data)
@@ -480,8 +487,8 @@ var smooth_scroll_to = function(element, target, duration) {
 				      .attr("class", "bar")
 				      .attr("x", function(d) { return x(d.letter); })
 				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y2(d.frequency); })
-				      .attr("height", function(d) { return height - y(d.frequency); })
+				      .attr("y", function(d) { return y2(+d.frequency); })
+				      .attr("height", function(d) { return height - y2(d.frequency); })
 				      .on('mouseover', tip.show)
 				      .on('mouseout', tip.hide)
 				};
@@ -497,7 +504,7 @@ var smooth_scroll_to = function(element, target, duration) {
 
 				function drawBar3(data){
 				  x.domain(data.map(function(d) { return d.letter; }));
-				  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+				  y.domain([0, d3.max(data, function(d) { return parseFloat(d.frequency); })]);
 
 				  svg3.append("g")
 				      .attr("class", "x axis")
@@ -512,7 +519,7 @@ var smooth_scroll_to = function(element, target, duration) {
 				      .attr("y", 6)
 				      .attr("dy", ".71em")
 				      .style("text-anchor", "end")
-				      .text("Woningwaarde per m2");
+				      .text("Veiligheid");
 
 				  svg3.selectAll(".bar")
 				      .data(data)
@@ -520,12 +527,13 @@ var smooth_scroll_to = function(element, target, duration) {
 				      .attr("class", "bar")
 				      .attr("x", function(d) { return x(d.letter); })
 				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y(d.frequency); })
-				      .attr("height", function(d) { return height - y(d.frequency); })
+				      .attr("y", function(d) {return y(parseFloat(d.frequency)); })
+				      .attr("height", function(d) { return height - y(parseFloat(d.frequency)); })
 				      .on('mouseover', tip.show)
 				      .on('mouseout', tip.hide)
 				};				
 			}
+
 		</script>
 	</body>
 </html>

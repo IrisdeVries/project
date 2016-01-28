@@ -23,7 +23,7 @@
     text-decoration: none;
 }
 
-#p1 {
+#titel {
     position: absolute;
     left: 550px;
     top: 60px;
@@ -31,17 +31,19 @@
     font-size: 20px;
 }
 
-#p2 {
+#titelPagina2 {
     position: absolute;
     left: 650px;
-    top:1000px;
+    top:860px;
     font-family: "Verdana";
     font-size: 20px;
 }
 #p3 {
     position: absolute;
-    left: 30px;
-    top: 1100px;
+    left: 340px;
+    top: 900px;
+    width: 800px;
+    text-align: center;
     font-family: "Verdana";
     font-size: 15px;
 }
@@ -60,6 +62,46 @@
     font-family: "Verdana";
     font-size: 15px;
     z-index: 4;
+}
+
+#uitlegChart1 {
+    position: absolute;
+    left: 50px;
+    top: 1570;
+    width: 300px;
+    font-family: "Verdana";
+    font-size: 15px;
+    z-index: 4;
+}
+
+#uitlegChart2 {
+    position: absolute;
+    left: 550px;
+    top: 1570;
+    width: 300px;
+    font-family: "Verdana";
+    font-size: 15px;
+    z-index: 4;
+}
+
+#uitlegChart3 {
+    position: absolute;
+    left: 1050px;
+    top: 1570;
+    width: 300px;
+    font-family: "Verdana";
+    font-size: 15px;
+    z-index: 4;
+}
+
+#textarea {
+    position: absolute;
+    left: 10px;
+    top: 600;
+    font-family: "Verdana";
+    font-size: 12px;
+    border: solid #848b8f 2px;
+    z-index: 3;
 }
 
 #chart {

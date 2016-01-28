@@ -1,9 +1,9 @@
-letter	frequency	colorx
-Bijlmer-Oost	1656	"red"
-Bijlmer-Centrum	1718	"red"
-Gaasperdam/Driemond	1848	"red"
-Noord-Oost	2119	"red"
-Osdorp	2127	"red"
+letter	frequency	color
+Bijlmer-Oost	1656	"green"
+Bijlmer-Centrum	1718	"green"
+Gaasperdam/Driemond	1848	"green"
+Noord-Oost	2119	"orange"
+Osdorp	2127	"green"
 Geuzenveld/Slotermeer	2179	"red"
 Noord-West	2220	"red"
 Slotervaart	2246	"red"
