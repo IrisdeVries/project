@@ -8,7 +8,9 @@ Het doel van het project was om de Amsterdamse huizenmarkt vanuit een andere hoe
 De visualisatie verstrekt informatie aan ten minste aan twee doelgroepen. 1) Mensen die een huis willen kopen of huren in Amsterdam 2) Mensen die geïnteresseerd zijn in gegevens over buurt (in Amsterdam) waar ze in wonen.
 
 De visualisatie bestaat uit twee pagina’s die ik aan de hand van de foto’s ga doorspreken.
- 
+
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-29%20om%2008.08.54.png)
+
 Op de hoofdpagina is te zien:
 - Google maps met “daarop” de 22 gebieden waaruit Amsterdam is opgebouwd
 Je kan over de map hoveren en wanneer je over een gebied gaat verschijnt de naam van het gebied en verandert de opacity van de polygoon. Het is mogelijk om slechts een beetje in en uit te zoomen. Door op een gebied te klikken scroll je automatisch naar beneden voor gedetailleerde informatie over het gebied.
@@ -23,7 +25,9 @@ Door op deze knoppen te klikken wordt de kaart “ingevuld” en is duidelijk te
 Hier kan je je voorkeuren aangeven wat betreft woonomgeving. Dit gedeelte is dus voor de mensen die opzoek zijn naar een woning. Door op de … te klikken verschijnt er een dropdownmenu en er kan bij alle drie de menu’s worden gekozen uit: “laag”, “gemiddeld”, “hoog” of “maakt niet uit”. In de textarea daaronder verschijnt jouw adviesgebied. Daarnaast worden de adviesgebieden in het rood gehighlight op de map zodat je er gemakkelijk op kunt klikken en verdere informatie kan verkrijgen. Als je over de knoppen hovert worden ze lichtgrijs.
 
 Dat brengt ons tot het tweede gedeelte van de visualisatie. 
- 
+
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-29%20om%2008.09.20.png)
+
 - Linksboven is een knop de zien
 Als je op deze knop drukt smooth scrollt hij je terug naar boven
 
