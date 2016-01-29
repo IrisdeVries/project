@@ -30,12 +30,12 @@ Alles moet nu handmatig en daar gaat waarschijnlijk veel tijd inzitten.
 #zaterdag 09-01
 Begonnen met “tekenen”. Dit is een screenshot van mijn allereerste getekende vlak.
  
-
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-10%20om%2013.27.53.png)
 
 #zondag 10-10
 verder met tekenen en canvas toegevoegd in html. Gedoe met z-index, maar is gelukt (canvas wilde niet over map). Een soort wrap-functie zodat text op canvas zetten makkelijk wordt.
 
- 
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-07%20om%2011.44.52.png) 
 
 #week 2
 De hele week heel erg veel bezig geweest met tekenen.
