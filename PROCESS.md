@@ -22,9 +22,8 @@ Besloten om op te delen in 22 gebieden, want is niet te veel en niet te weinig o
 #vrijdag 08-01
 Bezig geweest met zoeken van extra data en voorbeelden van visualisaties Amsterdam. Opzoek naar data coördinaten. Lang geweest bij bureau dat data regelt van A’dam. Moest een afspraak maken, dus duurt eigenlijk te lang. Ik heb uiteindelijk besloten om de coördinaten van de polygonen zelf te verkrijgen, omdat contact krijgen met de gemeente waarschijnlijk heel lang gaat duren. Op de website: http://www.doogal.co.uk/ is het mogelijk om op een map figuren te tekenen. Je krijgt dan de Lat en Lng waarden terug. Met deze waarden is het mogelijk om deze polygonen ook in mijn eigen visualisatie te laten zien. Het tekenen van de figuren, in dit geval de omlijning van de 22 gebieden, ziet er als volgt uit.
 
- 
-
- 
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-27%20om%2022.59.51.png)
+![Alt text](https://raw.githubusercontent.com/IrisdeVries/project/master/doc/Schermafbeelding%202016-01-27%20om%2023.00.01.png)
 
 Alles moet nu handmatig en daar gaat waarschijnlijk veel tijd inzitten.
 
@@ -66,6 +65,8 @@ postcode werkt met een console.log
 Bijna klaar met coördinaten intekenen.
 
 #week 3
+Over het algemeen ben ik veel bezig geweest met het bruikbaar maken van data, dat kosste veel tijd. Bijvoorbeeld het omzetten van inwonersaantallen in percentage's. Ook zaken als komma's veranderen in punten. 
+
 #maandag 18-01
 Alle gebieden getekend
 
